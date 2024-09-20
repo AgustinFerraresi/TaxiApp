@@ -1,9 +1,9 @@
 #form-container{
     display: flex;
-    /* flex-direction: column; */
     justify-content: center;
     
-    /* flex-wrap: wrap; */
+    
+    
 }
 
 input{
@@ -15,6 +15,11 @@ input{
     width: 100%;
 }
 
+#root{
+    background-color: #000;
+    background-image: image-set("./src/assets/rosario.jpg");
+}
+
 div{
     width: 100%;
 }
@@ -22,6 +27,9 @@ div{
 form{
     display: grid;   
     justify-items: center;
+    background-color: rgba(227, 227, 227, 0.817);
+    border-radius: 10px;
+    padding: 40px;
 }
 
 img{

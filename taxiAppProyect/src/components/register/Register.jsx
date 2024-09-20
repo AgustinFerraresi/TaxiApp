@@ -9,10 +9,7 @@ function Register() {
 
   const handleChange = (event) =>{
     setUserType(event.target.value);
-    console.log("hola")
   }
-
-
 
   return (
     <div id='form-container'>
@@ -80,15 +77,6 @@ function Register() {
 
           
         }
-
-        
-          
-          
-        
-
-
-
-
         <Button variant="warning" type="submit">Enviar</Button>
       </Form>
     </div>
