@@ -1,0 +1,9 @@
+.bordered-div {
+    border: 0.5px solid rgb(190, 190, 190) ;
+    padding: 10px; 
+    border-radius: 10px;
+  }
+.w-50{
+  border: 0.5px solid black ;
+  font-weight: bold;
+}
