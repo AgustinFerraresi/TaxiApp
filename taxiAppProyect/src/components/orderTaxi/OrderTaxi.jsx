@@ -1,14 +1,42 @@
+import { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 const OrderTaxi = () => {
+
+  const [destination, setDestination] = useState("");
+  const [location, setLocation] = useState("");
+  const [messaje, setMessaje] = useState("");
+
+ 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (destination.trim() === '' || location.trim() === '') {
+      alert('complete todos los campos')
+      return;
+    }
+  };
+  const handleLocation = (e) => {
+    setLocation(e.target.value); 
+  };
+  const handleDestination = (e) => {
+    setDestination(e.target.value); 
+  };
+  const handleMessaje = (e) => {
+    setMessaje(e.target.value); 
+  };
+
   return (
     <div className="container mt-4 col-md-6">
-      <Form>
+      <h1 className="text-center">Pedir Taxi</h1>
+      <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-4" controlId="formDestination">
           <Form.Label className="fw-bold">ingrese su destino</Form.Label>
           <Form.Control
             type="text"
-            placeholder="destino"
+            placeholder="Destino"
             className="p-3 rounded"
+            value={destination}
+            onChange={handleDestination}
+            required
           />
         </Form.Group>
 
@@ -18,8 +46,11 @@ const OrderTaxi = () => {
           </Form.Label>
           <Form.Control
             type="text"
-            placeholder="ubicación"
+            placeholder="Ubicación"
             className="p-3 rounded"
+            value={location}
+            onChange={handleLocation}
+            required
           />
         </Form.Group>
 
@@ -29,12 +60,16 @@ const OrderTaxi = () => {
             type="text"
             placeholder="mensaje"
             className="p-3 rounded"
+            value={messaje}
+            onChange={handleMessaje}
           />
         </Form.Group>
 
-        <Button variant="warning" className="w-50 ">
-          Pedir Taxi
-        </Button>
+        <div className="text-center">
+          <Button type="submit" variant="warning" className="w-50 " >
+            Pedir Taxi
+          </Button>
+        </div>
       </Form>
     </div>
   );

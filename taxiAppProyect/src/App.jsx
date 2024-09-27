@@ -1,5 +1,7 @@
-import { useState } from 'react'
+//import { useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import OrderTaxi from './components/orderTaxi/OrderTaxi'
+
 
 
 function App() {
@@ -7,6 +9,7 @@ function App() {
 
   return (
     <>
+    <OrderTaxi/>
 
     </>
   )
