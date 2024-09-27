@@ -16,7 +16,7 @@ function Register() {
       
       <Form>
         <img src="./src/assets/logoTaxiApp.png" alt="logo"></img>
-        <h1>Crear usuario</h1>
+        <h1>Registrarse</h1>
         
         <div>
           <label htmlFor="name">Nombre</label><br />
