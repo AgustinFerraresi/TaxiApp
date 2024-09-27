@@ -1,15 +1,11 @@
-import { useState } from 'react'
+import React from "react";
+import UserList from "./components/data/UserList";
 
-
-
-function App() {
-  
-
+const App = () => {
   return (
-    <>
+    <div>
+    </div>
+  );
+};
 
-    </>
-  )
-}
-
-export default App
+export default App;
