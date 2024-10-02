@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const UserItem = ({ index, user, onEdit, onDelete }) => {
+const DataItem = ({ index, user, onEdit, onDelete }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editedName, setEditedName] = useState(user.name);
   const [editedEmail, setEditedEmail] = useState(user.email);
@@ -49,4 +49,4 @@ const UserItem = ({ index, user, onEdit, onDelete }) => {
   );
 };
 
-export default UserItem;
+export default DataItem;

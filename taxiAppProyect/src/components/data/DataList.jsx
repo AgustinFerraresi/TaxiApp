@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import UserItem from "./UserItem";
-import './UserList.css';
+import DataItem from "./DataItem"
+import './DataList.css';
 
 
-const UserList = () => {
+const DataList = () => {
     const [showAddForm, setShowAddForm] = useState(false);
     const [newName, setNewName] = useState("");
     const [newEmail, setNewEmail] = useState("");
@@ -70,7 +70,7 @@ const UserList = () => {
                 </thead>
                 <tbody>
                     {users.map((user, index) => (
-                        <UserItem
+                        <DataItem
                             key={user.email}
                             index={index}
                             user={user}
@@ -84,4 +84,4 @@ const UserList = () => {
     );
 };
 
-export default UserList;
+export default DataList;
