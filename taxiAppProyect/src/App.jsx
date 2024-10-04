@@ -1,19 +1,18 @@
-import { useState } from 'react'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import Register from './components/Register/Register'
-import RegisterAdmin from './components/registerAdmin/RegisterAdmin';
 import "./App.css";
+import RegisterAdmin from './components/registerAdmin/RegisterAdmin';
+
 
 function App() {
   
 
   return (
     <>
-    <RegisterAdmin/>
+      <RegisterAdmin/>
     
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;
