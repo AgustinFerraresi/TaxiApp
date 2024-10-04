@@ -1,10 +1,17 @@
 
-import React from "react";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import "./App.css";
+import RegisterAdmin from './components/registerAdmin/RegisterAdmin';
 
-const App = () => {
+
+function App() {
+  
+
   return (
-    <div>
-    </div>
+    <>
+      <RegisterAdmin/>
+    
+    </>
   );
 };
 
