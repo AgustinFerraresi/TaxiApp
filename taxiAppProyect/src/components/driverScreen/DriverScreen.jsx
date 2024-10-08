@@ -2,7 +2,7 @@ import { availableTrips, yourTrips } from "../data/Data"
 
 import ListItem from "../ListItem/ListItem";
 import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
+
 import "./DriverScreen.css"
 import { useState } from "react";
 

@@ -1,7 +1,5 @@
-import { Button, Tab } from "react-bootstrap";
+import { Button} from "react-bootstrap";
 import "./ListItem.css";
-import { useState } from "react";
-
 
 const ListItem = ({ list }) => {
     return (
@@ -12,8 +10,8 @@ const ListItem = ({ list }) => {
                 <h6>Hasta</h6>
                 <h6></h6>
             </li>
-            {list.map(trip => (
-                <li>
+            {list.map(trip,index => (
+                <li key={index}>
                     <span>{trip.passanger}</span>
                     <span>{trip.pickup}</span>
                     <span>{trip.destination} </span>
@@ -24,27 +22,3 @@ const ListItem = ({ list }) => {
     );
 }
 export default ListItem;
-
-
-
-
-
-{/* <table>
-<thead>
-    <tr>
-        <th>Pasajero</th>
-        <th>Desde</th>
-        <th>Hasta</th>
-        <th>Tarifa</th>
-    </tr>
-</thead>
-
-{list.map(trip => (
-    <tr>
-        <td>{trip.passenger}</td>
-        <td>{trip.pickup}</td>
-        <td>{trip.destination}</td>
-        <td>{trip.fare ? `$${trip.fare}` : <Button variant="success">Aceptar</Button>}</td>
-    </tr>
-))}
-</table> */}
