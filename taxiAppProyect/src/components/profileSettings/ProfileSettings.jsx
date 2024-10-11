@@ -8,17 +8,17 @@ const ProfileSettings = ({ user }) => {
             <form action="">
                 <div id="img-container">
                     <img src="./src/assets/fotoPerfilPrueba.png" id="profile-picture-settings" alt="profile-picture" />
-                    <h2>{user.name}</h2>
-                    <h5>Rol: {user.userType}</h5>
+                    <h3>{user.name}</h3>
+                    <h6>Rol: {user.userType}</h6>
                 </div>
 
-                <div>
+                <div id="generic-user-data-container">
                     <label htmlFor="" className="general-info">Nombre:
-                        <input type="text" value={user.name} />
+                        <input type="text" value={user.name}  readOnly/>
                     </label>
 
                     <label htmlFor="" className="general-info">Email:
-                        <input type="text" value={user.email} />
+                        <input type="text" value={user.email}  readOnly/>
                     </label>
                 </div>
                 {
@@ -28,15 +28,23 @@ const ProfileSettings = ({ user }) => {
                         {user.vehicles.map((vehicle, index) => (
                             <div key={index} className="driver-container">
                                 <label htmlFor="">Marca<br />
-                                    <input type="text" value={vehicle.brand}  />
+                                    <input type="text" value={vehicle.brand}  readOnly/>
                                 </label>
 
                                 <label htmlFor="">Modelo<br />
-                                    <input type="text" value={vehicle.model}  />
+                                    <input type="text" value={vehicle.model}  readOnly/>
                                 </label>
 
                                 <label htmlFor="">Año<br />
-                                    <input type="numeric" value={vehicle.year}  />
+                                    <input type="numeric" value={vehicle.year}  readOnly/>
+                                </label>
+
+                                <label htmlFor="">Pantente del taxi<br />
+                                    <input type="numeric" value={vehicle.taxiPlate} readOnly/>
+                                </label>
+
+                                <label htmlFor="">Patente del auto<br />
+                                    <input type="numeric" value={vehicle.vehiclePlate} readOnly />
                                 </label>
                             </div>
                         ))}

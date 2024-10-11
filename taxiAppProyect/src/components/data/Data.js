@@ -75,13 +75,18 @@ export const driver = {
     {
         brand:"mercedes",
         model:"a64",
-        year:2010
+        year:2010,
+        taxiPlate:2323,
+        vehiclePlate:"tyu 678"
     },
     {
         brand:"fiat",
         model:"uno",
-        year:2009
-    }]
+        year:2009,
+        taxiPlate:1533,
+        vehiclePlate:"ads 098"
+    },
+]
 };
 
 
