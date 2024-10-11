@@ -1,0 +1,16 @@
+.main-container{
+    background-color: rgba(227, 227, 227, 0.817) !important;
+    border-radius: 10px;
+}
+
+.main-container input{
+    background-color: rgba(242,242,241,1);
+}
+
+#img-login{
+    border-radius: 100px;
+    width: 100px !important;
+    height: 100px !important;
+    margin: 10px;
+}
+

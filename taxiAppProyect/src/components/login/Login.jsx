@@ -1,6 +1,8 @@
 import { useState } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
 import { Link } from "react-router-dom";
+
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./Login.css"
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -24,7 +26,8 @@ const Login = () => {
       <header className="mb-4">
         <div className="d-flex align-items-center">
           <img
-            src=".\.\src\assets\logo.png"
+            id="img-login"
+            src=".\src\assets\logo.png"
             alt="Logo"
             className="img-fluid"
             style={{ width: "50px", height: "50px" }}
@@ -34,11 +37,12 @@ const Login = () => {
       </header>
 
       <main
-        className="bg-white p-4 rounded-lg shadow-lg w-100"
+        className="bg-white p-4 rounded-lg shadow-lg w-100 main-container"
         style={{ maxWidth: "400px" }}
       >
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="mb-3">
+            <label htmlFor="">Correo electrónico</label>
             <input
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -49,6 +53,7 @@ const Login = () => {
             />
           </div>
           <div className="mb-3">
+          <label htmlFor="">Contraseña</label>
             <input
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -68,6 +73,7 @@ const Login = () => {
           </div>
 
           <div className="text-center mb-5">
+            Todavía no tenés una cuenta?<br />
             <Link to="/register">Crear Cuenta</Link>
           </div>
         </form>
