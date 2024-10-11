@@ -1,0 +1,32 @@
+#dashboard-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 20px;
+    background-image: url("./src/assets/rosario.jpg");
+    color: #fff;
+}
+
+.dashboard-container-main{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    background-color: var(--brown-color);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.dashboard-container-main img{
+    width: 10%;
+    border-radius: 100px;
+    margin: 0 10px;
+}
+
+.dashboard-container-main button{
+    margin: 20px;
+    font-weight: bold;
+    color: #000;
+}

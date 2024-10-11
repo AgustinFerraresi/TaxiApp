@@ -1,5 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ProfileSettings from './components/profileSettings/ProfileSettings';
+import DashBoard from './components/dashBoard/DashBoard';
 
 
 
@@ -7,7 +8,7 @@ import ProfileSettings from './components/profileSettings/ProfileSettings';
 function App() {
   return (
     <>
-      
+      <DashBoard/>
     </>
   )
 }

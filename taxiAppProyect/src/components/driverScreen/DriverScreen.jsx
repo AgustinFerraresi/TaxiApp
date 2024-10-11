@@ -1,10 +1,11 @@
 import { availableTrips, yourTrips } from "../data/Data"
+import { useState } from "react";
 
 import ListItem from "../ListItem/ListItem";
 import Button from 'react-bootstrap/Button';
 
 import "./DriverScreen.css"
-import { useState } from "react";
+
 
 const DriverScreen = () => {
 
