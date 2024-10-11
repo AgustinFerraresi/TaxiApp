@@ -8,9 +8,19 @@ h5{
     text-transform: capitalize;
 }
 
+.buttons{
+    display: flex;
+    justify-content: end;
+    padding: 10px;
+}
+
+.buttons button{
+    margin: 10px;
+}
+
+
 *::-webkit-scrollbar{
     background-color:var(--brown-color);
-
     scrollbar-width: thin;
 }
 
@@ -24,6 +34,9 @@ h5{
     justify-content: center;
     margin: 20px;
 }
+
+
+
 
 #card-container{
     background-color: var(--main-color);

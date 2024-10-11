@@ -27,6 +27,10 @@ const DriverScreen = () => {
 
     return (
         <div id="card-container">
+            <div className="buttons">
+                <Button variant="warning">Editar perfil</Button>
+                <Button variant="danger">Cerrar sesión</Button>
+            </div>
             <div id="img-container">
                 <img src="./src/assets/fotoPerfilPrueba.png" id="profile-picture" alt="profile-picture"/>
                 <h2>Nombre del chofer</h2>
@@ -39,6 +43,7 @@ const DriverScreen = () => {
             <div className="container">
                 <h5>Viajes disponibles</h5>
                 <ListItem list={availableTrips}/>
+                
                 <h5>Tus viajes realizados</h5>
                 <ListItem list={yourTrips}/>
             </div>
@@ -46,10 +51,4 @@ const DriverScreen = () => {
     );
 };
 
-export default DriverScreen
-
-
-// <div>
-// <h2>Tus viajes realizados</h2>
-// <ListItem yourTrips={yourTrips} />
-// </div>
+export default DriverScreen;

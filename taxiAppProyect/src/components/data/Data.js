@@ -61,7 +61,28 @@ export const availableTrips = [
 ];
 
 
+export const passanger = {
+    name:"agustin",
+    email:"aaa@",
+    userType:"pasajero"
+}
 
+export const driver = {
+    name:"marcelo",
+    email:"qqqq@",
+    userType:"chofer",
+    vehicles:[
+    {
+        brand:"mercedes",
+        model:"a64",
+        year:2010
+    },
+    {
+        brand:"fiat",
+        model:"uno",
+        year:2009
+    }]
+};
 
 
 // tripId
