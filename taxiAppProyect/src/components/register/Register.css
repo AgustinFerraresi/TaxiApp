@@ -1,13 +1,11 @@
 #form-container{
     display: flex;
     justify-content: center;
-    
-    
-    
+    flex-wrap: wrap;
 }
 
 input{
-    background-color: rgba(242,242,241,255);
+    background-color: rgba(242,242,241,1);
     border-radius: 10px;
     padding: 10px;
     border: none;
@@ -16,32 +14,42 @@ input{
 }
 
 #root{
-    background-color: #000;
     background-image: image-set("./src/assets/rosario.jpg");
+    background-repeat: repeat;
+    height: 100vh;
 }
 
 div{
     width: 100%;
 }
 
-form{
+#register-form{
     display: grid;   
     justify-items: center;
-    background-color: rgba(227, 227, 227, 0.817);
+    background-color: rgba(227, 227, 227, 0.8);
     border-radius: 10px;
     padding: 40px;
 }
 
-img{
+.register-input{
+    height: 30px;
+}
+
+#form-img{
     width: 100px;
     border-radius: 100px;
 }
 
-button{
+.form-button{
     width: 100%;
     margin: 10px;
 }
 
 .userType{
-    margin: 10px 0;
+    
+}
+
+#radio-container{
+    display: flex;
+
 }

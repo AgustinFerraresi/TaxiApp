@@ -3,6 +3,7 @@ import "./App.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Register from "./components/register/Register";
 import Login from "./components/login/Login";
+import PageNotFound from "./components/PageNotFound/PageNotFound";
 
 function App() {
   const router = createBrowserRouter([
@@ -21,6 +22,10 @@ function App() {
     {
       path: "/register",
       element: <Register />,
+    },
+    {
+      path: "*",
+      element: <PageNotFound/>,
     },
   ]);
   return <RouterProvider router={router} />;
