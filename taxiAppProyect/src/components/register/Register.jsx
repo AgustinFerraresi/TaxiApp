@@ -4,17 +4,17 @@ import Form from 'react-bootstrap/Form';
 import "./Register.css";
 
 function Register() {
-  const [userType, setUserType] = useState("");
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [dni, setDni] = useState();
+  const [dni, setDni] = useState("");
   const [vehicleBrand, setVehicleBrand] = useState("");
   const [vehiclePlate, setVehiclePlate] = useState("");
-  const [taxiPlate, setTaxiPlate] = useState();
+  const [taxiPlate, setTaxiPlate] = useState("");
   const [vehicleModel, setVehicleModel] = useState("");
-  const [vehicleYear, setVehicleYear] = useState();
+  const [vehicleYear, setVehicleYear] = useState("");
+  const [taxiDriver,setTaxiDriver] = useState(false);
 
   const [errors, setErrors] = useState({
     name: false,
@@ -29,7 +29,6 @@ function Register() {
   });
 
   const currentYear = new Date().getFullYear();
-
   const nameRef = useRef(null);
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
@@ -40,8 +39,12 @@ function Register() {
   const vehicleModelRef = useRef(null);
   const vehicleYearRef = useRef(null);
 
-  const handlerChange = (event) => {
-    setUserType(event.target.value);
+  const taxiDriverHandler = (event) => {
+    if (event.target.value === "passenger") {
+      setTaxiDriver(false);
+    }else if (event.target.value === "taxiDriver") {
+      setTaxiDriver(true);
+    };
   };
 
   const nameHandler = (event) => {
@@ -109,52 +112,53 @@ function Register() {
       return
     };
 
-    if (dni === undefined || dni === "") {
+    if (dni.length === 0) {
       dniRef.current.focus();
       setErrors({ ...errors, dni: true });
       return
     };
 
-    if (vehicleBrand.length === 0) {
+    if (vehicleBrand.length === 0 && taxiDriver) {
       vehicleBrandRef.current.focus();
       setErrors({ ...errors, vehicleBrand: true });
       return
     };
 
-    if (vehiclePlate.length === 0) {
+    if (vehiclePlate.length === 0 && taxiDriver) {
       vehiclePlateRef.current.focus();
       setErrors({ ...errors, vehiclePlate: true });
       return
     };
 
-    if (taxiPlate === undefined || taxiPlate === "") {
+    if (taxiPlate.length === 0 && taxiDriver) {
       taxiPlateRef.current.focus();
       setErrors({ ...errors, taxiPlate: true });
       return
     };
 
-    if (vehicleModel.length === 0) {
+    if (vehicleModel.length === 0 && taxiDriver) {
       vehicleModelRef.current.focus();
       setErrors({ ...errors, vehicleModel: true });
       return
     };
 
-    if (vehicleYear === undefined || vehicleYear === "") {
+    if (vehicleYear.length === 0 && taxiDriver) {
       vehicleYearRef.current.focus();
       setErrors({ ...errors, vehicleYear: true });
       return
     };
+    console.log("formulario enviado  correctamente");
   }
 
   return (
-    <div id='form-container'>
+    <div id='register-form-container'>
       <Form id='register-form'>
-        <div className='header-form'>
-          <img src="./src/assets/logoTaxiApp.png" id='form-img' alt="logo"></img>
+        <div className='register-header-form'>
+          <img src="./src/assets/logoTaxiApp.png" id='register-form-img' alt="logo"></img>
           <h4>Crear cuenta</h4>
         </div>
 
-        <div className='general-info'>
+        <div className='register-general-info'>
           <div>
             <label htmlFor="name">Nombre</label><br />
             <input
@@ -219,40 +223,39 @@ function Register() {
             <p className="text-danger mt-2">Ingrese un dni válido.</p>
           )}
 
-          <div id='radio-container'>
-            <Form.Group className="mb-3" controlId="formBasicCheckbox" id='radio-container'>
+          <div id='register-radio-container'>
+            <Form.Group className="mb-3" controlId="formBasicCheckbox" id='register-radio-container'>
               <Form.Check
                 type="radio"
                 name='userType'
                 value="passenger"
-                className='userType'
+                className='register-userType'
                 label="Soy pasajero"
-                onChange={handlerChange}
+                onChange={taxiDriverHandler}
                 defaultChecked
               />
 
               <Form.Check
                 type="radio"
                 name='userType'
-                value="taxi"
-                className='userType'
+                value="taxiDriver"
+                className='register-userType'
                 id='taxi'
                 label="Soy taxista"
-                onChange={handlerChange}
+                onChange={taxiDriverHandler}
               />
             </Form.Group>
           </div>
         </div>
 
         {
-          userType === "taxi" &&
-          <div className='vehicle-info'>
+          taxiDriver === true &&
+          <div className='register-vehicle-info'>
             <div>
               <label htmlFor="car">Marca del vehiculo</label><br />
               <input
                 type="text"
                 name="car"
-                id="car"
                 className={`register-input ${errors.vehicleBrand && "border-danger border-danger:focus"}`}
                 value={vehicleBrand}
                 ref={vehicleBrandRef}
@@ -269,7 +272,6 @@ function Register() {
               <input
                 type="text"
                 name="car"
-                id="car"
                 className={`register-input ${errors.vehiclePlate && "border-danger border-danger:focus"}`}
                 value={vehiclePlate}
                 ref={vehiclePlateRef}
@@ -285,7 +287,6 @@ function Register() {
               <input
                 type="number"
                 name="car"
-                id="car"
                 className={`register-input ${errors.taxiPlate && "border-danger border-danger:focus"}`}
                 value={taxiPlate}
                 ref={taxiPlateRef}
@@ -302,7 +303,6 @@ function Register() {
               <input
                 type="text"
                 name="car"
-                id="car"
                 className={`register-input ${errors.vehicleModel && "border-danger border-danger:focus"}`}
                 value={vehicleModel}
                 ref={vehicleModelRef}
@@ -321,7 +321,6 @@ function Register() {
                 name="car"
                 min={1900}
                 max={currentYear}
-                id="car"
                 className={`register-input ${errors.vehicleYear && "border-danger border-danger:focus"}`}
                 value={vehicleYear}
                 ref={vehicleYearRef}
@@ -332,7 +331,7 @@ function Register() {
             )}   
           </div>
         }
-        <Button variant="warning" type="submit" className='form-button' onClick={signInHandler}>Crear cuenta</Button>
+        <Button variant="warning" type="submit" className='register-form-button' onClick={signInHandler}>Crear cuenta</Button>
       </Form>
     </div>
   );

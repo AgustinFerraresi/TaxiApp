@@ -19,29 +19,28 @@ const DriverScreen = () => {
         else
         {
             setService("PONERSE EN SERVICIO")    
-        }
-        
+        } 
     }
 
     const buttonVariant = service === "PONERSE EN SERVICIO" ? "success" : "danger";
 
 
     return (
-        <div id="card-container">
+        <div id="driver-screen-card-container">
             <div className="buttons">
-                <Button variant="warning">Editar perfil</Button>
-                <Button variant="danger">Cerrar sesión</Button>
+                <Button className="driver-screen-buttons" variant="warning">Editar perfil</Button>
+                <Button className="driver-screen-buttons" variant="danger">Cerrar sesión</Button>
             </div>
-            <div id="img-container">
+            <div id="driver-screen-img-container">
                 <img src="./src/assets/fotoPerfilPrueba.png" id="profile-picture" alt="profile-picture"/>
                 <h2>Nombre del chofer</h2>
             </div>
 
-            <div id="button-container">                
-                <Button onClick={handlerService} variant={buttonVariant}>{service}</Button>
+            <div id="driver-screen-button-container">
+                <Button className="driver-screen-buttons" onClick={handlerService} variant={buttonVariant}>{service}</Button>
             </div>
 
-            <div className="container">
+            <div className="driver-screen-container">
                 <h5>Viajes disponibles</h5>
                 <ListItem list={availableTrips}/>
                 

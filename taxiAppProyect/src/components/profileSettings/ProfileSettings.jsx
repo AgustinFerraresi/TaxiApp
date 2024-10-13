@@ -4,20 +4,20 @@ import { Button } from "react-bootstrap";
 
 const ProfileSettings = ({ user }) => {
     return (
-        <div id="container">
-            <form action="">
+        <div id="profile-settings-container">
+            <form action="" className="profile-settings-form">
                 <div id="img-container">
-                    <img src="./src/assets/fotoPerfilPrueba.png" id="profile-picture-settings" alt="profile-picture" />
+                    <img src="./src/assets/fotoPerfilPrueba.png" id="profile-settings-profile-picture" alt="profile-picture" />
                     <h3>{user.name}</h3>
                     <h6>Rol: {user.userType}</h6>
                 </div>
 
-                <div id="generic-user-data-container">
+                <div id="profile-settings-generic-user-data-container">
                     <label htmlFor="" className="general-info">Nombre:
                         <input type="text" value={user.name}  readOnly/>
                     </label>
 
-                    <label htmlFor="" className="general-info">Email:
+                    <label htmlFor="" className="profile-settings-general-info">Email:
                         <input type="text" value={user.email}  readOnly/>
                     </label>
                 </div>
@@ -26,7 +26,7 @@ const ProfileSettings = ({ user }) => {
                     <div>
                         <h4>Informacion del vehiculo</h4>
                         {user.vehicles.map((vehicle, index) => (
-                            <div key={index} className="driver-container">
+                            <div key={index} className="profile-settings-container-driver-container">
                                 <label htmlFor="">Marca<br />
                                     <input type="text" value={vehicle.brand}  readOnly/>
                                 </label>

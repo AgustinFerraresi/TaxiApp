@@ -1,9 +1,9 @@
-.main-container{
+.login-main-container{
     background-color: rgba(227, 227, 227, 0.817) !important;
     border-radius: 10px;
 }
 
-.main-container input{
+.login-main-container input{
     background-color: rgba(242,242,241,1);
 }
 

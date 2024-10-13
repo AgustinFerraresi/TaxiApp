@@ -4,17 +4,17 @@
     --brown-color: rgba(59,50,38,255);
 }
 
-h5{
-    text-transform: capitalize;
+#driver-screen-card-container h5{
+    text-transform: capitalize ;    
 }
 
-.buttons{
+.driver-screen-buttons{
     display: flex;
     justify-content: end;
     padding: 10px;
 }
 
-.buttons button{
+.driver-screen-buttons button{
     margin: 10px;
 }
 
@@ -29,14 +29,11 @@ h5{
     scrollbar-width: thin;
 }
 
-#button-container{
+#driver-screen-button-container{
     display: flex;
     justify-content: center;
     margin: 20px;
 }
-
-
-
 
 #card-container{
     background-color: var(--main-color);
@@ -44,7 +41,7 @@ h5{
 }
 
 
-.container{
+.driver-screen-container{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -55,7 +52,7 @@ h5{
     width: 10%;
 }
 
-#img-container{
+#driver-screen-img-container{
     display: flex;
     align-items: center;
     flex-direction: column;

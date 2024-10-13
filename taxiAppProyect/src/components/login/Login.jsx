@@ -9,6 +9,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
+  
   const [errors, setErrors] = useState({
     email: false,
     password: false
@@ -59,7 +60,7 @@ const Login = () => {
       </header>
 
       <main
-        className="bg-white p-4 rounded-lg shadow-lg w-100 main-container"
+        className="bg-white p-4 rounded-lg shadow-lg w-100 login-main-container"
         style={{ maxWidth: "400px" }}>
 
         <form onSubmit={handleSubmit} className="space-y-4">
