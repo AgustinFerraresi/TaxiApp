@@ -1,0 +1,61 @@
+:root{
+    --main-color: rgba(24,21,16,1);
+    --orange-color: rgba(243,149,13,1);
+    --brown-color: rgba(59,50,38,0.85);
+}
+
+#container{
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background-color: #000;
+    background-image: url("./src/assets/rosario.jpg");
+}
+
+#generic-user-data-container label{
+    text-align: center;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background-color: var(--brown-color);
+    color: #fff;
+    
+}
+
+#profile-picture-settings{
+    max-width: 15%;
+}
+
+form label {
+    margin: 20px 0;
+}
+
+.general-info{
+    width: 50%;
+}
+
+form label input{
+    border: none;
+    border-bottom: 2px solid var(--orange-color);
+    margin: 5px;
+    background-color: var(--brown-color);
+    color: #fff;
+    border-radius: 4px;
+}
+
+h2{
+    text-transform: capitalize;
+}
+
+h3{
+    text-transform: capitalize;
+}
+
+.driver-container{
+    
+    margin: 10px;
+}
