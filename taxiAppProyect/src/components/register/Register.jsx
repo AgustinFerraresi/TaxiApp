@@ -1,7 +1,9 @@
 import { useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import "./Register.css";
+
 
 function Register() {
 
@@ -15,6 +17,7 @@ function Register() {
   const [vehicleModel, setVehicleModel] = useState("");
   const [vehicleYear, setVehicleYear] = useState("");
   const [taxiDriver,setTaxiDriver] = useState(false);
+  const navigate = useNavigate();
 
   const [errors, setErrors] = useState({
     name: false,
@@ -90,7 +93,11 @@ function Register() {
   const vehicleYearHandler = (event) => {
     setVehicleYear(event.target.value);
     setErrors({ ...errors, vehicleYear: false });
-  }
+  };
+
+  const clickLinkHandler = () => {
+    navigate("/");
+  };
 
   const signInHandler = (event) => {
     event.preventDefault();
@@ -148,13 +155,13 @@ function Register() {
       return
     };
     console.log("formulario enviado  correctamente");
-  }
+  };
 
   return (
     <div id='register-form-container'>
       <Form id='register-form'>
         <div className='register-header-form'>
-          <img src="./src/assets/logoTaxiApp.png" id='register-form-img' alt="logo"></img>
+          <img src="./src/assets/logoTaxiApp.png" id='register-form-img' alt="logo" onClick={clickLinkHandler}></img>
           <h4>Crear cuenta</h4>
         </div>
 

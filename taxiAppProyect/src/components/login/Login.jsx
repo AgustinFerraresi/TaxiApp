@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Login.css"
@@ -9,6 +9,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
+  const navigate = useNavigate();
   
   const [errors, setErrors] = useState({
     email: false,
@@ -34,28 +35,30 @@ const Login = () => {
   };
 
   const emailHandler = (event) => {
-    setEmail(event.target.value)
-    setErrors({ ...errors, email: false })
-
-  }
+    setEmail(event.target.value);
+    setErrors({ ...errors, email: false });
+  };
 
   const passwordHandler = (event) => {
-    setPassword(event.target.value)
-    setErrors({ ...errors, password: false })
-  }
+    setPassword(event.target.value);
+    setErrors({ ...errors, password: false });
+  };
+
+  const clickLinkHandler = () => {
+    navigate("/");
+  };
 
   return (
     <div className="d-flex flex-column justify-content-center align-items-center min-vh-100">
       <header className="mb-4">
-        <div className="d-flex align-items-center">
+        <div className="d-flex  align-items-center login-header-container" onClick={clickLinkHandler}>
           <img
             id="img-login"
             src=".\src\assets\logo.png"
             alt="Logo"
             className="img-fluid"
-            style={{ width: "50px", height: "50px" }}
-          />
-          <h1 className="text-warning ml-2">RoTaxi</h1>
+            style={{ width: "50px", height: "50px" }}/>
+          <h1 className="text-warning ml-2" style={{ textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)" }}>RoTaxi</h1>
         </div>
       </header>
 

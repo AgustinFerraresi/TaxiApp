@@ -43,6 +43,10 @@
     border-radius: 100px;
 }
 
+#register-form-img:hover{
+    cursor: pointer;
+}
+
 .register-form-button{
     width: 100%;
     margin: 10px;
@@ -84,16 +88,3 @@
     outline: none;
 }
 
-.register-userType{   
-    border-radius: 0px  !important;
-    padding: 0px !important;
-    border: none !important;
-    margin:0px  !important;
-    width: 10% !important;
-}
-
-.register-userType:on{
-    background-color: red !important;
-    border: 1px solid red !important;
-    border-color: red !important;
-}

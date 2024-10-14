@@ -6,7 +6,7 @@
     height: 100vh;
     padding: 20px;
     background-image: url("./src/assets/rosario.jpg");
-    color: #fff;
+    color: #000;
 }
 
 .dashboard-container-main{
@@ -14,7 +14,7 @@
     flex-direction: column;
     flex-wrap: wrap;
     align-items: center;
-    background-color: var(--brown-color);
+    background-color: rgba(227, 227, 227, 0.8);
     padding: 20px;
     border-radius: 10px;
 }
@@ -27,6 +27,5 @@
 
 .dashboard-container-main button{
     margin: 20px;
-    font-weight: bold;
     color: #000;
 }

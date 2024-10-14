@@ -19,11 +19,11 @@ function App() {
     },
     {
       path: "/login",
-      element: <Login />, //se pisa el css
+      element: <Login />, 
     },
     {
       path: "/register",
-      element: <Register />, //se pisa el css
+      element: <Register />,
     },
     {
       path: "/DriverScreen",
