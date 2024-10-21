@@ -16,7 +16,8 @@ function Register() {
   const [taxiPlate, setTaxiPlate] = useState("");
   const [vehicleModel, setVehicleModel] = useState("");
   const [vehicleYear, setVehicleYear] = useState("");
-  const [taxiDriver,setTaxiDriver] = useState(false);
+  const [taxiDriver, setTaxiDriver] = useState(false);
+  const [userType, setUserType] = useState("");
   const navigate = useNavigate();
 
   const [errors, setErrors] = useState({
@@ -42,10 +43,14 @@ function Register() {
   const vehicleModelRef = useRef(null);
   const vehicleYearRef = useRef(null);
 
+  const handleChange = (event) => {
+    setUserType(event.target.value);
+  }
+
   const taxiDriverHandler = (event) => {
     if (event.target.value === "passenger") {
       setTaxiDriver(false);
-    }else if (event.target.value === "taxiDriver") {
+    } else if (event.target.value === "taxiDriver") {
       setTaxiDriver(true);
     };
   };
@@ -251,6 +256,8 @@ function Register() {
                 label="Soy taxista"
                 onChange={taxiDriverHandler}
               />
+
+              
             </Form.Group>
           </div>
         </div>
@@ -272,7 +279,7 @@ function Register() {
             </div>
             {errors.vehicleBrand && (
               <p className="text-danger mt-2">Ingrese una marca válido.</p>
-            )}   
+            )}
 
             <div>
               <label htmlFor="car">Pantente del vehiculo</label><br />
@@ -287,7 +294,7 @@ function Register() {
             </div>
             {errors.vehiclePlate && (
               <p className="text-danger mt-2">Ingrese una patente válida.</p>
-            )}   
+            )}
 
             <div>
               <label htmlFor="car">Pantente del taxi</label><br />
@@ -303,7 +310,7 @@ function Register() {
             </div>
             {errors.taxiPlate && (
               <p className="text-danger mt-2">Ingrese una patente válida.</p>
-            )}   
+            )}
 
             <div>
               <label htmlFor="car">Modelo del vehiculo</label><br />
@@ -319,7 +326,7 @@ function Register() {
             </div>
             {errors.vehicleModel && (
               <p className="text-danger mt-2">Ingrese un modelo válido.</p>
-            )}   
+            )}
 
             <div>
               <label htmlFor="car">Año del vehiculo</label><br />
@@ -335,7 +342,7 @@ function Register() {
             </div>
             {errors.vehicleYear && (
               <p className="text-danger mt-2">Ingrese un año válido.</p>
-            )}   
+            )}
           </div>
         }
         <Button variant="warning" type="submit" className='register-form-button' onClick={signInHandler}>Crear cuenta</Button>

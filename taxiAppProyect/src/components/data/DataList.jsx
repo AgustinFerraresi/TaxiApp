@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import DataItem from "./DataItem";
 import "./DataList.css";
+import { useNavigate } from "react-router-dom";
 
 const DataList = () => {
   const [showAddForm, setShowAddForm] = useState(false);
@@ -31,34 +32,18 @@ const DataList = () => {
     }
   };
 
+  const navigate = useNavigate()
+  const HandleAddUser = () =>{
+    navigate("/registerAdmin")
+  }
   return (
     <div className="user-list">
       <h1>Usuarios</h1>
       <button
         className="add-button"
-        onClick={() => setShowAddForm(!showAddForm)}
-      >
-        {showAddForm ? "Cancelar" : "Añadir Usuario"}
+        onClick={HandleAddUser}
+      >Agregar Usuario
       </button>
-
-      {showAddForm && (
-        <div className="add-user-form">
-          <input
-            type="text"
-            value={newName}
-            onChange={(e) => setNewName(e.target.value)}
-            placeholder="Nombre"
-          />
-          <input
-            type="email"
-            value={newEmail}
-            onChange={(e) => setNewEmail(e.target.value)}
-            placeholder="Email"
-          />
-          <button onClick={handleAdd}>Guardar</button>
-        </div>
-      )}
-
       <table>
         <thead>
           <tr>
