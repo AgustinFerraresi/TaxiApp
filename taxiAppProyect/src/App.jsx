@@ -34,6 +34,10 @@ function App() {
       element: <ProfileSettings user={driver}/> //se pisa el css
     },
     {
+      path: "/OrderTaxi",
+      element: <OrderTaxi/>
+    },
+    {
       path: "*",
       element: <PageNotFound/>,
     },

@@ -1,9 +1,10 @@
-.bordered-div {
+.orderTaxiContainer {
     border: 0.5px solid rgb(190, 190, 190) ;
     padding: 10px; 
     border-radius: 10px;
+    background-color: rgba(227, 227, 227, 0.8);
   }
-.w-50{
+.buttonOrderTaxi{
   border: 0.5px solid black ;
   font-weight: bold;
 }
