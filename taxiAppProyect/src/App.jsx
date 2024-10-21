@@ -9,6 +9,9 @@ import DashBoard from "./components/dashBoard/DashBoard";
 import ProfileSettings from "./components/profileSettings/ProfileSettings";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
+import RegisterAdmin from "./components/registerAdmin/RegisterAdmin";
+import DataList from "./components/data/DataList";
+// import Protected from "./components/protected/Protected";
 
 
 function App() {
@@ -26,6 +29,14 @@ function App() {
       element: <Register />,
     },
     {
+      path: "/registerAdmin",
+      element: <RegisterAdmin />,
+    },
+    {
+      path: "/ListUsers",
+      element: <DataList />,
+    },
+    {
       path: "/DriverScreen",
       element: <DriverScreen />, //problemas con css
     },
@@ -41,7 +52,71 @@ function App() {
       path: "*",
       element: <PageNotFound/>,
     },
+
+
+      // PATH PROTEGIDO
+
+
+    // {
+    //   path: "/",
+    //   element: <DashBoard/>
+    // },
+    // {
+    //   path: "/login",
+    //   element: <Login />, 
+    // },
+    // {
+    //   path: "/register",
+    //   element: <Register />,
+    // },
+    // {
+    //   path: "/registerAdmin",
+    //   element: 
+    //   <Protected>
+    //     <RegisterAdmin />
+    //   </Protected>,
+    // },
+    // {
+    //   path: "/ListUsers",
+    //   element: 
+    //   <Protected>
+    //     <DataList />
+    //   </Protected>,
+    // },
+    // {
+    //   path: "/DriverScreen",
+    //   element:  
+    //   <Protected>
+    //     <DriverScreen />
+    //   </Protected> 
+    //   //problemas con css
+    // },
+    // {
+    //   path: "/DriverScreen/ProfileSettings",
+    //   element: 
+    //   <Protected>
+    //     <ProfileSettings user={driver}/>
+    //   </Protected>  //se pisa el css
+    // },
+    // {
+    //   path: "/OrderTaxi",
+    //   element: 
+    //   <Protected>
+    //     <OrderTaxi/>
+    //   </Protected>
+    // },
+    // {
+    //   path: "*",
+    //   element: <PageNotFound/>,
+    // },
+    
   ]);
+
+
+
+
+
+  
   return <RouterProvider router={router} />;
 }
 
