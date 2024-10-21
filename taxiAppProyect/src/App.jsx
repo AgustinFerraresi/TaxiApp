@@ -1,6 +1,6 @@
-
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { driver, passanger } from "./components/data/Data";
+import OrderTaxi from './components/orderTaxi/OrderTaxi'
 import Register from "./components/register/Register";
 import Login from "./components/login/Login";
 import PageNotFound from "./components/PageNotFound/PageNotFound";
