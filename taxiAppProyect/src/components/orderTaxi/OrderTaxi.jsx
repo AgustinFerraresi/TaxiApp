@@ -51,7 +51,7 @@ const OrderTaxi = () => {
   };
 
   return (
-    <div className="container mt-4 col-md-4 shadow bordered-div">
+    <div className="container mt-4 col-md-4 shadow bordered-div orderTaxiContainer">
       <h1 className="text-center">Pedir Taxi</h1>
 
       <Form>
@@ -105,7 +105,7 @@ const OrderTaxi = () => {
             onClick={handleSubmit}
             type="submit"
             variant="warning"
-            className="w-50 "
+            className="w-50 buttonOrderTaxi"
           >
             Pedir Taxi
           </Button>
