@@ -14,7 +14,6 @@ const DriverScreen = () => {
     const handlerService = () => {
         if (service === "PONERSE EN SERVICIO") {
             setService("TERMINAR SERVICIO");
-            
         }
         else
         {

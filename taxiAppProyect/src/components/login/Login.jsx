@@ -76,7 +76,7 @@ const Login = () => {
               type="text"
               id="email"
               placeholder="Correo Electrónico"
-              className={`form-control ${errors.email ? "border border-danger" : ""}`}
+              className={`form-control ${errors.email && "border border-danger"}`}
               ref={emailRef}
             />
             {errors.email && (
@@ -91,7 +91,7 @@ const Login = () => {
               type="password"
               id="password"
               placeholder="Contraseña"
-              className={`form-control ${errors.password ? "border border-danger" : ""}`}
+              className={`form-control ${errors.password && "border border-danger" }`}
               ref={passwordRef}
             />
             {errors.password && (

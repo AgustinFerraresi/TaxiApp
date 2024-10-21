@@ -1,23 +1,24 @@
 :root{
-    --main-color: rgba(24,21,16,255);
-    --orange-color: rgba(243,149,13,255);
-    --brown-color: rgba(59,50,38,255);
+    --main-color: rgba(24,21,16,1);
+    --orange-color: rgba(243,149,13,1);
+    --brown-color: rgba(59,50,38,1);
 }
 
 #driver-screen-card-container h5{
     text-transform: capitalize ;    
 }
 
+#driver-screen-card-container{
+    background-color: var(--main-color);
+    color: #fff;
+}
+
 .driver-screen-buttons{
     display: flex;
     justify-content: end;
     padding: 10px;
-}
-
-.driver-screen-buttons button{
     margin: 10px;
 }
-
 
 *::-webkit-scrollbar{
     background-color:var(--brown-color);
@@ -39,7 +40,6 @@
     background-color: var(--main-color);
     color: #fff;
 }
-
 
 .driver-screen-container{
     display: flex;
