@@ -27,7 +27,7 @@ function App() {
     },
     {
       path: "/DriverScreen",
-      element: <DriverScreen />, //problemas con css
+      element: <DriverScreen />,
     },
     {
       path: "/DriverScreen/ProfileSettings",

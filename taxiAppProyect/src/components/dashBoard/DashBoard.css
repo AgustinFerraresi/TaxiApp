@@ -1,12 +1,13 @@
 #dashboard-container{
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-rows: 1fr 3fr 1fr;
     justify-content: center;
     align-items: center;
     height: 100vh;
     padding: 20px;
     background-image: url("./src/assets/rosario.jpg");
     color: #000;
+    height: 110vh;
 }
 
 .dashboard-container-main{
