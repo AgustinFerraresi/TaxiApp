@@ -5,18 +5,14 @@ import Form from 'react-bootstrap/Form';
 import "./Register.css";
 
 
-function Register() {
+const Register = () => {
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [dni, setDni] = useState("");
-  const [vehicleBrand, setVehicleBrand] = useState("");
-  const [vehiclePlate, setVehiclePlate] = useState("");
-  const [taxiPlate, setTaxiPlate] = useState("");
-  const [vehicleModel, setVehicleModel] = useState("");
-  const [vehicleYear, setVehicleYear] = useState("");
-  const [taxiDriver,setTaxiDriver] = useState(false);
+  const [taxiDriver, setTaxiDriver] = useState(false);
+  
   const navigate = useNavigate();
 
   const [errors, setErrors] = useState({
@@ -24,28 +20,18 @@ function Register() {
     email: false,
     password: false,
     dni: false,
-    vehicleBrand: false,
-    vehiclePlate: false,
-    taxiPlate: false,
-    vehicleModel: false,
-    vehicleYear: false,
   });
 
-  const currentYear = new Date().getFullYear();
   const nameRef = useRef(null);
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
   const dniRef = useRef(null);
-  const vehicleBrandRef = useRef(null);
-  const vehiclePlateRef = useRef(null);
-  const taxiPlateRef = useRef(null);
-  const vehicleModelRef = useRef(null);
-  const vehicleYearRef = useRef(null);
+ 
 
   const taxiDriverHandler = (event) => {
     if (event.target.value === "passenger") {
       setTaxiDriver(false);
-    }else if (event.target.value === "taxiDriver") {
+    } else if (event.target.value === "taxiDriver") {
       setTaxiDriver(true);
     };
   };
@@ -70,36 +56,13 @@ function Register() {
     setErrors({ ...errors, dni: false });
   };
 
-  const vehicleBrandHandler = (event) => {
-    setVehicleBrand(event.target.value);
-    setErrors({ ...errors, vehicleBrand: false });
-  };
 
-  const vehiclePlateHandler = (event) => {
-    setVehiclePlate(event.target.value);
-    setErrors({ ...errors, vehiclePlate: false });
-  };
-
-  const taxiPlateHandler = (event) => {
-    setTaxiPlate(event.target.value);
-    setErrors({ ...errors, taxiPlate: false });
-  };
-
-  const vehicleModelHandler = (event) => {
-    setVehicleModel(event.target.value);
-    setErrors({ ...errors, vehicleModel: false });
-  };
-
-  const vehicleYearHandler = (event) => {
-    setVehicleYear(event.target.value);
-    setErrors({ ...errors, vehicleYear: false });
-  };
 
   const clickLinkHandler = () => {
     navigate("/");
   };
 
-  const signInHandler = (event) => {
+  const createAccount = async (event) => {
     event.preventDefault();
     if (name.length === 0) {
       nameRef.current.focus();
@@ -125,36 +88,55 @@ function Register() {
       return
     };
 
-    if (vehicleBrand.length === 0 && taxiDriver) {
-      vehicleBrandRef.current.focus();
-      setErrors({ ...errors, vehicleBrand: true });
-      return
-    };
 
-    if (vehiclePlate.length === 0 && taxiDriver) {
-      vehiclePlateRef.current.focus();
-      setErrors({ ...errors, vehiclePlate: true });
-      return
-    };
-
-    if (taxiPlate.length === 0 && taxiDriver) {
-      taxiPlateRef.current.focus();
-      setErrors({ ...errors, taxiPlate: true });
-      return
-    };
-
-    if (vehicleModel.length === 0 && taxiDriver) {
-      vehicleModelRef.current.focus();
-      setErrors({ ...errors, vehicleModel: true });
-      return
-    };
-
-    if (vehicleYear.length === 0 && taxiDriver) {
-      vehicleYearRef.current.focus();
-      setErrors({ ...errors, vehicleYear: true });
-      return
-    };
     console.log("formulario enviado  correctamente");
+    let userData;
+    try {
+      if (taxiDriver) {
+        userData = {
+          name: name,
+          email: email,
+          password: password,
+          dni: dni,
+
+        }
+        
+          const response = await fetch("https://localhost:7179/api/Driver", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(userData),
+          });
+    
+          if (!response.ok) {
+            console.log("error en la creacion del usuario");
+            throw new Error('Error en la creacion del usuario');
+          }
+        }
+        else {
+          userData = {
+            name: name,
+            email: email,
+            password: password,
+            dni: dni,
+          }
+
+          const response = await fetch("https://localhost:7179/api/Passenger", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(userData),
+          });
+    
+          if (!response.ok) {
+            console.log("error en la creacion del usuario");
+            throw new Error('Error en la creacion del usuario');
+          }
+        }
+    } catch (error) {
+      console.log(error)
+    }
+    //https://localhost:7179/api/Driver
+    //https://localhost:7179/api/Passenger
+
   };
 
   return (
@@ -255,90 +237,8 @@ function Register() {
           </div>
         </div>
 
-        {
-          taxiDriver === true &&
-          <div className='register-vehicle-info'>
-            <div>
-              <label htmlFor="car">Marca del vehiculo</label><br />
-              <input
-                type="text"
-                name="car"
-                className={`register-input ${errors.vehicleBrand && "border-danger border-danger:focus"}`}
-                value={vehicleBrand}
-                ref={vehicleBrandRef}
-                onChange={vehicleBrandHandler}
-                placeholder='Marca del vehiculo'
-                required />
-            </div>
-            {errors.vehicleBrand && (
-              <p className="text-danger mt-2">Ingrese una marca válido.</p>
-            )}   
-
-            <div>
-              <label htmlFor="car">Pantente del vehiculo</label><br />
-              <input
-                type="text"
-                name="car"
-                className={`register-input ${errors.vehiclePlate && "border-danger border-danger:focus"}`}
-                value={vehiclePlate}
-                ref={vehiclePlateRef}
-                onChange={vehiclePlateHandler}
-                placeholder='Pantente del vehiculo' required />
-            </div>
-            {errors.vehiclePlate && (
-              <p className="text-danger mt-2">Ingrese una patente válida.</p>
-            )}   
-
-            <div>
-              <label htmlFor="car">Pantente del taxi</label><br />
-              <input
-                type="number"
-                name="car"
-                className={`register-input ${errors.taxiPlate && "border-danger border-danger:focus"}`}
-                value={taxiPlate}
-                ref={taxiPlateRef}
-                onChange={taxiPlateHandler}
-                placeholder='Ingrese la patente del taxi'
-                required />
-            </div>
-            {errors.taxiPlate && (
-              <p className="text-danger mt-2">Ingrese una patente válida.</p>
-            )}   
-
-            <div>
-              <label htmlFor="car">Modelo del vehiculo</label><br />
-              <input
-                type="text"
-                name="car"
-                className={`register-input ${errors.vehicleModel && "border-danger border-danger:focus"}`}
-                value={vehicleModel}
-                ref={vehicleModelRef}
-                onChange={vehicleModelHandler}
-                placeholder='Modelo del vehiculo'
-                required />
-            </div>
-            {errors.vehicleModel && (
-              <p className="text-danger mt-2">Ingrese un modelo válido.</p>
-            )}   
-
-            <div>
-              <label htmlFor="car">Año del vehiculo</label><br />
-              <input
-                type="number"
-                name="car"
-                min={1900}
-                max={currentYear}
-                className={`register-input ${errors.vehicleYear && "border-danger border-danger:focus"}`}
-                value={vehicleYear}
-                ref={vehicleYearRef}
-                onChange={vehicleYearHandler} placeholder='Año del vehiculo' required />
-            </div>
-            {errors.vehicleYear && (
-              <p className="text-danger mt-2">Ingrese un año válido.</p>
-            )}   
-          </div>
-        }
-        <Button variant="warning" type="submit" className='register-form-button' onClick={signInHandler}>Crear cuenta</Button>
+  
+        <Button variant="warning" type="submit" className='register-form-button' onClick={createAccount}>Crear cuenta</Button>
       </Form>
     </div>
   );
