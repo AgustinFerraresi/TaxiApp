@@ -1,25 +1,27 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { driver, passanger } from "./components/data/Data";
-import OrderTaxi from './components/orderTaxi/OrderTaxi'
+import { driver } from "./components/data/Data";
+import OrderTaxi from "./components/orderTaxi/OrderTaxi";
 import Register from "./components/register/Register";
 import Login from "./components/login/Login";
 import PageNotFound from "./components/PageNotFound/PageNotFound";
 import DriverScreen from "./components/driverScreen/DriverScreen";
 import DashBoard from "./components/dashBoard/DashBoard";
 import ProfileSettings from "./components/profileSettings/ProfileSettings";
+import { ThemeContextProvider } from "./components/theme/ThemeContext";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-
 
 function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <DashBoard/>
+      element: <DashBoard />,
     },
     {
       path: "/login",
-      element: <Login />, 
+
+      element: <Login />,
     },
     {
       path: "/register",
@@ -31,18 +33,22 @@ function App() {
     },
     {
       path: "/DriverScreen/ProfileSettings",
-      element: <ProfileSettings user={driver}/> //se pisa el css
+      element: <ProfileSettings user={driver} />, //se pisa el css
     },
     {
       path: "/OrderTaxi",
-      element: <OrderTaxi/>
+      element: <OrderTaxi />,
     },
     {
       path: "*",
-      element: <PageNotFound/>,
+      element: <PageNotFound />,
     },
   ]);
-  return <RouterProvider router={router} />;
+  return (
+    <ThemeContextProvider>
+      <RouterProvider router={router} />
+    </ThemeContextProvider>
+  );
 }
 
 export default App;

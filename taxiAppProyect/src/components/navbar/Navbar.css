@@ -1,111 +1,112 @@
-.navbar-container {
-    display: grid;
-    grid-template-columns: 6fr 1fr 1fr;
-    grid-template-rows: 1fr ;
-    width: 100%;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    background-color: rgba(227, 227, 227, 0.8);
-    border-radius: 10px;
-    margin: 0px;
-}
-
-
-/* Estilos del checkbox */
-.theme-toggle {
-    position: relative;
-    display: inline-block;
-    width: 50px;
-    height: 25px;
-    grid-column: 2/3;
-    grid-row: 1/2;
-}
-
-/* Oculta el checkbox real */
-.theme-toggle input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
-/* Estilos del slider */
-.slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #acabab;
-    transition: 0.4s;
-    border-radius: 25px;
-}
-
-/* Icono del sol y la luna dentro del slider */
-.slider:before {
-    position: absolute;
-    content: "☀️";
-    /* Icono de sol */
-    height: 21px;
-    width: 21px;
-    left: 2px;
-    bottom: 2px;
+.contendor-principal {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 14px;
-    color: #f39c12;
-    /* Color del sol */
-    transition: 0.4s;
-    border-radius: 50%;
-    background-color: white;
+    justify-content: space-between;
+    width: 100%;
+    background-color: rgba(227, 227, 227, 0.817);
+    padding: 30px;
 }
 
-/* Cuando está activado, muestra la luna */
-input:checked+.slider {
+.navbar-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    position: relative;
+    z-index: 2;
+    color: white;
+}
+
+.imagen_logo {
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+}
+
+.Contenedor-iconos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+
+
+[theme="dark"] .contendor-principal {
     background-color: #333;
 }
 
-input:checked+.slider:before {
-    transform: translateX(25px);
-    content: "🌙";
-    color: #f1c40f;
-}
-
-
-
-
-/* Estilos del contenedor del selector */
-.language-selector {
-    font-family: Arial, sans-serif;
-    display: inline-block;
-    font-size: 16px;
-    color: #333;
-    grid-column: 3/4;
-    grid-row: 1/2;
-  }
-  
-  /* Estilos del label */
-  .language-selector label {
-    margin-right: 8px;
-  }
-  
-  /* Estilos del select */
-  .language-selector select {
-    padding: 5px 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    background-color: #f9f9f9;
+.theme-toggle {
+    background-color: #f0f0f0;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
     color: #333;
     cursor: pointer;
-    appearance: none; /* Quita el estilo nativo del navegador */
-  }
-  
-  /* Efecto al pasar el mouse */
-  .language-selector select:hover {
-    border-color: #888;
-    background-color: #e9e9e9;
-  }
-  
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+    position: relative;
+    z-index: 2;
+    color: white;
+
+}
+
+[theme="dark"] .theme-toggle {
+    background-color: #333;
+}
+
+.theme-toggle:hover {
+    background-color: #ece2aa;
+    color: #ffffff;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+
+}
+
+.theme-toggle:active {
+    transform: scale(0.95);
+}
+
+.theme-toggle:focus {
+    outline: 2px solid #ffd700;
+}
+
+.theme-toggle .icon-sun {
+    color: #ffd700;
+}
+
+.language-selector {
+    display: flex;
+    align-items: center;
+}
+
+.language-selector select {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 8px 12px;
+    font-size: 1rem;
+    position: relative;
+    z-index: 2;
+    color: white;
+    color: #333;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+    appearance: none;
+
+}
+
+.language-selector select:hover {
+    background-color: #e0e0e0;
+    border-color: #999;
+
+}
+
+.language-selector select:focus {
+    outline: none;
+    border-color: #ffd700;
+    box-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+}

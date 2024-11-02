@@ -1,16 +1,20 @@
-import { useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
+import { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 import "./Register.css";
-
+import Navbar from "../navbar/Navbar";
 
 const Register = () => {
-
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [dni, setDni] = useState("");
+  const [vehicleBrand, setVehicleBrand] = useState("");
+  const [vehiclePlate, setVehiclePlate] = useState("");
+  const [taxiPlate, setTaxiPlate] = useState("");
+  const [vehicleModel, setVehicleModel] = useState("");
+  const [vehicleYear, setVehicleYear] = useState("");
   const [taxiDriver, setTaxiDriver] = useState(false);
   
   const navigate = useNavigate();
@@ -20,216 +24,188 @@ const Register = () => {
     email: false,
     password: false,
     dni: false,
+    vehicleBrand: false,
+    vehiclePlate: false,
+    taxiPlate: false,
+    vehicleModel: false,
+    vehicleYear: false,
   });
 
   const nameRef = useRef(null);
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
   const dniRef = useRef(null);
- 
+  const vehicleBrandRef = useRef(null);
+  const vehiclePlateRef = useRef(null);
+  const taxiPlateRef = useRef(null);
+  const vehicleModelRef = useRef(null);
+  const vehicleYearRef = useRef(null);
 
   const taxiDriverHandler = (event) => {
-    if (event.target.value === "passenger") {
-      setTaxiDriver(false);
-    } else if (event.target.value === "taxiDriver") {
-      setTaxiDriver(true);
-    };
+    setTaxiDriver(event.target.value === "taxiDriver");
   };
 
-  const nameHandler = (event) => {
-    setName(event.target.value);
-    setErrors({ ...errors, name: false });
-  };
-
-  const emailHandler = (event) => {
-    setEmail(event.target.value);
-    setErrors({ ...errors, email: false });
-  };
-
-  const passwordHandler = (event) => {
-    setPassword(event.target.value);
-    setErrors({ ...errors, password: false });
-  };
-
-  const dniHandler = (event) => {
-    setDni(event.target.value);
-    setErrors({ ...errors, dni: false });
-  };
-
-
-
-  const clickLinkHandler = () => {
-    navigate("/");
+  const handleChange = (setter) => (event) => {
+    setter(event.target.value);
+    setErrors((prevErrors) => ({ ...prevErrors, [event.target.name]: false }));
   };
 
   const createAccount = async (event) => {
     event.preventDefault();
-    if (name.length === 0) {
+    // Validaciones
+    if (!name) {
       nameRef.current.focus();
-      setErrors({ ...errors, name: true });
-      return
-    };
-
-    if (email.length === 0) {
-      emailRef.current.focus();
-      setErrors({ ...errors, email: true });
-      return
-    };
-
-    if (password.length === 0) {
-      passwordRef.current.focus();
-      setErrors({ ...errors, password: true });
-      return
-    };
-
-    if (dni.length === 0) {
-      dniRef.current.focus();
-      setErrors({ ...errors, dni: true });
-      return
-    };
-
-
-    console.log("formulario enviado  correctamente");
-    let userData;
-    try {
-      if (taxiDriver) {
-        userData = {
-          name: name,
-          email: email,
-          password: password,
-          dni: dni,
-
-        }
-        
-          const response = await fetch("https://localhost:7179/api/Driver", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(userData),
-          });
-    
-          if (!response.ok) {
-            console.log("error en la creacion del usuario");
-            throw new Error('Error en la creacion del usuario');
-          }
-        }
-        else {
-          userData = {
-            name: name,
-            email: email,
-            password: password,
-            dni: dni,
-          }
-
-          const response = await fetch("https://localhost:7179/api/Passenger", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(userData),
-          });
-    
-          if (!response.ok) {
-            console.log("error en la creacion del usuario");
-            throw new Error('Error en la creacion del usuario');
-          }
-        }
-    } catch (error) {
-      console.log(error)
+      setErrors((prev) => ({ ...prev, name: true }));
+      return;
     }
-    //https://localhost:7179/api/Driver
-    //https://localhost:7179/api/Passenger
+    if (!email) {
+      emailRef.current.focus();
+      setErrors((prev) => ({ ...prev, email: true }));
+      return;
+    }
+    if (!password) {
+      passwordRef.current.focus();
+      setErrors((prev) => ({ ...prev, password: true }));
+      return;
+    }
+    if (!dni) {
+      dniRef.current.focus();
+      setErrors((prev) => ({ ...prev, dni: true }));
+      return;
+    }
 
+    if (taxiDriver) {
+      if (!vehicleBrand) {
+        vehicleBrandRef.current.focus();
+        setErrors((prev) => ({ ...prev, vehicleBrand: true }));
+        return;
+      }
+      if (!vehiclePlate) {
+        vehiclePlateRef.current.focus();
+        setErrors((prev) => ({ ...prev, vehiclePlate: true }));
+        return;
+      }
+      if (!taxiPlate) {
+        taxiPlateRef.current.focus();
+        setErrors((prev) => ({ ...prev, taxiPlate: true }));
+        return;
+      }
+      if (!vehicleModel) {
+        vehicleModelRef.current.focus();
+        setErrors((prev) => ({ ...prev, vehicleModel: true }));
+        return;
+      }
+      if (!vehicleYear) {
+        vehicleYearRef.current.focus();
+        setErrors((prev) => ({ ...prev, vehicleYear: true }));
+        return;
+      }
+    }
+
+    let userData = { name, email, password, dni };
+    const apiUrl = taxiDriver ? "https://localhost:7179/api/Driver" : "https://localhost:7179/api/Passenger";
+
+    try {
+      const response = await fetch(apiUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(userData),
+      });
+
+      if (!response.ok) {
+        throw new Error('Error en la creación del usuario');
+      }
+
+      console.log("Formulario enviado correctamente");
+      // Aquí puedes redirigir o hacer alguna acción post creación de cuenta
+      navigate("/"); // O la ruta que desees
+
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
-    <div id='register-form-container'>
-      <Form id='register-form'>
-        <div className='register-header-form'>
-          <img src="./src/assets/logoTaxiApp.png" id='register-form-img' alt="logo" onClick={clickLinkHandler}></img>
-          <h4>Crear cuenta</h4>
+    <div id="register-form-container">
+      <header className="header-nav">
+        <Navbar />
+      </header>
+      <Form id="register-form" onSubmit={createAccount}>
+        <div className="register-header-form">
+          <h4 className="text-black">Crear cuenta</h4>
         </div>
 
-        <div className='register-general-info'>
-          <div>
-            <label htmlFor="name">Nombre</label><br />
-            <input
+        <div className="register-general-info">
+          <Form.Group controlId="name">
+            <Form.Label className="text-black">Nombre</Form.Label>
+            <Form.Control
               type="text"
               name="name"
-              id="name"
-              className={`register-input ${errors.name && "border-danger border-danger:focus"}`}
               value={name}
               ref={nameRef}
-              onChange={nameHandler}
-              placeholder='Ingrese su nombre' />
-          </div>
-          {errors.name && (
-            <p className="text-danger mt-2">Ingrese un nombre válido.</p>
-          )}
+              onChange={handleChange(setName)}
+              className={`register-input ${errors.name && "border-danger"}`}
+              placeholder="Ingrese su nombre"
+            />
+            {errors.name && <p className="text-danger">Ingrese un nombre válido.</p>}
+          </Form.Group>
 
-          <div>
-            <label htmlFor="email">Email</label><br />
-            <input
+          <Form.Group controlId="email">
+            <Form.Label className="text-black">Email</Form.Label>
+            <Form.Control
               type="email"
               name="email"
-              id="email"
-              className={`register-input ${errors.email && "border-danger border-danger:focus"}`}
               value={email}
               ref={emailRef}
-              onChange={emailHandler}
-              placeholder='Ingrese su email' />
-          </div>
-          {errors.email && (
-            <p className="text-danger mt-2">Ingrese un Email válido.</p>
-          )}
+              onChange={handleChange(setEmail)}
+              className={`register-input ${errors.email && "border-danger"}`}
+              placeholder="Ingrese su email"
+            />
+            {errors.email && <p className="text-danger">Ingrese un Email válido.</p>}
+          </Form.Group>
 
-          <div>
-            <label htmlFor="password">Contraseña</label><br />
-            <input
+          <Form.Group controlId="password">
+            <Form.Label className="text-black">Contraseña</Form.Label>
+            <Form.Control
               type="password"
               name="password"
-              id="password"
-              className={`register-input ${errors.password && "border-danger border-danger:focus"}`}
               value={password}
               ref={passwordRef}
-              onChange={passwordHandler}
-              placeholder='Ingrese su contraseña' />
-          </div>
-          {errors.password && (
-            <p className="text-danger mt-2">Ingrese una contraseña válida.</p>
-          )}
+              onChange={handleChange(setPassword)}
+              className={`register-input ${errors.password && "border-danger"}`}
+              placeholder="Ingrese su contraseña"
+            />
+            {errors.password && <p className="text-danger">Ingrese una contraseña válida.</p>}
+          </Form.Group>
 
-          <div>
-            <label htmlFor="dni">DNI</label><br />
-            <input
+          <Form.Group controlId="dni">
+            <Form.Label className="text-black">DNI</Form.Label>
+            <Form.Control
               type="number"
               name="dni"
-              id="dni"
-              className={`register-input ${errors.dni && "border-danger border-danger:focus"}`}
               value={dni}
               ref={dniRef}
-              onChange={dniHandler}
-              placeholder='Ingrese su DNI' />
-          </div>
-          {errors.dni && (
-            <p className="text-danger mt-2">Ingrese un dni válido.</p>
-          )}
+              onChange={handleChange(setDni)}
+              className={`register-input ${errors.dni && "border-danger"}`}
+              placeholder="Ingrese su DNI"
+            />
+            {errors.dni && <p className="text-danger">Ingrese un DNI válido.</p>}
+          </Form.Group>
 
-          <div id='register-radio-container'>
-            <Form.Group className="mb-3" controlId="formBasicCheckbox" id='register-radio-container'>
+          <div id="register-radio-container">
+            <Form.Group>
               <Form.Check
                 type="radio"
-                name='userType'
+                name="userType"
                 value="passenger"
-                className='register-userType'
                 label="Soy pasajero"
                 onChange={taxiDriverHandler}
                 defaultChecked
               />
-
               <Form.Check
                 type="radio"
-                name='userType'
+                name="userType"
                 value="taxiDriver"
-                className='register-userType'
-                id='taxi'
                 label="Soy taxista"
                 onChange={taxiDriverHandler}
               />
@@ -237,11 +213,89 @@ const Register = () => {
           </div>
         </div>
 
-  
-        <Button variant="warning" type="submit" className='register-form-button' onClick={createAccount}>Crear cuenta</Button>
+        {taxiDriver && (
+          <div className="register-vehicle-info">
+            <Form.Group controlId="vehicleBrand">
+              <Form.Label className="text-black">Marca del vehículo</Form.Label>
+              <Form.Control
+                type="text"
+                name="vehicleBrand"
+                value={vehicleBrand}
+                ref={vehicleBrandRef}
+                onChange={handleChange(setVehicleBrand)}
+                className={`register-input ${errors.vehicleBrand && "border-danger"}`}
+                placeholder="Marca del vehículo"
+              />
+              {errors.vehicleBrand && <p className="text-danger">Ingrese una marca válida.</p>}
+            </Form.Group>
+
+            <Form.Group controlId="vehiclePlate">
+              <Form.Label className="text-black">Patente del vehículo</Form.Label>
+              <Form.Control
+                type="text"
+                name="vehiclePlate"
+                value={vehiclePlate}
+                ref={vehiclePlateRef}
+                onChange={handleChange(setVehiclePlate)}
+                className={`register-input ${errors.vehiclePlate && "border-danger"}`}
+                placeholder="Patente del vehículo"
+              />
+              {errors.vehiclePlate && <p className="text-danger">Ingrese una patente válida.</p>}
+            </Form.Group>
+
+            <Form.Group controlId="taxiPlate">
+              <Form.Label className="text-black">Patente del taxi</Form.Label>
+              <Form.Control
+                type="number"
+                name="taxiPlate"
+                value={taxiPlate}
+                ref={taxiPlateRef}
+                onChange={handleChange(setTaxiPlate)}
+                className={`register-input ${errors.taxiPlate && "border-danger"}`}
+                placeholder="Ingrese la patente del taxi"
+              />
+              {errors.taxiPlate && <p className="text-danger">Ingrese una patente válida.</p>}
+            </Form.Group>
+
+            <Form.Group controlId="vehicleModel">
+              <Form.Label className="text-black">Modelo del vehículo</Form.Label>
+              <Form.Control
+                type="text"
+                name="vehicleModel"
+                value={vehicleModel}
+                ref={vehicleModelRef}
+                onChange={handleChange(setVehicleModel)}
+                className={`register-input ${errors.vehicleModel && "border-danger"}`}
+                placeholder="Modelo del vehículo"
+              />
+              {errors.vehicleModel && <p className="text-danger">Ingrese un modelo válido.</p>}
+            </Form.Group>
+
+            <Form.Group controlId="vehicleYear">
+              <Form.Label className="text-black">Año del vehículo</Form.Label>
+              <Form.Control
+                type="number"
+                name="vehicleYear"
+                value={vehicleYear}
+                ref={vehicleYearRef}
+                onChange={handleChange(setVehicleYear)}
+                className={`register-input ${errors.vehicleYear && "border-danger"}`}
+                placeholder="Año del vehículo"
+              />
+              {errors.vehicleYear && <p className="text-danger">Ingrese un año válido.</p>}
+            </Form.Group>
+          </div>
+        )}
+
+        <div className="register-button-container">
+          <Button variant="primary" type="submit">
+            Crear cuenta
+          </Button>
+        </div>
       </Form>
     </div>
   );
-}
+};
 
 export default Register;
+
