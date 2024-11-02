@@ -8,7 +8,7 @@
     background-position: center;
     background-size: cover;
     background-image: url("../../assets/fondo-dia.webp");
-    color: #f5f1f1;
+    color: #333;
     height: 110vh;
 }
 
@@ -28,7 +28,7 @@
 
 [theme="dark"] #register-form-container {
     background-image: url("./src/assets/rosario.jpg");
-
+    color: #ffd700;
 }
 
 #register-form {
@@ -39,6 +39,10 @@
     padding: 40px;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
+}
+
+[theme="dark"] #register-form {
+    background-color: rgba(51, 51, 51, 0.817);
 }
 
 .register-input {

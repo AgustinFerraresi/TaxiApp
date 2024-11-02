@@ -8,7 +8,8 @@
     background-position: center;
     background-size: cover;
     background-image: url("../../assets/fondo-dia.webp");
-    color: #f5f1f1;
+    color: #333;
+
     height: 110vh;
 }
 
@@ -36,4 +37,21 @@
 [theme="dark"] .login-contenedor-principal {
     background-image: url("./src/assets/rosario.jpg");
 
+}
+
+[theme="dark"] .login-contenedor-principal {
+    color: #ffd700;
+}
+
+[theme="dark"] .login-main-container {
+    background-color: rgba(51, 51, 51, 0.817);
+}
+
+
+.Crear-cuenta {
+    color: #333;
+}
+
+[theme="dark"] .Crear-cuenta {
+    color: #ffd700;
 }

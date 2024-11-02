@@ -1,9 +1,7 @@
 import { availableTrips } from "../data/Data";
 import { useState } from "react";
-
 import ListItem from "../ListItem/ListItem";
 import Button from "react-bootstrap/Button";
-
 import "./DriverScreen.css";
 import Navbar from "../navbar/Navbar";
 
@@ -43,7 +41,7 @@ const DriverScreen = () => {
             </Button>
           </div>
           <div className="contenedor-imagen">
-            <h2 className="text-black">Nombre del chofer</h2>
+            <h2>Nombre del chofer</h2>
           </div>
         </div>
 
@@ -58,7 +56,7 @@ const DriverScreen = () => {
         </div>
 
         <div className="driver-screen-container">
-          <h5 className="text-black">Viajes disponibles</h5>
+          <h5>Viajes disponibles</h5>
           <ListItem list={availableTrips} />
         </div>
       </div>

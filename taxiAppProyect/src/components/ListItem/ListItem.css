@@ -1,16 +1,20 @@
-#container-list-items{
+#container-list-items {
     max-height: 200px;
     margin: 20px 0;
     overflow: auto
 }
 
-li{
+li {
     display: grid;
-    grid-template-columns: repeat(4,1fr);
+    grid-template-columns: repeat(4, 1fr);
     margin: 15px;
     list-style: none;
-    border: 1px solid #424141d8;
+    border: 1px solid #333;
     border-radius: 5px;
     padding: 10px;
     align-items: center;
+}
+
+[theme="dark"] li {
+    border: 1px solid #ffd700;
 }

@@ -16,7 +16,7 @@ const Register = () => {
   const [vehicleModel, setVehicleModel] = useState("");
   const [vehicleYear, setVehicleYear] = useState("");
   const [taxiDriver, setTaxiDriver] = useState(false);
-  
+
   const navigate = useNavigate();
 
   const [errors, setErrors] = useState({
@@ -52,7 +52,6 @@ const Register = () => {
 
   const createAccount = async (event) => {
     event.preventDefault();
-    // Validaciones
     if (!name) {
       nameRef.current.focus();
       setErrors((prev) => ({ ...prev, name: true }));
@@ -103,7 +102,9 @@ const Register = () => {
     }
 
     let userData = { name, email, password, dni };
-    const apiUrl = taxiDriver ? "https://localhost:7179/api/Driver" : "https://localhost:7179/api/Passenger";
+    const apiUrl = taxiDriver
+      ? "https://localhost:7179/api/Driver"
+      : "https://localhost:7179/api/Passenger";
 
     try {
       const response = await fetch(apiUrl, {
@@ -113,13 +114,11 @@ const Register = () => {
       });
 
       if (!response.ok) {
-        throw new Error('Error en la creación del usuario');
+        throw new Error("Error en la creación del usuario");
       }
 
       console.log("Formulario enviado correctamente");
-      // Aquí puedes redirigir o hacer alguna acción post creación de cuenta
-      navigate("/"); // O la ruta que desees
-
+      navigate("/");
     } catch (error) {
       console.log(error);
     }
@@ -132,7 +131,7 @@ const Register = () => {
       </header>
       <Form id="register-form" onSubmit={createAccount}>
         <div className="register-header-form">
-          <h4 className="text-black">Crear cuenta</h4>
+          <h4>Crear cuenta</h4>
         </div>
 
         <div className="register-general-info">
@@ -147,7 +146,9 @@ const Register = () => {
               className={`register-input ${errors.name && "border-danger"}`}
               placeholder="Ingrese su nombre"
             />
-            {errors.name && <p className="text-danger">Ingrese un nombre válido.</p>}
+            {errors.name && (
+              <p className="text-danger">Ingrese un nombre válido.</p>
+            )}
           </Form.Group>
 
           <Form.Group controlId="email">
@@ -161,7 +162,9 @@ const Register = () => {
               className={`register-input ${errors.email && "border-danger"}`}
               placeholder="Ingrese su email"
             />
-            {errors.email && <p className="text-danger">Ingrese un Email válido.</p>}
+            {errors.email && (
+              <p className="text-danger">Ingrese un Email válido.</p>
+            )}
           </Form.Group>
 
           <Form.Group controlId="password">
@@ -175,7 +178,9 @@ const Register = () => {
               className={`register-input ${errors.password && "border-danger"}`}
               placeholder="Ingrese su contraseña"
             />
-            {errors.password && <p className="text-danger">Ingrese una contraseña válida.</p>}
+            {errors.password && (
+              <p className="text-danger">Ingrese una contraseña válida.</p>
+            )}
           </Form.Group>
 
           <Form.Group controlId="dni">
@@ -189,7 +194,9 @@ const Register = () => {
               className={`register-input ${errors.dni && "border-danger"}`}
               placeholder="Ingrese su DNI"
             />
-            {errors.dni && <p className="text-danger">Ingrese un DNI válido.</p>}
+            {errors.dni && (
+              <p className="text-danger">Ingrese un DNI válido.</p>
+            )}
           </Form.Group>
 
           <div id="register-radio-container">
@@ -223,52 +230,72 @@ const Register = () => {
                 value={vehicleBrand}
                 ref={vehicleBrandRef}
                 onChange={handleChange(setVehicleBrand)}
-                className={`register-input ${errors.vehicleBrand && "border-danger"}`}
+                className={`register-input ${
+                  errors.vehicleBrand && "border-danger"
+                }`}
                 placeholder="Marca del vehículo"
               />
-              {errors.vehicleBrand && <p className="text-danger">Ingrese una marca válida.</p>}
+              {errors.vehicleBrand && (
+                <p className="text-danger">Ingrese una marca válida.</p>
+              )}
             </Form.Group>
 
             <Form.Group controlId="vehiclePlate">
-              <Form.Label className="text-black">Patente del vehículo</Form.Label>
+              <Form.Label className="text-black">
+                Patente del vehículo
+              </Form.Label>
               <Form.Control
                 type="text"
                 name="vehiclePlate"
                 value={vehiclePlate}
                 ref={vehiclePlateRef}
                 onChange={handleChange(setVehiclePlate)}
-                className={`register-input ${errors.vehiclePlate && "border-danger"}`}
+                className={`register-input ${
+                  errors.vehiclePlate && "border-danger"
+                }`}
                 placeholder="Patente del vehículo"
               />
-              {errors.vehiclePlate && <p className="text-danger">Ingrese una patente válida.</p>}
+              {errors.vehiclePlate && (
+                <p className="text-danger">Ingrese una patente válida.</p>
+              )}
             </Form.Group>
 
             <Form.Group controlId="taxiPlate">
               <Form.Label className="text-black">Patente del taxi</Form.Label>
               <Form.Control
-                type="number"
+                type="text"
                 name="taxiPlate"
                 value={taxiPlate}
                 ref={taxiPlateRef}
                 onChange={handleChange(setTaxiPlate)}
-                className={`register-input ${errors.taxiPlate && "border-danger"}`}
+                className={`register-input ${
+                  errors.taxiPlate && "border-danger"
+                }`}
                 placeholder="Ingrese la patente del taxi"
               />
-              {errors.taxiPlate && <p className="text-danger">Ingrese una patente válida.</p>}
+              {errors.taxiPlate && (
+                <p className="text-danger">Ingrese una patente válida.</p>
+              )}
             </Form.Group>
 
             <Form.Group controlId="vehicleModel">
-              <Form.Label className="text-black">Modelo del vehículo</Form.Label>
+              <Form.Label className="text-black">
+                Modelo del vehículo
+              </Form.Label>
               <Form.Control
                 type="text"
                 name="vehicleModel"
                 value={vehicleModel}
                 ref={vehicleModelRef}
                 onChange={handleChange(setVehicleModel)}
-                className={`register-input ${errors.vehicleModel && "border-danger"}`}
+                className={`register-input ${
+                  errors.vehicleModel && "border-danger"
+                }`}
                 placeholder="Modelo del vehículo"
               />
-              {errors.vehicleModel && <p className="text-danger">Ingrese un modelo válido.</p>}
+              {errors.vehicleModel && (
+                <p className="text-danger">Ingrese un modelo válido.</p>
+              )}
             </Form.Group>
 
             <Form.Group controlId="vehicleYear">
@@ -279,23 +306,24 @@ const Register = () => {
                 value={vehicleYear}
                 ref={vehicleYearRef}
                 onChange={handleChange(setVehicleYear)}
-                className={`register-input ${errors.vehicleYear && "border-danger"}`}
+                className={`register-input ${
+                  errors.vehicleYear && "border-danger"
+                }`}
                 placeholder="Año del vehículo"
               />
-              {errors.vehicleYear && <p className="text-danger">Ingrese un año válido.</p>}
+              {errors.vehicleYear && (
+                <p className="text-danger">Ingrese un año válido.</p>
+              )}
             </Form.Group>
           </div>
         )}
 
-        <div className="register-button-container">
-          <Button variant="primary" type="submit">
-            Crear cuenta
-          </Button>
-        </div>
+        <Button variant="primary" type="submit" className="mt-4">
+          Registrarse
+        </Button>
       </Form>
     </div>
   );
 };
 
 export default Register;
-
