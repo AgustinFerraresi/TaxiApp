@@ -76,7 +76,9 @@ const ProfileSettings = ({ user }) => {
               ))}
             </div>
           )}
-          <Button variant="warning">Editar</Button>
+          <Button variant="warning" className="button">
+            Editar
+          </Button>
         </form>
       </div>
     </div>

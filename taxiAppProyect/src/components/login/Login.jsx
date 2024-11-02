@@ -52,7 +52,7 @@ const Login = () => {
       <header className="header-nav ">
         <Navbar />
       </header>
-      <div className="mb-5">
+      <div className="mb-5 bg-black w-100">
         <div
           className="d-flex  align-items-center login-header-container"
           onClick={clickLinkHandler}
@@ -60,13 +60,13 @@ const Login = () => {
       </div>
 
       <main
-        className="transparent-bg bg-white p-4 rounded-lg shadow-lg w-100 login-main-container "
+        className="transparent-bg p-4 rounded-lg shadow-lg w-100 login-main-container "
         style={{ maxWidth: "400px" }}
       >
         <form onSubmit={handleSubmit} className="space-y-4 Formulario">
-          <h2 className="text-center text-black">Iniciar sesión</h2>
+          <h2 className="text-center ">Iniciar sesión</h2>
           <div className="mb-3">
-            <label className=" text-black">Correo electrónico</label>
+            <label>Correo electrónico</label>
             <input
               value={email}
               onChange={emailHandler}
@@ -85,7 +85,7 @@ const Login = () => {
             )}
           </div>
           <div className="mb-3">
-            <label className=" text-black">Contraseña</label>
+            <label>Contraseña</label>
             <input
               value={password}
               onChange={passwordHandler}
@@ -119,10 +119,12 @@ const Login = () => {
             )}
           </div>
 
-          <div className="text-center mb-5 text-black">
+          <div className="text-center mb-5">
             Todavía no tenés una cuenta?
             <br />
-            <Link to="/register">Crear cuenta</Link>
+            <Link to="/register" className="Crear-cuenta">
+              Crear cuenta
+            </Link>
           </div>
         </form>
       </main>
