@@ -9,18 +9,18 @@ export const ThemeContextProvider = ({ children }) => {
 
   useEffect(() => {
     document.documentElement.setAttribute(
-      "data-bs-theme",
+      "theme",
       themeValue.toLocaleLowerCase()
     );
   }, []);
 
   const handleToggleTheme = (newTheme) => {
     if (newTheme === "DARK") {
-      document.documentElement.setAttribute("data-bs-theme", "dark");
+      document.documentElement.setAttribute("theme", "dark");
       localStorage.setItem("theme", newTheme);
       setTheme(newTheme);
     } else if (newTheme === "LIGHT") {
-      document.documentElement.setAttribute("data-bs-theme", "light");
+      document.documentElement.setAttribute("theme", "light");
       localStorage.setItem("theme", newTheme);
       setTheme(newTheme);
     } else {
