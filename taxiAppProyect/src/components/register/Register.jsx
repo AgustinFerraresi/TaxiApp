@@ -89,7 +89,7 @@ const Register = () => {
     };
 
 
-    console.log("formulario enviado  correctamente");
+    
     let userData;
     try {
       if (taxiDriver) {
@@ -98,9 +98,7 @@ const Register = () => {
           email: email,
           password: password,
           dni: dni,
-
         }
-        
           const response = await fetch("https://localhost:7179/api/Driver", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -111,6 +109,7 @@ const Register = () => {
             console.log("error en la creacion del usuario");
             throw new Error('Error en la creacion del usuario');
           }
+          console.log("formulario enviado  correctamente");
         }
         else {
           userData = {
@@ -130,6 +129,7 @@ const Register = () => {
             console.log("error en la creacion del usuario");
             throw new Error('Error en la creacion del usuario');
           }
+          console.log("formulario enviado  correctamente");
         }
     } catch (error) {
       console.log(error)

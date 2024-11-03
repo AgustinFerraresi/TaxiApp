@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
+import Form from 'react-bootstrap/Form';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Login.css"
 
@@ -9,20 +9,22 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
+  const [taxiDriver, setTaxiDriver] = useState(false);
   const navigate = useNavigate();
-  
+
   const [errors, setErrors] = useState({
     email: false,
     password: false
   });
 
-  const handleSubmit = (event) => {
+  let userData = {}
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     if (email.length === 0) {
       emailRef.current.focus();
       setErrors({ ...errors, email: true });
-
       return
     };
 
@@ -30,8 +32,34 @@ const Login = () => {
       passwordRef.current.focus();
       setErrors({ ...errors, password: true });
       return
-    }
+    };
 
+    //https://localhost:7179/api/Authentication/authenticate
+
+    try {
+      userData ={
+        email : email,
+        password : password,
+        UserType: taxiDriver ? "Driver" : "Passenger"
+      }
+      const response = await fetch("https://localhost:7179/api/Authentication/authenticate",{
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body : JSON.stringify(userData)
+      });
+
+      if (!response.ok) {
+        alert("Error en el inicio de sesion");
+        console.log("Error en el inicio de sesion");
+        throw new Error('Error en el inicio de sesion');
+      }
+     
+      taxiDriver ? navigate("/DriverScreen") : navigate("/OrderTaxi");
+      
+    } 
+    catch (error) {
+      console.log(error)
+    }
   };
 
   const emailHandler = (event) => {
@@ -43,6 +71,15 @@ const Login = () => {
     setPassword(event.target.value);
     setErrors({ ...errors, password: false });
   };
+
+  const taxiDriverHandler = (event) => {
+    if (event.target.value === "passenger") {
+      setTaxiDriver(false);
+    } else if (event.target.value === "taxiDriver") {
+      setTaxiDriver(true);
+    };
+  };
+
 
   const clickLinkHandler = () => {
     navigate("/");
@@ -57,7 +94,7 @@ const Login = () => {
             src=".\src\assets\logo.png"
             alt="Logo"
             className="img-fluid"
-            style={{ width: "50px", height: "50px" }}/>
+            style={{ width: "50px", height: "50px" }} />
           <h1 className="text-warning ml-2" style={{ textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)" }}>RoTaxi</h1>
         </div>
       </header>
@@ -91,14 +128,38 @@ const Login = () => {
               type="password"
               id="password"
               placeholder="Contraseña"
-              className={`form-control ${errors.password && "border border-danger" }`}
+              className={`form-control ${errors.password && "border border-danger"}`}
               ref={passwordRef}
             />
             {errors.password && (
               <p className="text-danger mt-2">Por favor ingrese una contraseña.</p>
             )}
           </div>
-          
+
+          <div id='register-radio-container'>
+            <Form.Group className="mb-3" controlId="formBasicCheckbox" id='register-radio-container'>
+              <Form.Check
+                type="radio"
+                name='userType'
+                value="passenger"
+                className='register-userType'
+                label="Soy pasajero"
+                onChange={taxiDriverHandler}
+                defaultChecked
+              />
+
+              <Form.Check
+                type="radio"
+                name='userType'
+                value="taxiDriver"
+                className='register-userType'
+                id='taxi'
+                label="Soy taxista"
+                onChange={taxiDriverHandler}
+              />
+            </Form.Group>
+          </div>
+
           <div className="mb-3">
             <button type="submit" className="btn btn-warning w-100 mt-3 mb-2" onClick={handleSubmit} >Iniciar sesión</button>
             {(errors.email || errors.password) && (<p className="mt-4 text-center text-danger">Todos los campos son obligatorios</p>)}

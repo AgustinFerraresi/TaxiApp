@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { driver, passanger } from "./components/data/Data";
 import OrderTaxi from './components/orderTaxi/OrderTaxi'
+import RegisterAdmin from "./components/registerAdmin/RegisterAdmin";
 import Register from "./components/register/Register";
 import Login from "./components/login/Login";
 import PageNotFound from "./components/PageNotFound/PageNotFound";
@@ -36,6 +37,10 @@ function App() {
     {
       path: "/OrderTaxi",
       element: <OrderTaxi/>
+    },
+    {
+      path: "/RegisterAdmin",
+      element: <RegisterAdmin />
     },
     {
       path: "*",
