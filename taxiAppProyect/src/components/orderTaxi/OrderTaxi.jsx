@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import { Form, Button } from "react-bootstrap";
 import "./OrderTaxi.css";
+import LogOut from "../logOut/LogOut";
 
 const OrderTaxi = () => {
   const [destination, setDestination] = useState("");
@@ -56,7 +57,8 @@ const OrderTaxi = () => {
 
       <Form>
         <Form.Group className="mb-4" controlId="formDestination">
-          <Form.Label className="fw-bold">ingrese su destino</Form.Label>
+          
+          <Form.Label className="fw-bold">Ingrese su destino</Form.Label>
           <Form.Control
             type="text"
             placeholder="Destino"
@@ -64,17 +66,16 @@ const OrderTaxi = () => {
             value={destination}
             required
             onChange={handleDestination}
-            ref={destinationRef}
-          />
+            ref={destinationRef}/>
+
           {errors.destination && (
             <p className="text-danger">Destino incompleto</p>
           )}
         </Form.Group>
 
         <Form.Group className="mb-4" controlId="formLocation">
-          <Form.Label className="fw-bold">
-            ingrese su ubicación actual
-          </Form.Label>
+
+          <Form.Label className="fw-bold">ingrese su ubicación actual</Form.Label>
           <Form.Control
             type="text"
             placeholder="Ubicación"
@@ -82,35 +83,41 @@ const OrderTaxi = () => {
             value={location}
             onChange={handleLocation}
             required
-            ref={locationRef}
-          />
+            ref={locationRef}/>
+
           {errors.location && (
             <p className="text-danger">Ubicación incompleta</p>
           )}
         </Form.Group>
 
         <Form.Group className="mb-4" controlId="formMessage">
+
           <Form.Label className="fw-bold">Mensaje</Form.Label>
           <Form.Control
             type="text"
             placeholder="Mensaje(opcional)"
             className="p-3 rounded"
             value={messaje}
-            onChange={handleMessaje}
-          />
+            onChange={handleMessaje}/>
         </Form.Group>
 
-        <div className="text-center">
+        <Form.Label className="fw-bold">Metodo de pago</Form.Label>
+        <Form.Select aria-label="Default select example" className="payment-method-order-taxi" defaultValue={0}>
+          <option value="0">Efectivo</option>
+          <option value="1">Pago digital</option>
+        </Form.Select>
+
+        <div className="text-center ">
           <Button
             onClick={handleSubmit}
             type="submit"
             variant="warning"
-            className="w-50 buttonOrderTaxi"
-          >
-            Pedir Taxi
-          </Button>
+            className="w-50 buttonOrderTaxi">
+            Pedir Taxi</Button>
+          <LogOut />
         </div>
       </Form>
+
     </div>
   );
 };

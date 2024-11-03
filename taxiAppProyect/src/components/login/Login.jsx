@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Form from 'react-bootstrap/Form';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Login.css"
+import LogOut from "../logOut/LogOut";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -53,8 +54,10 @@ const Login = () => {
         console.log("Error en el inicio de sesion");
         throw new Error('Error en el inicio de sesion');
       }
-     
-      taxiDriver ? navigate("/DriverScreen") : navigate("/OrderTaxi");
+  
+      const data = await response.text();
+      localStorage.setItem("token",data);
+      //taxiDriver ? navigate("/DriverScreen") : navigate("/OrderTaxi");
       
     } 
     catch (error) {
@@ -163,6 +166,7 @@ const Login = () => {
           <div className="mb-3">
             <button type="submit" className="btn btn-warning w-100 mt-3 mb-2" onClick={handleSubmit} >Iniciar sesión</button>
             {(errors.email || errors.password) && (<p className="mt-4 text-center text-danger">Todos los campos son obligatorios</p>)}
+            <LogOut />
           </div>
 
           <div className="text-center mb-5">
