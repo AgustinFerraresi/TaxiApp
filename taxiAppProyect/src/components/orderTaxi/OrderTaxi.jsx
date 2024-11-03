@@ -57,13 +57,11 @@ const OrderTaxi = () => {
         <Navbar />
       </header>
       <div className="container mt-4 col-md-4 shadow bordered-div orderTaxiContainer">
-        <h1 className="text-center text-black">Pedir Taxi</h1>
+        <h1 className="text-center ">Pedir Taxi</h1>
 
         <Form>
           <Form.Group className="mb-4" controlId="formDestination">
-            <Form.Label className="fw-bold text-black">
-              Ingrese su destino
-            </Form.Label>
+            <Form.Label className="fw-bold ">Ingrese su destino</Form.Label>
             <Form.Control
               type="text"
               placeholder="Destino"
@@ -81,7 +79,7 @@ const OrderTaxi = () => {
           </Form.Group>
 
           <Form.Group className="mb-4" controlId="formLocation">
-            <Form.Label className="fw-bold text-black">
+            <Form.Label className="fw-bold">
               Ingrese su ubicación actual
             </Form.Label>
             <Form.Control
@@ -101,7 +99,7 @@ const OrderTaxi = () => {
           </Form.Group>
 
           <Form.Group className="mb-4" controlId="formMessage">
-            <Form.Label className="fw-bold text-black">Mensaje</Form.Label>
+            <Form.Label className="fw-bold ">Mensaje</Form.Label>
             <Form.Control
               type="text"
               placeholder="Mensaje(opcional)"
