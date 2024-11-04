@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import "./Navbar.css";
-import { ThemeContext } from "../theme/ThemeContext";
+import { ThemeContext } from "../../service/themecontext/ThemeContext";
 import { FaSun } from "react-icons/fa";
 import { MdNightlight } from "react-icons/md";
 
