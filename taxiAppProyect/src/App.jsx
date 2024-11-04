@@ -7,7 +7,7 @@ import PageNotFound from "./components/PageNotFound/PageNotFound";
 import DriverScreen from "./components/driverScreen/DriverScreen";
 import DashBoard from "./components/dashBoard/DashBoard";
 import ProfileSettings from "./components/profileSettings/ProfileSettings";
-import { ThemeContextProvider } from "./components/theme/ThemeContext";
+import { ThemeContextProvider } from "./service/themecontext/ThemeContext";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";

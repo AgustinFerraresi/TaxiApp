@@ -8,7 +8,7 @@
   background-position: center;
   background-size: cover;
   background-image: url("../../assets/fondo-dia.webp");
-  color: #f5f1f1;
+  color: #333;
   height: 110vh;
 }
 
@@ -26,5 +26,9 @@
 
 [theme="dark"] .contenedor-principal {
   background-image: url("../../assets/rosario.jpg");
+  color: #ffd700;
+}
 
+[theme="dark"] .orderTaxiContainer {
+  background-color: rgba(51, 51, 51, 0.817);
 }

@@ -136,7 +136,7 @@ const Register = () => {
 
         <div className="register-general-info">
           <Form.Group controlId="name">
-            <Form.Label className="text-black">Nombre</Form.Label>
+            <Form.Label>Nombre</Form.Label>
             <Form.Control
               type="text"
               name="name"
@@ -152,7 +152,7 @@ const Register = () => {
           </Form.Group>
 
           <Form.Group controlId="email">
-            <Form.Label className="text-black">Email</Form.Label>
+            <Form.Label>Email</Form.Label>
             <Form.Control
               type="email"
               name="email"
@@ -168,7 +168,7 @@ const Register = () => {
           </Form.Group>
 
           <Form.Group controlId="password">
-            <Form.Label className="text-black">Contraseña</Form.Label>
+            <Form.Label>Contraseña</Form.Label>
             <Form.Control
               type="password"
               name="password"
@@ -184,7 +184,7 @@ const Register = () => {
           </Form.Group>
 
           <Form.Group controlId="dni">
-            <Form.Label className="text-black">DNI</Form.Label>
+            <Form.Label>DNI</Form.Label>
             <Form.Control
               type="number"
               name="dni"
@@ -223,7 +223,7 @@ const Register = () => {
         {taxiDriver && (
           <div className="register-vehicle-info">
             <Form.Group controlId="vehicleBrand">
-              <Form.Label className="text-black">Marca del vehículo</Form.Label>
+              <Form.Label>Marca del vehículo</Form.Label>
               <Form.Control
                 type="text"
                 name="vehicleBrand"
@@ -241,9 +241,7 @@ const Register = () => {
             </Form.Group>
 
             <Form.Group controlId="vehiclePlate">
-              <Form.Label className="text-black">
-                Patente del vehículo
-              </Form.Label>
+              <Form.Label>Patente del vehículo</Form.Label>
               <Form.Control
                 type="text"
                 name="vehiclePlate"
@@ -261,7 +259,7 @@ const Register = () => {
             </Form.Group>
 
             <Form.Group controlId="taxiPlate">
-              <Form.Label className="text-black">Patente del taxi</Form.Label>
+              <Form.Label>Patente del taxi</Form.Label>
               <Form.Control
                 type="text"
                 name="taxiPlate"
@@ -279,9 +277,7 @@ const Register = () => {
             </Form.Group>
 
             <Form.Group controlId="vehicleModel">
-              <Form.Label className="text-black">
-                Modelo del vehículo
-              </Form.Label>
+              <Form.Label>Modelo del vehículo</Form.Label>
               <Form.Control
                 type="text"
                 name="vehicleModel"
@@ -299,7 +295,7 @@ const Register = () => {
             </Form.Group>
 
             <Form.Group controlId="vehicleYear">
-              <Form.Label className="text-black">Año del vehículo</Form.Label>
+              <Form.Label>Año del vehículo</Form.Label>
               <Form.Control
                 type="number"
                 name="vehicleYear"
