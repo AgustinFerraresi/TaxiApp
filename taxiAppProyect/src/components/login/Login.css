@@ -1,19 +1,57 @@
-.login-main-container{
-    background-color: rgba(227, 227, 227, 0.817) !important;
+.login-contenedor-principal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-image: url("../../assets/fondo-dia.webp");
+    color: #333;
+
+    height: 110vh;
+}
+
+.header-nav {
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.login-main-container {
+    background-color: rgba(227, 227, 227, 0.817);
     border-radius: 10px;
 }
 
-.login-main-container input{
-    background-color: rgba(242,242,241,1);
+
+
+.login-main-container input {
+    background-color: rgba(242, 242, 241, 1);
 }
 
-#img-login{
-    border-radius: 100px;
-    width: 100px !important;
-    height: 100px !important;
-    margin: 10px;
-}
 
-.login-header-container{
+.login-header-container {
     cursor: pointer;
+}
+
+[theme="dark"] .login-contenedor-principal {
+    background-image: url("./src/assets/rosario.jpg");
+
+}
+
+[theme="dark"] .login-contenedor-principal {
+    color: #ffd700;
+}
+
+[theme="dark"] .login-main-container {
+    background-color: rgba(51, 51, 51, 0.817);
+}
+
+
+.Crear-cuenta {
+    color: #333;
+}
+
+[theme="dark"] .Crear-cuenta {
+    color: #ffd700;
 }

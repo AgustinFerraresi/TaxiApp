@@ -1,28 +1,30 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { driver, passanger } from "./components/data/Data";
-import OrderTaxi from './components/orderTaxi/OrderTaxi'
+import { driver } from "./components/data/Data";
+import OrderTaxi from "./components/orderTaxi/OrderTaxi";
 import Register from "./components/register/Register";
 import Login from "./components/login/Login";
 import PageNotFound from "./components/PageNotFound/PageNotFound";
 import DriverScreen from "./components/driverScreen/DriverScreen";
 import DashBoard from "./components/dashBoard/DashBoard";
 import ProfileSettings from "./components/profileSettings/ProfileSettings";
+import { ThemeContextProvider } from "./service/themecontext/ThemeContext";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import RegisterAdmin from "./components/registerAdmin/RegisterAdmin";
 import DataList from "./components/data/DataList";
 // import Protected from "./components/protected/Protected";
 
-
 function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <DashBoard/>
+      element: <DashBoard />,
     },
     {
       path: "/login",
-      element: <Login />, 
+
+      element: <Login />,
     },
     {
       path: "/register",
@@ -38,19 +40,19 @@ function App() {
     },
     {
       path: "/DriverScreen",
-      element: <DriverScreen />, //problemas con css
+      element: <DriverScreen />,
     },
     {
       path: "/DriverScreen/ProfileSettings",
-      element: <ProfileSettings user={driver}/> //se pisa el css
+      element: <ProfileSettings user={driver} />, //se pisa el css
     },
     {
       path: "/OrderTaxi",
-      element: <OrderTaxi/>
+      element: <OrderTaxi />,
     },
     {
       path: "*",
-      element: <PageNotFound/>,
+      element: <PageNotFound />,
     },
 
 
@@ -112,12 +114,12 @@ function App() {
     
   ]);
 
+  return (
+    <ThemeContextProvider>
+      <RouterProvider router={router} />
+    </ThemeContextProvider>
+  );
 
-
-
-
-  
-  return <RouterProvider router={router} />;
 }
 
 export default App;

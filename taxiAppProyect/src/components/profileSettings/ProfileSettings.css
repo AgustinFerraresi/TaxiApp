@@ -1,32 +1,55 @@
-:root{
-    --main-color: rgba(24,21,16,1);
-    --orange-color: rgba(243,149,13,1);
-    --brown-color: rgba(59,50,38,0.85);
+:root {
+    --main-color: rgba(24, 21, 16, 1);
+    --orange-color: rgba(243, 149, 13, 1);
+    --brown-color: rgba(59, 50, 38, 0.85);
 }
 
-#profile-settings-container{
+.contenedor-principal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-image: url("../../assets/fondo-dia.webp");
+
+    height: 110vh;
+}
+
+[theme="dark"] .contenedor-principal {
+    background-image: url("../../assets/rosario.jpg");
+
+}
+
+#profile-settings-container {
     display: flex;
     height: 100vh;
     justify-content: center;
     align-items: center;
-    background-color: #000;
-    background-image: url("./src/assets/rosario.jpg");
+
 }
 
-#profile-settings-generic-user-data-container label{
+#profile-settings-generic-user-data-container label {
     text-align: center;
 }
 
-.profile-settings-form{
+.profile-settings-form {
     display: flex;
     flex-direction: column;
     padding: 20px;
-    background-color: var(--brown-color);
-    color: #fff;
-    
+    background-color: rgba(227, 227, 227, 0.8);
+    color: #333;
+
 }
 
-#profile-settings-profile-picture{
+[theme="dark"] .profile-settings-form {
+    background-color: rgba(51, 51, 51, 0.817);
+    color: #ffd700;
+}
+
+#profile-settings-profile-picture {
     max-width: 15%;
 }
 
@@ -34,28 +57,28 @@
     margin: 20px 0;
 }
 
-.profile-settings-general-info{
+.profile-settings-general-info {
     width: 50%;
 }
 
-.profile-settings-form label input{
+.profile-settings-form label input {
     border: none;
     border-bottom: 2px solid var(--orange-color);
     margin: 5px;
-    background-color: var(--brown-color);
-    color: #fff;
+    background-color: rgba(227, 227, 227, 0.8);
+    color: #333;
     border-radius: 4px;
 }
 
-#profile-settings-container h2{
+#profile-settings-container h2 {
     text-transform: capitalize;
 }
 
-#profile-settings-container h3{
+#profile-settings-container h3 {
     text-transform: capitalize;
 }
 
-.profile-settings-container-driver-container{
-    
+.profile-settings-container-driver-container {
+
     margin: 10px;
 }
