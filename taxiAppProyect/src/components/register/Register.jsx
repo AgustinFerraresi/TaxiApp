@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import useTranslation from "../custom/useTranslation/UseTranslation";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import "./Register.css";
@@ -11,13 +12,12 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [dni, setDni] = useState("");
   const [vehicleBrand, setVehicleBrand] = useState("");
-  const [vehiclePlate, setVehiclePlate] = useState("");
-  const [taxiPlate, setTaxiPlate] = useState("");
   const [vehicleModel, setVehicleModel] = useState("");
   const [vehicleYear, setVehicleYear] = useState("");
   const [taxiDriver, setTaxiDriver] = useState(false);
 
   const navigate = useNavigate();
+  const translate = useTranslation();
 
   const [errors, setErrors] = useState({
     name: false,
@@ -25,8 +25,6 @@ const Register = () => {
     password: false,
     dni: false,
     vehicleBrand: false,
-    vehiclePlate: false,
-    taxiPlate: false,
     vehicleModel: false,
     vehicleYear: false,
   });
@@ -36,8 +34,6 @@ const Register = () => {
   const passwordRef = useRef(null);
   const dniRef = useRef(null);
   const vehicleBrandRef = useRef(null);
-  const vehiclePlateRef = useRef(null);
-  const taxiPlateRef = useRef(null);
   const vehicleModelRef = useRef(null);
   const vehicleYearRef = useRef(null);
 
@@ -77,16 +73,6 @@ const Register = () => {
       if (!vehicleBrand) {
         vehicleBrandRef.current.focus();
         setErrors((prev) => ({ ...prev, vehicleBrand: true }));
-        return;
-      }
-      if (!vehiclePlate) {
-        vehiclePlateRef.current.focus();
-        setErrors((prev) => ({ ...prev, vehiclePlate: true }));
-        return;
-      }
-      if (!taxiPlate) {
-        taxiPlateRef.current.focus();
-        setErrors((prev) => ({ ...prev, taxiPlate: true }));
         return;
       }
       if (!vehicleModel) {
@@ -131,12 +117,12 @@ const Register = () => {
       </header>
       <Form id="register-form" onSubmit={createAccount}>
         <div className="register-header-form">
-          <h4>Crear cuenta</h4>
+          <h4>{}</h4>
         </div>
 
         <div className="register-general-info">
           <Form.Group controlId="name">
-            <Form.Label>Nombre</Form.Label>
+            <Form.Label>{translate("name")}</Form.Label>
             <Form.Control
               type="text"
               name="name"
@@ -144,15 +130,15 @@ const Register = () => {
               ref={nameRef}
               onChange={handleChange(setName)}
               className={`register-input ${errors.name && "border-danger"}`}
-              placeholder="Ingrese su nombre"
+              placeholder={translate("enter_name")}
             />
             {errors.name && (
-              <p className="text-danger">Ingrese un nombre válido.</p>
+              <p className="text-danger">{translate("enter_name")}</p>
             )}
           </Form.Group>
 
           <Form.Group controlId="email">
-            <Form.Label>Email</Form.Label>
+            <Form.Label>{translate("email")}</Form.Label>
             <Form.Control
               type="email"
               name="email"
@@ -160,15 +146,13 @@ const Register = () => {
               ref={emailRef}
               onChange={handleChange(setEmail)}
               className={`register-input ${errors.email && "border-danger"}`}
-              placeholder="Ingrese su email"
+              placeholder={translate("email")}
             />
-            {errors.email && (
-              <p className="text-danger">Ingrese un Email válido.</p>
-            )}
+            {errors.email && <p className="text-danger">{"enter_dni"}</p>}
           </Form.Group>
 
           <Form.Group controlId="password">
-            <Form.Label>Contraseña</Form.Label>
+            <Form.Label>{translate("password")}</Form.Label>
             <Form.Control
               type="password"
               name="password"
@@ -176,15 +160,15 @@ const Register = () => {
               ref={passwordRef}
               onChange={handleChange(setPassword)}
               className={`register-input ${errors.password && "border-danger"}`}
-              placeholder="Ingrese su contraseña"
+              placeholder={translate("password")}
             />
             {errors.password && (
-              <p className="text-danger">Ingrese una contraseña válida.</p>
+              <p className="text-danger">{translate("enter_password")}</p>
             )}
           </Form.Group>
 
           <Form.Group controlId="dni">
-            <Form.Label>DNI</Form.Label>
+            <Form.Label>{translate("dni")}</Form.Label>
             <Form.Control
               type="number"
               name="dni"
@@ -192,10 +176,10 @@ const Register = () => {
               ref={dniRef}
               onChange={handleChange(setDni)}
               className={`register-input ${errors.dni && "border-danger"}`}
-              placeholder="Ingrese su DNI"
+              placeholder={translate("dni")}
             />
             {errors.dni && (
-              <p className="text-danger">Ingrese un DNI válido.</p>
+              <p className="text-danger">{translate("enter_dni")}</p>
             )}
           </Form.Group>
 
@@ -205,7 +189,7 @@ const Register = () => {
                 type="radio"
                 name="userType"
                 value="passenger"
-                label="Soy pasajero"
+                label={translate("passenger")}
                 onChange={taxiDriverHandler}
                 defaultChecked
               />
@@ -213,7 +197,7 @@ const Register = () => {
                 type="radio"
                 name="userType"
                 value="taxiDriver"
-                label="Soy taxista"
+                label={translate("taxi_driver")}
                 onChange={taxiDriverHandler}
               />
             </Form.Group>
@@ -223,7 +207,7 @@ const Register = () => {
         {taxiDriver && (
           <div className="register-vehicle-info">
             <Form.Group controlId="vehicleBrand">
-              <Form.Label>Marca del vehículo</Form.Label>
+              <Form.Label>{translate("vehicle_brand")}</Form.Label>
               <Form.Control
                 type="text"
                 name="vehicleBrand"
@@ -233,51 +217,15 @@ const Register = () => {
                 className={`register-input ${
                   errors.vehicleBrand && "border-danger"
                 }`}
-                placeholder="Marca del vehículo"
+                placeholder={translate("vehicle_brand")}
               />
               {errors.vehicleBrand && (
-                <p className="text-danger">Ingrese una marca válida.</p>
-              )}
-            </Form.Group>
-
-            <Form.Group controlId="vehiclePlate">
-              <Form.Label>Patente del vehículo</Form.Label>
-              <Form.Control
-                type="text"
-                name="vehiclePlate"
-                value={vehiclePlate}
-                ref={vehiclePlateRef}
-                onChange={handleChange(setVehiclePlate)}
-                className={`register-input ${
-                  errors.vehiclePlate && "border-danger"
-                }`}
-                placeholder="Patente del vehículo"
-              />
-              {errors.vehiclePlate && (
-                <p className="text-danger">Ingrese una patente válida.</p>
-              )}
-            </Form.Group>
-
-            <Form.Group controlId="taxiPlate">
-              <Form.Label>Patente del taxi</Form.Label>
-              <Form.Control
-                type="text"
-                name="taxiPlate"
-                value={taxiPlate}
-                ref={taxiPlateRef}
-                onChange={handleChange(setTaxiPlate)}
-                className={`register-input ${
-                  errors.taxiPlate && "border-danger"
-                }`}
-                placeholder="Ingrese la patente del taxi"
-              />
-              {errors.taxiPlate && (
-                <p className="text-danger">Ingrese una patente válida.</p>
+                <p className="text-danger">{translate("vehicle_brand")}</p>
               )}
             </Form.Group>
 
             <Form.Group controlId="vehicleModel">
-              <Form.Label>Modelo del vehículo</Form.Label>
+              <Form.Label>{translate("vehicle_model")}</Form.Label>
               <Form.Control
                 type="text"
                 name="vehicleModel"
@@ -287,15 +235,15 @@ const Register = () => {
                 className={`register-input ${
                   errors.vehicleModel && "border-danger"
                 }`}
-                placeholder="Modelo del vehículo"
+                placeholder={translate("vehicle_model")}
               />
               {errors.vehicleModel && (
-                <p className="text-danger">Ingrese un modelo válido.</p>
+                <p className="text-danger">{translate("vehicle_model")}</p>
               )}
             </Form.Group>
 
             <Form.Group controlId="vehicleYear">
-              <Form.Label>Año del vehículo</Form.Label>
+              <Form.Label>{translate("vehicle_year")}</Form.Label>
               <Form.Control
                 type="number"
                 name="vehicleYear"
@@ -305,17 +253,17 @@ const Register = () => {
                 className={`register-input ${
                   errors.vehicleYear && "border-danger"
                 }`}
-                placeholder="Año del vehículo"
+                placeholder={translate("vehicle_year")}
               />
               {errors.vehicleYear && (
-                <p className="text-danger">Ingrese un año válido.</p>
+                <p className="text-danger">{translate("vehicle_year")}</p>
               )}
             </Form.Group>
           </div>
         )}
 
         <Button variant="primary" type="submit" className="mt-4">
-          Registrarse
+          {translate("register")}
         </Button>
       </Form>
     </div>

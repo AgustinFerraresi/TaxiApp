@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import useTranslation from "../custom/useTranslation/UseTranslation";
 import Navbar from "../navbar/Navbar";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Login.css";
@@ -10,6 +11,7 @@ const Login = () => {
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
   const navigate = useNavigate();
+  const translate = useTranslation();
 
   const [errors, setErrors] = useState({
     email: false,
@@ -64,43 +66,39 @@ const Login = () => {
         style={{ maxWidth: "400px" }}
       >
         <form onSubmit={handleSubmit} className="space-y-4 Formulario">
-          <h2 className="text-center ">Iniciar sesión</h2>
+          <h2 className="text-center ">{translate("login")}</h2>
           <div className="mb-3">
-            <label>Correo electrónico</label>
+            <label>{translate("Email")}</label>
             <input
               value={email}
               onChange={emailHandler}
               type="text"
               id="email"
-              placeholder="Correo Electrónico"
+              placeholder={translate("Email")}
               className={`form-control ${
                 errors.email && "border border-danger"
               }`}
               ref={emailRef}
             />
             {errors.email && (
-              <p className="text-danger mt-2">
-                Por favor ingrese un correo electrónico válido.
-              </p>
+              <p className="text-danger mt-2">{translate("enter_email")}</p>
             )}
           </div>
           <div className="mb-3">
-            <label>Contraseña</label>
+            <label>{translate("password")}</label>
             <input
               value={password}
               onChange={passwordHandler}
               type="password"
               id="password"
-              placeholder="Contraseña"
+              placeholder={translate("password")}
               className={`form-control ${
                 errors.password && "border border-danger"
               }`}
               ref={passwordRef}
             />
             {errors.password && (
-              <p className="text-danger mt-2">
-                Por favor ingrese una contraseña.
-              </p>
+              <p className="text-danger mt-2">{translate("enter_password")}</p>
             )}
           </div>
 
@@ -110,20 +108,20 @@ const Login = () => {
               className="btn btn-warning w-100 mt-3 mb-2"
               onClick={handleSubmit}
             >
-              Iniciar sesión
+              {translate("login")}
             </button>
             {(errors.email || errors.password) && (
               <p className="mt-4 text-center text-danger">
-                Todos los campos son obligatorios
+                {translate("fields_required")}
               </p>
             )}
           </div>
 
           <div className="text-center mb-5">
-            Todavía no tenés una cuenta?
+            {translate("no_account")}
             <br />
             <Link to="/register" className="Crear-cuenta">
-              Crear cuenta
+              {translate("create_account")}
             </Link>
           </div>
         </form>

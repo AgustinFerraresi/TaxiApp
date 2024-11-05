@@ -3,10 +3,22 @@ import "./Navbar.css";
 import { ThemeContext } from "../../service/themecontext/ThemeContext";
 import { FaSun } from "react-icons/fa";
 import { MdNightlight } from "react-icons/md";
+import { TranslationContext } from "../../service/traslationContext/TranslationContext";
+import useTranslation from "../custom/useTranslation/UseTranslation";
 
 const Navbar = ({ children }) => {
   const { theme, handleToggleTheme } = useContext(ThemeContext);
+  const { language, changeLanguageHandler } = useContext(TranslationContext);
 
+  const translate = useTranslation();
+
+  const changeLanguage = (event) => {
+    changeLanguageHandler(event.target.value);
+  };
+  if (!theme) {
+    console.error("El tema es nulo o indefinido");
+    return null; // O un mensaje alternativo
+  }
   return (
     <div className="contendor-principal">
       <div className="navbar-container">
@@ -42,9 +54,14 @@ const Navbar = ({ children }) => {
             htmlFor="languageSelect"
             aria-label="Language selector"
           ></label>
-          <select id="languageSelect" aria-label="Select language">
-            <option value="es">Español</option>
-            <option value="en">English</option>
+          <select
+            id="languageSelect"
+            value={language}
+            onChange={changeLanguage}
+            aria-label="Select language"
+          >
+            <option value="es">{translate("spanish_lang")}</option>
+            <option value="en">{translate("english_lang")}</option>
           </select>
         </div>
       </div>

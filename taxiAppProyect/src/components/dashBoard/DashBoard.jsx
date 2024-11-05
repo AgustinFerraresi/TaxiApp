@@ -2,9 +2,11 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "../navbar/Navbar";
 import Button from "react-bootstrap/Button";
 import "./DashBoard.css";
+import useTranslation from "../custom/useTranslation/UseTranslation";
 
 const DashBoard = () => {
   const navigate = useNavigate();
+  const translate = useTranslation();
 
   const buttonHandler = () => {
     navigate("/login");
@@ -16,10 +18,10 @@ const DashBoard = () => {
         <Navbar />
       </header>
       <div className="dashboard-container-main">
-        <h2>Es hora de viajar, es hora de pedir un taxi</h2>
-        <h3>Dejanos ayudarte</h3>
+        <h2>{translate("travel_time")}</h2>
+        <h3>{translate("let_us_help")}</h3>
         <Button variant="warning" onClick={buttonHandler}>
-          Iniciar sesión
+          {translate("login")}
         </Button>
       </div>
     </div>
