@@ -16,6 +16,7 @@ const Register = () => {
   const [vehicleModel, setVehicleModel] = useState("");
   const [vehicleYear, setVehicleYear] = useState("");
   const [taxiDriver, setTaxiDriver] = useState(false);
+  const [userType, setUserType] = useState("");
 
   const navigate = useNavigate();
 
@@ -41,8 +42,43 @@ const Register = () => {
   const vehicleModelRef = useRef(null);
   const vehicleYearRef = useRef(null);
 
+  const handleChange = (event) => {
+    setUserType(event.target.value);
+  }
+
   const taxiDriverHandler = (event) => {
-    setTaxiDriver(event.target.value === "taxiDriver");
+
+    if (event.target.value === "passenger") {
+      setTaxiDriver(false);
+    } else if (event.target.value === "taxiDriver") {
+      setTaxiDriver(true);
+    };
+  };
+
+  const nameHandler = (event) => {
+    setName(event.target.value);
+    setErrors({ ...errors, name: false });
+  };
+
+  const emailHandler = (event) => {
+    setEmail(event.target.value);
+    setErrors({ ...errors, email: false });
+  };
+
+  const passwordHandler = (event) => {
+    setPassword(event.target.value);
+    setErrors({ ...errors, password: false });
+  };
+
+  const dniHandler = (event) => {
+    setDni(event.target.value);
+    setErrors({ ...errors, dni: false });
+  };
+
+  const vehicleBrandHandler = (event) => {
+    setVehicleBrand(event.target.value);
+    setErrors({ ...errors, vehicleBrand: false });
+
   };
 
   const handleChange = (setter) => (event) => {
@@ -216,6 +252,8 @@ const Register = () => {
                 label="Soy taxista"
                 onChange={taxiDriverHandler}
               />
+
+              
             </Form.Group>
           </div>
         </div>
@@ -229,16 +267,15 @@ const Register = () => {
                 name="vehicleBrand"
                 value={vehicleBrand}
                 ref={vehicleBrandRef}
-                onChange={handleChange(setVehicleBrand)}
-                className={`register-input ${
-                  errors.vehicleBrand && "border-danger"
-                }`}
-                placeholder="Marca del vehículo"
-              />
-              {errors.vehicleBrand && (
-                <p className="text-danger">Ingrese una marca válida.</p>
-              )}
+                onChange={vehicleBrandHandler}
+                placeholder='Marca del vehiculo'
+                required />
+            </div>
+            {errors.vehicleBrand && (
+              <p className="text-danger mt-2">Ingrese una marca válido.</p>
+            )}
             </Form.Group>
+
 
             <Form.Group controlId="vehiclePlate">
               <Form.Label>Patente del vehículo</Form.Label>
@@ -247,16 +284,15 @@ const Register = () => {
                 name="vehiclePlate"
                 value={vehiclePlate}
                 ref={vehiclePlateRef}
-                onChange={handleChange(setVehiclePlate)}
-                className={`register-input ${
-                  errors.vehiclePlate && "border-danger"
-                }`}
-                placeholder="Patente del vehículo"
-              />
-              {errors.vehiclePlate && (
-                <p className="text-danger">Ingrese una patente válida.</p>
-              )}
+                onChange={vehiclePlateHandler}
+                placeholder='Pantente del vehiculo' required />
+            </div>
+            {errors.vehiclePlate && (
+              <p className="text-danger mt-2">Ingrese una patente válida.</p>
+            )}
+
             </Form.Group>
+
 
             <Form.Group controlId="taxiPlate">
               <Form.Label>Patente del taxi</Form.Label>
@@ -265,16 +301,16 @@ const Register = () => {
                 name="taxiPlate"
                 value={taxiPlate}
                 ref={taxiPlateRef}
-                onChange={handleChange(setTaxiPlate)}
-                className={`register-input ${
-                  errors.taxiPlate && "border-danger"
-                }`}
-                placeholder="Ingrese la patente del taxi"
-              />
-              {errors.taxiPlate && (
-                <p className="text-danger">Ingrese una patente válida.</p>
-              )}
+
+                onChange={taxiPlateHandler}
+                placeholder='Ingrese la patente del taxi'
+                required />
+            </div>
+            {errors.taxiPlate && (
+              <p className="text-danger mt-2">Ingrese una patente válida.</p>
+            )}
             </Form.Group>
+
 
             <Form.Group controlId="vehicleModel">
               <Form.Label>Modelo del vehículo</Form.Label>
@@ -283,16 +319,17 @@ const Register = () => {
                 name="vehicleModel"
                 value={vehicleModel}
                 ref={vehicleModelRef}
-                onChange={handleChange(setVehicleModel)}
-                className={`register-input ${
-                  errors.vehicleModel && "border-danger"
-                }`}
-                placeholder="Modelo del vehículo"
-              />
-              {errors.vehicleModel && (
-                <p className="text-danger">Ingrese un modelo válido.</p>
-              )}
+
+                onChange={vehicleModelHandler}
+                placeholder='Modelo del vehiculo'
+                required />
+            </div>
+            {errors.vehicleModel && (
+              <p className="text-danger mt-2">Ingrese un modelo válido.</p>
+            )}
+
             </Form.Group>
+
 
             <Form.Group controlId="vehicleYear">
               <Form.Label>Año del vehículo</Form.Label>
@@ -301,16 +338,15 @@ const Register = () => {
                 name="vehicleYear"
                 value={vehicleYear}
                 ref={vehicleYearRef}
-                onChange={handleChange(setVehicleYear)}
-                className={`register-input ${
-                  errors.vehicleYear && "border-danger"
-                }`}
-                placeholder="Año del vehículo"
-              />
-              {errors.vehicleYear && (
-                <p className="text-danger">Ingrese un año válido.</p>
-              )}
+
+                onChange={vehicleYearHandler} placeholder='Año del vehiculo' required />
+            </div>
+            {errors.vehicleYear && (
+              <p className="text-danger mt-2">Ingrese un año válido.</p>
+            )}
+
             </Form.Group>
+
           </div>
         )}
 
