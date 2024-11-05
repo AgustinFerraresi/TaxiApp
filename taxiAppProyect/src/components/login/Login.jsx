@@ -6,6 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./Login.css"
 import LogOut from "../logOut/LogOut";
 import Navbar from "../navbar/Navbar";
+import useTranslation from "../custom/useTranslation/UseTranslation";
 
 
 const Login = () => {
@@ -15,6 +16,7 @@ const Login = () => {
   const passwordRef = useRef(null);
   const [taxiDriver, setTaxiDriver] = useState(false);
   const navigate = useNavigate();
+  const translate = useTranslation();
 
   const [errors, setErrors] = useState({
     email: false,
@@ -61,6 +63,7 @@ const Login = () => {
       const tokenDecoded = jwtDecode(data);
       localStorage.setItem("token",data);
       localStorage.setItem("userId",tokenDecoded.sub);
+      localStorage.setItem("Role",tokenDecoded.Role)
       
       //taxiDriver ? navigate("/DriverScreen") : navigate("/OrderTaxi");
     } 
@@ -104,9 +107,9 @@ const Login = () => {
         </div>
       </div>
 
-      <main className="transparent-bg p-4 rounded-lg shadow-lg w-100 login-main-container " style={{ maxWidth: "400px" }>
+      <main className="transparent-bg p-4 rounded-lg shadow-lg w-100 login-main-container " style={{ maxWidth: "400px" }}>
         <form onSubmit={handleSubmit} className="space-y-4 Formulario">
-          <h2 className="text-center ">Iniciar sesión</h2>
+          <h2 className="text-center ">{translate("login")}</h2>
           <div className="mb-3">
             <label>Correo electrónico</label>
             <input

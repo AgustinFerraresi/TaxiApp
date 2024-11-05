@@ -4,15 +4,22 @@ import "./Navbar.css";
 import { ThemeContext } from "../../service/themecontext/ThemeContext";
 import { FaSun } from "react-icons/fa";
 import { MdNightlight } from "react-icons/md";
+import { TranslationContext } from "../../service/traslationContext/TranslationContext";
 
 const Navbar = ({ children }) => {
   const { theme, handleToggleTheme } = useContext(ThemeContext);
+  const { language, changeLanguageHandler } = useContext(TranslationContext); // Usa TranslationContext aquí
 
+  const handleLanguageChange = (event) => {
+    const selectedLanguage = event.target.value;
+    changeLanguageHandler(selectedLanguage); // Cambia el idioma usando el contexto
+  };
+  
   return (
     <div className="contendor-principal">
       <div className="navbar-container">
         <img
-          src="../../../public/logo.png"
+          src="/logo.png"
           alt="logo"
           className="imagen_logo"
         />
@@ -29,8 +36,7 @@ const Navbar = ({ children }) => {
           onClick={() =>
             handleToggleTheme(theme === "LIGHT" ? "DARK" : "LIGHT")
           }
-          aria-label="Toggle theme"
-        >
+          aria-label="Toggle theme">
           {theme === "LIGHT" ? (
             <FaSun className="icon-sun" />
           ) : (
@@ -43,7 +49,7 @@ const Navbar = ({ children }) => {
             htmlFor="languageSelect"
             aria-label="Language selector"
           ></label>
-          <select id="languageSelect" aria-label="Select language">
+          <select id="languageSelect" aria-label="Select language" onChange={handleLanguageChange}>
             <option value="es">Español</option>
             <option value="en">English</option>
           </select>

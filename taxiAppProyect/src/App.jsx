@@ -10,10 +10,9 @@ import DriverScreen from "./components/driverScreen/DriverScreen";
 import DashBoard from "./components/dashBoard/DashBoard";
 import ProfileSettings from "./components/profileSettings/ProfileSettings";
 import { ThemeContextProvider } from "./service/themecontext/ThemeContext";
-
+import { TranslationContextProvider } from "./service/traslationContext/TranslationContext";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-import RegisterAdmin from "./components/registerAdmin/RegisterAdmin";
 import DataList from "./components/data/DataList";
 // import Protected from "./components/protected/Protected";
 
@@ -25,7 +24,6 @@ function App() {
     },
     {
       path: "/login",
-
       element: <Login />,
     },
     {
@@ -121,9 +119,13 @@ function App() {
   ]);
 
   return (
+    
     <ThemeContextProvider>
-      <RouterProvider router={router} />
+      <TranslationContextProvider> 
+        <RouterProvider router={router} />
+      </TranslationContextProvider>
     </ThemeContextProvider>
+    
   );
 
 }
