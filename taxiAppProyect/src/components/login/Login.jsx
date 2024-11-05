@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 import Form from 'react-bootstrap/Form';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Login.css"
@@ -56,9 +57,11 @@ const Login = () => {
       }
   
       const data = await response.text();
+      const tokenDecoded = jwtDecode(data);
       localStorage.setItem("token",data);
-      //taxiDriver ? navigate("/DriverScreen") : navigate("/OrderTaxi");
+      localStorage.setItem("userId",tokenDecoded.sub);
       
+      //taxiDriver ? navigate("/DriverScreen") : navigate("/OrderTaxi");
     } 
     catch (error) {
       console.log(error)

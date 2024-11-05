@@ -1,3 +1,4 @@
+import LogOut from "../logOut/LogOut";
 import "./Navbar.css"
 
 const Navbar = () => {
@@ -17,6 +18,7 @@ const Navbar = () => {
                     <option value="en">English</option>
                 </select>
             </div>
+            <LogOut style={{ maxWidth: "1px" }} />
         </div>
     );
 }
