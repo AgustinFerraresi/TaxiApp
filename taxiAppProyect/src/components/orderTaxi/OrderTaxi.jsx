@@ -2,6 +2,7 @@ import { useState, useRef } from "react";
 import { Form, Button } from "react-bootstrap";
 import Navbar from "../navbar/Navbar";
 import "./OrderTaxi.css";
+import LogOut from "../logOut/LogOut";
 
 const OrderTaxi = () => {
   const [destination, setDestination] = useState("");
@@ -108,17 +109,23 @@ const OrderTaxi = () => {
               onChange={handleMessaje}
             />
           </Form.Group>
+          
+        <Form.Label className="fw-bold">Metodo de pago</Form.Label>
+        <Form.Select aria-label="Default select example" className="payment-method-order-taxi" defaultValue={0}>
+          <option value="0">Efectivo</option>
+          <option value="1">Pago digital</option>
+        </Form.Select>
 
           <div className="text-center">
             <Button
               onClick={handleSubmit}
               type="submit"
               variant="warning"
-              className="w-50 buttonOrderTaxi"
-            >
+              className="w-50 buttonOrderTaxi">
               Pedir Taxi
             </Button>
           </div>
+          
         </Form>
       </div>
     </div>
