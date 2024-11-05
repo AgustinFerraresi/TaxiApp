@@ -1,11 +1,23 @@
-#register-form-container{
+#register-form-container {
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-image: url("../../assets/fondo-dia.webp");
+    color: #333;
+    height: 110vh;
 }
 
-.register-input{
-    background-color: rgba(242,242,241,1);
+.header-nav {
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.register-input {
+    background-color: rgba(242, 242, 241, 1);
     border-radius: 10px;
     padding: 10px;
     border: none;
@@ -13,78 +25,75 @@
     width: 100%;
 }
 
-#root{
-    background-image: image-set("./src/assets/rosario.jpg");
-    background-repeat: repeat;
-    height: 100vh;
+[theme="dark"] #register-form-container {
+    background-image: url("./src/assets/rosario.jpg");
+    color: #ffd700;
 }
 
-#register-form-container div{
-    width: 100%;
-}
-
-#register-form{
-    display: grid;   
+#register-form {
+    display: grid;
     justify-items: center;
     background-color: rgba(227, 227, 227, 0.8);
     border-radius: 10px;
     padding: 40px;
-    grid-template-columns: 1fr  1fr;
     gap: 20px;
 }
 
-.register-input{
+[theme="dark"] #register-form {
+    background-color: rgba(51, 51, 51, 0.817);
+}
+
+.register-input {
     height: 30px;
     border: 1px solid #fff;
 }
 
-#register-form-img{
+#register-form-img {
     width: 100px;
     border-radius: 100px;
 }
 
-#register-form-img:hover{
+#register-form-img:hover {
     cursor: pointer;
 }
 
-.register-form-button{
+.register-form-button {
     width: 100%;
     margin: 10px;
     grid-row: 3/4;
     grid-column: 1/4;
 }
 
-#register-radio-container{
+#register-radio-container {
     display: flex;
     grid-column: 1/2;
     grid-row: 3/4;
     justify-content: space-around;
 }
 
-.register-vehicle-info{
+.register-vehicle-info {
     grid-column: 3/4;
     grid-row: 2/3;
 }
 
-.register-general-info{
+.register-general-info {
     grid-column: 1/3;
 }
 
-.register-header-form{
+.register-header-form {
     grid-column: 1/4;
     text-align: center;
 }
 
-.vehicle-info-title{
+.vehicle-info-title {
     grid-row: 1/2;
 }
 
-.border-danger{
+.border-danger {
     border: 1px solid red;
 }
 
-.border-danger:focus{
+.border-danger:focus {
     border: 1px solid red;
     outline: none;
 }
-

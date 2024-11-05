@@ -5,6 +5,8 @@ import Form from 'react-bootstrap/Form';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Login.css"
 import LogOut from "../logOut/LogOut";
+import Navbar from "../navbar/Navbar";
+
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -16,7 +18,7 @@ const Login = () => {
 
   const [errors, setErrors] = useState({
     email: false,
-    password: false
+    password: false,
   });
 
   let userData = {}
@@ -30,13 +32,12 @@ const Login = () => {
       return
     };
 
+
     if (password.length === 0) {
       passwordRef.current.focus();
       setErrors({ ...errors, password: true });
       return
     };
-
-    //https://localhost:7179/api/Authentication/authenticate
 
     try {
       userData ={
@@ -92,42 +93,41 @@ const Login = () => {
   };
 
   return (
-    <div className="d-flex flex-column justify-content-center align-items-center min-vh-100">
-      <header className="mb-4">
-        <div className="d-flex  align-items-center login-header-container" onClick={clickLinkHandler}>
-          <img
-            id="img-login"
-            src=".\src\assets\logo.png"
-            alt="Logo"
-            className="img-fluid"
-            style={{ width: "50px", height: "50px" }} />
-          <h1 className="text-warning ml-2" style={{ textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)" }}>RoTaxi</h1>
-        </div>
+    <div className="login-contenedor-principal ">
+      <header className="header-nav ">
+        <Navbar />
       </header>
+      <div className="mb-5 bg-black w-100">
+        <div
+          className="d-flex  align-items-center login-header-container"
+          onClick={clickLinkHandler}>
+        </div>
+      </div>
 
-      <main
-        className="bg-white p-4 rounded-lg shadow-lg w-100 login-main-container"
-        style={{ maxWidth: "400px" }}>
-
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <h2 className="text-center">Iniciar sesión</h2>
+      <main className="transparent-bg p-4 rounded-lg shadow-lg w-100 login-main-container " style={{ maxWidth: "400px" }>
+        <form onSubmit={handleSubmit} className="space-y-4 Formulario">
+          <h2 className="text-center ">Iniciar sesión</h2>
           <div className="mb-3">
-            <label htmlFor="">Correo electrónico</label>
+            <label>Correo electrónico</label>
             <input
               value={email}
               onChange={emailHandler}
               type="text"
               id="email"
               placeholder="Correo Electrónico"
-              className={`form-control ${errors.email && "border border-danger"}`}
+              className={`form-control ${
+                errors.email && "border border-danger"
+              }`}
               ref={emailRef}
             />
             {errors.email && (
-              <p className="text-danger mt-2">Por favor ingrese un correo electrónico válido.</p>
+              <p className="text-danger mt-2">
+                Por favor ingrese un correo electrónico válido.
+              </p>
             )}
           </div>
           <div className="mb-3">
-            <label htmlFor="">Contraseña</label>
+            <label>Contraseña</label>
             <input
               value={password}
               onChange={passwordHandler}
@@ -135,10 +135,13 @@ const Login = () => {
               id="password"
               placeholder="Contraseña"
               className={`form-control ${errors.password && "border border-danger"}`}
+
               ref={passwordRef}
             />
             {errors.password && (
-              <p className="text-danger mt-2">Por favor ingrese una contraseña.</p>
+              <p className="text-danger mt-2">
+                Por favor ingrese una contraseña.
+              </p>
             )}
           </div>
 
@@ -173,8 +176,11 @@ const Login = () => {
           </div>
 
           <div className="text-center mb-5">
-            Todavía no tenés una cuenta?<br />
-            <Link to="/register">Crear cuenta</Link>
+            Todavía no tenés una cuenta?
+            <br />
+            <Link to="/register" className="Crear-cuenta">
+              Crear cuenta
+            </Link>
           </div>
         </form>
       </main>
