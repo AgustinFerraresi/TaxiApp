@@ -88,7 +88,8 @@ const DataList = () => {
               <th>ID</th>
               <th>Nombre</th>
               <th>Email</th>
-              <th></th>
+              <th></th> 
+              {/* falta agregar un espacio para el rol del usuario */}
             </tr>
           </thead>
 
