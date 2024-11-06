@@ -92,7 +92,6 @@
     font-size: 1rem;
     position: relative;
     z-index: 2;
-    color: white;
     color: #333;
     cursor: pointer;
     transition: background-color 0.3s, border-color 0.3s;
@@ -110,4 +109,9 @@
     outline: none;
     border-color: #ffd700;
     box-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+}
+
+.cerrar-sesion {
+    position: relative;
+    z-index: 2;
 }

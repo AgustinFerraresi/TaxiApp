@@ -1,16 +1,19 @@
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Navbar.css";
 import { ThemeContext } from "../../service/themecontext/ThemeContext";
 import { FaSun } from "react-icons/fa";
 import { MdNightlight } from "react-icons/md";
 import { TranslationContext } from "../../service/traslationContext/TranslationContext";
 import useTranslation from "../custom/useTranslation/UseTranslation";
+import LogOut from "../logOut/LogOut";
 
 const Navbar = ({ children }) => {
   const { theme, handleToggleTheme } = useContext(ThemeContext);
   const { language, changeLanguageHandler } = useContext(TranslationContext); // Usa TranslationContext aquí
 
   const translate = useTranslation();
+  const navigate = useNavigate();
   const handleLanguageChange = (event) => {
     const selectedLanguage = event.target.value;
     changeLanguageHandler(selectedLanguage); // Cambia el idioma usando el contexto
@@ -40,7 +43,8 @@ const Navbar = ({ children }) => {
           onClick={() =>
             handleToggleTheme(theme === "LIGHT" ? "DARK" : "LIGHT")
           }
-          aria-label="Toggle theme">
+          aria-label="Toggle theme"
+        >
           {theme === "LIGHT" ? (
             <FaSun className="icon-sun" />
           ) : (
@@ -53,13 +57,20 @@ const Navbar = ({ children }) => {
             htmlFor="languageSelect"
             aria-label="Language selector"
           ></label>
-          <select id="languageSelect" value={language} aria-label="Select language" onChange={handleLanguageChange}>
+          <select
+            id="languageSelect"
+            value={language}
+            aria-label="Select language"
+            onChange={handleLanguageChange}
+          >
             <option value="es">{translate("spanish_lang")}</option>
             <option value="en">{translate("english_lang")}</option>
           </select>
         </div>
+        <div className="cerrar-sesion">
+          <LogOut />
+        </div>
       </div>
-
       {children}
     </div>
   );

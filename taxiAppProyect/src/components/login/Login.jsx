@@ -1,13 +1,11 @@
 import { useRef, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
-import Form from 'react-bootstrap/Form';
+import Form from "react-bootstrap/Form";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./Login.css"
-import LogOut from "../logOut/LogOut";
+import "./Login.css";
 import Navbar from "../navbar/Navbar";
 import useTranslation from "../custom/useTranslation/UseTranslation";
-
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -15,7 +13,7 @@ const Login = () => {
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
   const [taxiDriver, setTaxiDriver] = useState(false);
-  const navigate = useNavigate();
+
   const translate = useTranslation();
 
   const [errors, setErrors] = useState({
@@ -23,7 +21,7 @@ const Login = () => {
     password: false,
   });
 
-  let userData = {}
+  let userData = {};
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -31,44 +29,45 @@ const Login = () => {
     if (email.length === 0) {
       emailRef.current.focus();
       setErrors({ ...errors, email: true });
-      return
-    };
-
+      return;
+    }
 
     if (password.length === 0) {
       passwordRef.current.focus();
       setErrors({ ...errors, password: true });
-      return
-    };
+      return;
+    }
 
     try {
-      userData ={
-        email : email,
-        password : password,
-        UserType: taxiDriver ? "Driver" : "Passenger"
-      }
-      const response = await fetch("https://localhost:7179/api/Authentication/authenticate",{
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body : JSON.stringify(userData)
-      });
+      userData = {
+        email: email,
+        password: password,
+        UserType: taxiDriver ? "Driver" : "Passenger",
+      };
+      const response = await fetch(
+        "https://localhost:7179/api/Authentication/authenticate",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(userData),
+        }
+      );
 
       if (!response.ok) {
         alert("Error en el inicio de sesion");
         console.log("Error en el inicio de sesion");
-        throw new Error('Error en el inicio de sesion');
+        throw new Error("Error en el inicio de sesion");
       }
-  
+
       const data = await response.text();
       const tokenDecoded = jwtDecode(data);
-      localStorage.setItem("token",data);
-      localStorage.setItem("userId",tokenDecoded.sub);
-      localStorage.setItem("Role",tokenDecoded.Role)
-      
+      localStorage.setItem("token", data);
+      localStorage.setItem("userId", tokenDecoded.sub);
+      localStorage.setItem("Role", tokenDecoded.Role);
+
       //taxiDriver ? navigate("/DriverScreen") : navigate("/OrderTaxi");
-    } 
-    catch (error) {
-      console.log(error)
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -87,12 +86,7 @@ const Login = () => {
       setTaxiDriver(false);
     } else if (event.target.value === "taxiDriver") {
       setTaxiDriver(true);
-    };
-  };
-
-
-  const clickLinkHandler = () => {
-    navigate("/");
+    }
   };
 
   return (
@@ -100,14 +94,10 @@ const Login = () => {
       <header className="header-nav ">
         <Navbar />
       </header>
-      <div className="mb-5 bg-black w-100">
-        <div
-          className="d-flex  align-items-center login-header-container"
-          onClick={clickLinkHandler}>
-        </div>
-      </div>
-
-      <main className="transparent-bg p-4 rounded-lg shadow-lg w-100 login-main-container " style={{ maxWidth: "400px" }}>
+      <main
+        className="transparent-bg p-4 rounded-lg shadow-lg w-100 login-main-container "
+        style={{ maxWidth: "400px" }}
+      >
         <form onSubmit={handleSubmit} className="space-y-4 Formulario">
           <h2 className="text-center ">{translate("login")}</h2>
           <div className="mb-3">
@@ -124,9 +114,7 @@ const Login = () => {
               ref={emailRef}
             />
             {errors.email && (
-              <p className="text-danger mt-2">
-                {translate("enter_email")}
-              </p>
+              <p className="text-danger mt-2">{translate("enter_email")}</p>
             )}
           </div>
           <div className="mb-3">
@@ -137,24 +125,27 @@ const Login = () => {
               type="password"
               id="password"
               placeholder={translate("password")}
-              className={`form-control ${errors.password && "border border-danger"}`}
-
+              className={`form-control ${
+                errors.password && "border border-danger"
+              }`}
               ref={passwordRef}
             />
             {errors.password && (
-              <p className="text-danger mt-2">
-                {translate("enter_password")}
-              </p>
+              <p className="text-danger mt-2">{translate("enter_password")}</p>
             )}
           </div>
 
-          <div id='register-radio-container'>
-            <Form.Group className="mb-3" controlId="formBasicCheckbox" id='register-radio-container'>
+          <div id="register-radio-container">
+            <Form.Group
+              className="mb-3"
+              controlId="formBasicCheckbox"
+              id="register-radio-container"
+            >
               <Form.Check
                 type="radio"
-                name='userType'
+                name="userType"
                 value="passenger"
-                className='register-userType'
+                className="register-userType"
                 label={translate("passenger")}
                 onChange={taxiDriverHandler}
                 defaultChecked
@@ -162,27 +153,36 @@ const Login = () => {
 
               <Form.Check
                 type="radio"
-                name='userType'
+                name="userType"
                 value="taxiDriver"
-                className='register-userType'
-                id='taxi'
-                label={translate( "taxi_driver")}
+                className="register-userType"
+                id="taxi"
+                label={translate("taxi_driver")}
                 onChange={taxiDriverHandler}
               />
             </Form.Group>
           </div>
 
           <div className="mb-3">
-            <button type="submit" className="btn btn-warning w-100 mt-3 mb-2" onClick={handleSubmit} >{translate("login")}</button>
-            {(errors.email || errors.password) && (<p className="mt-4 text-center text-danger">{translate("fields_required")}</p>)}
-            <LogOut />
+            <button
+              type="submit"
+              className="btn btn-warning w-100 mt-3 mb-2"
+              onClick={handleSubmit}
+            >
+              {translate("login")}
+            </button>
+            {(errors.email || errors.password) && (
+              <p className="mt-4 text-center text-danger">
+                {translate("fields_required")}
+              </p>
+            )}
           </div>
 
           <div className="text-center mb-5">
             {translate("no_account")}
             <br />
             <Link to="/register" className="Crear-cuenta">
-              {translate( "create_account")}
+              {translate("create_account")}
             </Link>
           </div>
         </form>
