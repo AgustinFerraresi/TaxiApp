@@ -1,6 +1,8 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-
+import { ThemeContextProvider } from "./service/themecontext/ThemeContext";
+import { TranslationContextProvider } from "./service/traslationContext/TranslationContext";
 import { driver, passanger } from "./components/data/Data";
+
 import OrderTaxi from './components/orderTaxi/OrderTaxi'
 import RegisterAdmin from "./components/registerAdmin/RegisterAdmin";
 import Register from "./components/register/Register";
@@ -9,11 +11,11 @@ import PageNotFound from "./components/PageNotFound/PageNotFound";
 import DriverScreen from "./components/driverScreen/DriverScreen";
 import DashBoard from "./components/dashBoard/DashBoard";
 import ProfileSettings from "./components/profileSettings/ProfileSettings";
-import { ThemeContextProvider } from "./service/themecontext/ThemeContext";
-import { TranslationContextProvider } from "./service/traslationContext/TranslationContext";
+import DataList from "./components/data/DataList";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-import DataList from "./components/data/DataList";
+
 // import Protected from "./components/protected/Protected";
 
 function App() {
@@ -43,7 +45,7 @@ function App() {
       element: <DriverScreen />,
     },
     {
-      path: "/DriverScreen/ProfileSettings",
+      path: "/ProfileSettings",
       element: <ProfileSettings user={driver} />, //se pisa el css
     },
     {
@@ -53,6 +55,9 @@ function App() {
     {
       path: "/RegisterAdmin",
       element: <RegisterAdmin />
+    },    {
+      path: "/DataList",
+      element: <DataList />
     },
     {
       path: "*",

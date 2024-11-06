@@ -7,13 +7,6 @@ const themeValue = localStorage.getItem("theme");
 export const ThemeContextProvider = ({ children }) => {
   const [theme, setTheme] = useState(themeValue ?? "LIGHT");
 
-  // useEffect(() => {
-  //   document.documentElement.setAttribute(
-  //     "theme",
-  //     themeValue.toLocaleLowerCase()
-  //   );
-  // }, []);
-
   const handleToggleTheme = (newTheme) => {
     if (newTheme === "DARK") {
       document.documentElement.setAttribute("theme", "dark");

@@ -35,8 +35,6 @@ function RegisterAdmin() {
 
   const handlerTypeUserSelect = (event) => {
     setUserType(event.target.value);
-    console.log("userType: ",userType)
-    console.log("event: ",event.target.value)
   }
 
 
@@ -112,7 +110,6 @@ function RegisterAdmin() {
           console.log("error en la creacion del pasajero");
           throw new Error('Error en la creacion del pasajero');
         }
-        console.log("pasajero creado correctamente");
       }
 
       if (userType === "Driver") {
@@ -126,11 +123,8 @@ function RegisterAdmin() {
           console.log("error en la creacion del driver");
           throw new Error('Error en la creacion del driver');
         }
-
-        console.log("Driver creado correctamente")
       }
 
-      //https://localhost:7179/api/SuperAdmin/CreateSuperAdmin
       if (userType === "SuperAdmin") {
         const response = await fetch("https://localhost:7179/api/SuperAdmin/CreateSuperAdmin",{
           method: "POST",
@@ -147,14 +141,11 @@ function RegisterAdmin() {
           console.log("error en la creacion del admin");
           throw new Error('Error en la creacion del admin');
         }
-
-        console.log("Admin creado correctamente");
       }
 
     } catch (error) {
       console.log(error)
     }
-
   };
 
   return (
