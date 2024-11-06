@@ -3,19 +3,16 @@
     grid-template-rows: 1fr 3fr 1fr;
     justify-content: center;
     align-items: center;
-    padding: 20px;
-    height: 100vh;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     background-image: url("../../assets/fondo-dia.webp");
     color: #f5f1f1;
-    height: 110vh;
+    height: 100vh;
 }
 
 [theme="dark"] #dashboard-container {
     background-image: url("./src/assets/rosario.jpg");
-
 }
 
 #dashboard-container::before {

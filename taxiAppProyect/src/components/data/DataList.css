@@ -9,11 +9,13 @@
     max-width: 800px;
     margin: 40px auto;
     padding: 20px;
-    background-color: #f8f9fa;
+    background-color: rgba(227, 227, 227, 0.817);
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(250, 217, 1, 0.1);
   }
   
+  [theme="dark"] .user-list {
+    background-color: rgba(51, 51, 51, 0.817);}
   /* Título de la lista */
   .user-list h1 {
     text-align: center;
@@ -21,21 +23,20 @@
     margin-bottom: 20px;
   }
   
+  [theme="dark"] .user-list h1{
+    color: #ffd700;
+}
   /* Botón para añadir usuario */
   .add-button {
     display: block;
     margin: 0 auto 20px auto;
     padding: 10px 20px;
-    background-color: #28a745;
-    color: white;
+    background-color: #ffd700;
+    color: #333;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
-  }
-  
-  .add-button:hover {
-    background-color: #218838;
   }
   
   /* Formulario para añadir usuario */
@@ -80,8 +81,8 @@
   }
   
   th {
-    background-color: #ffff03da;
-    color: black;
+    background-color: #ffd700;
+    color: #333;
   }
   
   .user-item td {

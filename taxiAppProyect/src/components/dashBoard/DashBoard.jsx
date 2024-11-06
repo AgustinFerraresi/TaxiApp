@@ -19,7 +19,7 @@ const DashBoard = () => {
       </header>
       <div className="dashboard-container-main">
         <h2>{translate("travel_time")}</h2>
-        <h3>Dejanos ayudarte</h3>
+        <h3>{translate("let_us_help")}</h3>
         <Button variant="warning" onClick={buttonHandler}>
           {translate("login")}
         </Button>

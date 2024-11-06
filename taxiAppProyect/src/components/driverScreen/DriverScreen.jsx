@@ -4,20 +4,21 @@ import ListItem from "../ListItem/ListItem";
 import Button from "react-bootstrap/Button";
 import "./DriverScreen.css";
 import Navbar from "../navbar/Navbar";
+import useTranslation from "../custom/useTranslation/UseTranslation";
 
 const DriverScreen = () => {
-  const [service, setService] = useState("PONERSE EN SERVICIO");
-
+  const [service, setService] = useState("start_service");
+  const translate = useTranslation();
   const handlerService = () => {
-    if (service === "PONERSE EN SERVICIO") {
-      setService("TERMINAR SERVICIO");
+    if (service ==="start_service") {
+      setService("end_service");
     } else {
-      setService("PONERSE EN SERVICIO");
+      setService("start_service");
     }
   };
 
   const buttonVariant =
-    service === "PONERSE EN SERVICIO" ? "success" : "danger";
+    service === "start_service" ? "success" : "danger";
 
   return (
     <div className="contenedor-principal">
@@ -31,17 +32,17 @@ const DriverScreen = () => {
               className="driver-screen-buttons text-black"
               variant="warning"
             >
-              Editar perfil
+              {translate("edit_profile")}
             </Button>
             <Button
               className="driver-screen-buttons text-black"
               variant="danger"
             >
-              Cerrar sesión
+             {translate("logout")}
             </Button>
           </div>
           <div className="contenedor-imagen">
-            <h2>Nombre del chofer</h2>
+            <h2>{translate("driver_name")}</h2>
           </div>
         </div>
 
@@ -51,12 +52,12 @@ const DriverScreen = () => {
             onClick={handlerService}
             variant={buttonVariant}
           >
-            {service}
+              {translate(service)}
           </Button>
         </div>
 
         <div className="driver-screen-container">
-          <h5>Viajes disponibles</h5>
+          <h5>{translate( "available_trips")}</h5>
           <ListItem list={availableTrips} />
         </div>
       </div>

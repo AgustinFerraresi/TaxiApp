@@ -111,13 +111,13 @@ const Login = () => {
         <form onSubmit={handleSubmit} className="space-y-4 Formulario">
           <h2 className="text-center ">{translate("login")}</h2>
           <div className="mb-3">
-            <label>Correo electrónico</label>
+            <label>{translate("email")}</label>
             <input
               value={email}
               onChange={emailHandler}
               type="text"
               id="email"
-              placeholder="Correo Electrónico"
+              placeholder={translate("email")}
               className={`form-control ${
                 errors.email && "border border-danger"
               }`}
@@ -125,25 +125,25 @@ const Login = () => {
             />
             {errors.email && (
               <p className="text-danger mt-2">
-                Por favor ingrese un correo electrónico válido.
+                {translate("enter_email")}
               </p>
             )}
           </div>
           <div className="mb-3">
-            <label>Contraseña</label>
+            <label>{translate("password")}</label>
             <input
               value={password}
               onChange={passwordHandler}
               type="password"
               id="password"
-              placeholder="Contraseña"
+              placeholder={translate("password")}
               className={`form-control ${errors.password && "border border-danger"}`}
 
               ref={passwordRef}
             />
             {errors.password && (
               <p className="text-danger mt-2">
-                Por favor ingrese una contraseña.
+                {translate("enter_password")}
               </p>
             )}
           </div>
@@ -155,7 +155,7 @@ const Login = () => {
                 name='userType'
                 value="passenger"
                 className='register-userType'
-                label="Soy pasajero"
+                label={translate("passenger")}
                 onChange={taxiDriverHandler}
                 defaultChecked
               />
@@ -166,23 +166,23 @@ const Login = () => {
                 value="taxiDriver"
                 className='register-userType'
                 id='taxi'
-                label="Soy taxista"
+                label={translate( "taxi_driver")}
                 onChange={taxiDriverHandler}
               />
             </Form.Group>
           </div>
 
           <div className="mb-3">
-            <button type="submit" className="btn btn-warning w-100 mt-3 mb-2" onClick={handleSubmit} >Iniciar sesión</button>
-            {(errors.email || errors.password) && (<p className="mt-4 text-center text-danger">Todos los campos son obligatorios</p>)}
+            <button type="submit" className="btn btn-warning w-100 mt-3 mb-2" onClick={handleSubmit} >{translate("login")}</button>
+            {(errors.email || errors.password) && (<p className="mt-4 text-center text-danger">{translate("fields_required")}</p>)}
             <LogOut />
           </div>
 
           <div className="text-center mb-5">
-            Todavía no tenés una cuenta?
+            {translate("no_account")}
             <br />
             <Link to="/register" className="Crear-cuenta">
-              Crear cuenta
+              {translate( "create_account")}
             </Link>
           </div>
         </form>

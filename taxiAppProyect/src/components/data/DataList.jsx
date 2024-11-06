@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import DataItem from "./DataItem";
 import "./DataList.css";
 import { useNavigate } from "react-router-dom";
+import Navbar from "../navbar/Navbar";
+import useTranslation from "../custom/useTranslation/UseTranslation";
 
 const DataList = () => {
   const [showAddForm, setShowAddForm] = useState(false);
@@ -33,24 +35,29 @@ const DataList = () => {
   };
 
   const navigate = useNavigate()
+  const translate = useTranslation();
   const HandleAddUser = () =>{
     navigate("/registerAdmin")
   }
   return (
+    <div className="contenedor-principal">
+      <header className="header-nav">
+        <Navbar/>
+      </header>
     <div className="user-list">
-      <h1>Usuarios</h1>
+      <h1>{translate("user")}</h1>
       <button
         className="add-button"
         onClick={HandleAddUser}
-      >Agregar Usuario
+      >{translate("add User")}
       </button>
       <table>
         <thead>
           <tr>
             <th>ID</th>
-            <th>Nombre</th>
-            <th>Email</th>
-            <th>Acción</th>
+            <th>{translate("name")}</th>
+            <th>{translate("email")}</th>
+            <th>{translate("action")}</th>
           </tr>
         </thead>
         <tbody>
@@ -65,6 +72,7 @@ const DataList = () => {
           ))}
         </tbody>
       </table>
+    </div>
     </div>
   );
 };

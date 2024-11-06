@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import useTranslation from "../custom/useTranslation/UseTranslation";
 const DataItem = ({ index, user, onEdit, onDelete }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editedName, setEditedName] = useState(user.name);
@@ -11,7 +11,7 @@ const DataItem = ({ index, user, onEdit, onDelete }) => {
       setIsEditing(false);
     }
   };
-
+  const translate = useTranslation();
   return (
     <tr className="user-item">
       <td>{index + 1}</td>
@@ -41,9 +41,9 @@ const DataItem = ({ index, user, onEdit, onDelete }) => {
         {isEditing ? (
           <button className="save-button" onClick={handleSave}>Guardar</button>
         ) : (
-          <button className="edit-button" onClick={() => setIsEditing(true)}>Editar</button>
+          <button className="edit-button" onClick={() => setIsEditing(true)}>{translate("edit")}</button>
         )}
-        <button className="delete-button" onClick={() => onDelete(user.email)}>Eliminar</button>
+        <button className="delete-button" onClick={() => onDelete(user.email)}>{translate("delite")}</button>
       </td>
     </tr>
   );

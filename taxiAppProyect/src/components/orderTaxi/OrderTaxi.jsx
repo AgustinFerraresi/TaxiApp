@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import { Form, Button } from "react-bootstrap";
 import Navbar from "../navbar/Navbar";
+import useTranslation from "../custom/useTranslation/UseTranslation";
 import "./OrderTaxi.css";
 import LogOut from "../logOut/LogOut";
 
@@ -12,7 +13,7 @@ const OrderTaxi = () => {
     destination: false,
     location: false,
   });
-
+  const translate = useTranslation();
   const destinationRef = useRef(null);
   const locationRef = useRef(null);
 
@@ -58,14 +59,14 @@ const OrderTaxi = () => {
         <Navbar />
       </header>
       <div className="container mt-4 col-md-4 shadow bordered-div orderTaxiContainer">
-        <h1 className="text-center ">Pedir Taxi</h1>
+        <h1 className="text-center ">{translate("order_taxi")}</h1>
 
         <Form>
           <Form.Group className="mb-4" controlId="formDestination">
-            <Form.Label className="fw-bold ">Ingrese su destino</Form.Label>
+            <Form.Label className="fw-bold ">{translate( "enter_destination")}</Form.Label>
             <Form.Control
               type="text"
-              placeholder="Destino"
+              placeholder={translate("destination_placeholder")}
               className={`p-3 rounded ${
                 errors.destination && "border border-danger"
               }`}
@@ -75,17 +76,17 @@ const OrderTaxi = () => {
               ref={destinationRef}
             />
             {errors.destination && (
-              <p className="text-danger">Destino incompleto</p>
+              <p className="text-danger">{translate( "incomplete_destination")}</p>
             )}
           </Form.Group>
 
           <Form.Group className="mb-4" controlId="formLocation">
             <Form.Label className="fw-bold">
-              Ingrese su ubicación actual
+              {translate("enter_location")}
             </Form.Label>
             <Form.Control
               type="text"
-              placeholder="Ubicación"
+              placeholder={translate("location_placeholder")}
               className={`p-3 rounded ${
                 errors.location && "border border-danger"
               }`}
@@ -95,25 +96,25 @@ const OrderTaxi = () => {
               ref={locationRef}
             />
             {errors.location && (
-              <p className="text-danger">Ubicación incompleta</p>
+              <p className="text-danger">{translate("incomplete_location")}</p>
             )}
           </Form.Group>
 
           <Form.Group className="mb-4" controlId="formMessage">
-            <Form.Label className="fw-bold ">Mensaje</Form.Label>
+            <Form.Label className="fw-bold ">{translate("message")}</Form.Label>
             <Form.Control
               type="text"
-              placeholder="Mensaje(opcional)"
+              placeholder={translate("message_placeholder")}
               className="p-3 rounded"
               value={messaje}
               onChange={handleMessaje}
             />
           </Form.Group>
           
-        <Form.Label className="fw-bold">Metodo de pago</Form.Label>
+        <Form.Label className="fw-bold">{translate("payment_Method")}</Form.Label>
         <Form.Select aria-label="Default select example" className="payment-method-order-taxi" defaultValue={0}>
-          <option value="0">Efectivo</option>
-          <option value="1">Pago digital</option>
+          <option value="0">{translate("effective")}</option>
+          <option value="1">{translate( "digital_Payment")}</option>
         </Form.Select>
 
           <div className="text-center">
@@ -122,7 +123,7 @@ const OrderTaxi = () => {
               type="submit"
               variant="warning"
               className="w-50 buttonOrderTaxi">
-              Pedir Taxi
+              {translate("request_taxi")}
             </Button>
           </div>
           
