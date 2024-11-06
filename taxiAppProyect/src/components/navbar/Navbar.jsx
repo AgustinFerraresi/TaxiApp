@@ -16,21 +16,13 @@ const Navbar = ({ children }) => {
   };
   
   return (
-    <div className="contendor-principal">
+    
+    <div className="register-admin-main-container">
       <div className="navbar-container">
-        <img
-          src="/logo.png"
-          alt="logo"
-          className="imagen_logo"
-        />
-        <h2
-          className="text-warning"
-          style={{ textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)" }}
-        >
-          RoTaxi
-        </h2>
+        <h2 className="text-warning" style={{ textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)" }}>RoTaxi</h2>
       </div>
-      <div className="Contenedor-iconos">
+
+      <div className="register-admin-items-container">
         <button
           className="theme-toggle"
           onClick={() =>
@@ -45,18 +37,17 @@ const Navbar = ({ children }) => {
         </button>
 
         <div className="language-selector">
-          <label
-            htmlFor="languageSelect"
-            aria-label="Language selector"
-          ></label>
+          <label htmlFor="languageSelect" aria-label="Language selector"></label>
           <select id="languageSelect" aria-label="Select language" onChange={handleLanguageChange}>
             <option value="es">Español</option>
             <option value="en">English</option>
           </select>
+
         </div>
       </div>
 
       {children}
+      
     </div>
   );
 };

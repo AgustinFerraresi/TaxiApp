@@ -1,10 +1,12 @@
-.contendor-principal {
+.register-admin-main-container {
     display: flex;
     justify-content: space-between;
     width: 100%;
     background-color: rgba(227, 227, 227, 0.817);
     padding: 30px;
     color: #333;
+    align-self: flex-start;
+    max-height: 100px;
 }
 
 .navbar-container {
@@ -17,20 +19,12 @@
     color: white;
 }
 
-.imagen_logo {
-    width: 100px;
-    height: 100px;
-    border-radius: 100%;
-}
-
-.Contenedor-iconos {
+.register-admin-items-container {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 20px;
 }
-
-
 
 [theme="dark"] .contendor-principal {
     background-color: #333;
@@ -53,7 +47,6 @@
     position: relative;
     z-index: 2;
     color: white;
-
 }
 
 [theme="dark"] .theme-toggle {
