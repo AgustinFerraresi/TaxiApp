@@ -10,15 +10,14 @@ const DriverScreen = () => {
   const [service, setService] = useState("start_service");
   const translate = useTranslation();
   const handlerService = () => {
-    if (service ==="start_service") {
+    if (service === "start_service") {
       setService("end_service");
     } else {
       setService("start_service");
     }
   };
 
-  const buttonVariant =
-    service === "start_service" ? "success" : "danger";
+  const buttonVariant = service === "start_service" ? "success" : "danger";
 
   return (
     <div className="contenedor-principal">
@@ -34,12 +33,6 @@ const DriverScreen = () => {
             >
               {translate("edit_profile")}
             </Button>
-            <Button
-              className="driver-screen-buttons text-black"
-              variant="danger"
-            >
-             {translate("logout")}
-            </Button>
           </div>
           <div className="contenedor-imagen">
             <h2>{translate("driver_name")}</h2>
@@ -52,12 +45,12 @@ const DriverScreen = () => {
             onClick={handlerService}
             variant={buttonVariant}
           >
-              {translate(service)}
+            {translate(service)}
           </Button>
         </div>
 
         <div className="driver-screen-container">
-          <h5>{translate( "available_trips")}</h5>
+          <h5>{translate("available_trips")}</h5>
           <ListItem list={availableTrips} />
         </div>
       </div>
