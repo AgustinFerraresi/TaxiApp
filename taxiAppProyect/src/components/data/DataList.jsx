@@ -82,7 +82,7 @@ const DataList = () => {
     <div id="data-list-main-container">
       
       <div className="users-list-data-list">
-        <h2>Usuarios</h2>
+        <h2>{translate("Users")}</h2>
         <button className="add-button" onClick={HandleAddUser}>{translate("add User")}</button>
 
         <div id="data-list-table-container">
