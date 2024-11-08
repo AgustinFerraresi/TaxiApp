@@ -73,6 +73,13 @@ function App() {
       </Protected>  //se pisa el css
     },
     {
+      path: "/ProfileSettings",
+      element: 
+      <Protected allowedRoles = {["Passenger"]}>
+        <ProfileSettings />
+      </Protected> //se pisa el css
+    },
+    {
       path: "/OrderTaxi",
       element: 
       <Protected allowedRoles = {["SuperAdmin", "Passenger"]}>

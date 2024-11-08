@@ -1,8 +1,23 @@
-import "./ProfileSettings.css";
-import { Button } from "react-bootstrap";
+import { Button, Modal } from "react-bootstrap";
+import { useState } from "react";
 import Navbar from "../navbar/Navbar";
+import DeleteAccount from "../deleteAccount/DeleteAccount";
+import "./ProfileSettings.css";
 
 const ProfileSettings = ({ user }) => {
+  const [deleteAccount, setDeleteAccount] = useState(false);
+
+  const handlerDeleteAccount = () => {
+    setDeleteAccount(prevValue => !prevValue);
+    console.log(userId)
+    console.log(userRole)
+  }
+
+  const userRole = localStorage.getItem("Role");
+  const userId = localStorage.getItem("userId");
+
+
+
   return (
     <div className="contenedor-principal">
       <header className="header-nav"><Navbar /></header>
@@ -24,6 +39,8 @@ const ProfileSettings = ({ user }) => {
             <label htmlFor="" className="profile-settings-general-info">Email:
               <input type="text" value={user.email} readOnly />
             </label>
+
+  
           </div>
 
           {user.vehicles && user.vehicles.length > 0 && (
@@ -54,7 +71,25 @@ const ProfileSettings = ({ user }) => {
               ))}
             </div>
           )}
-          <Button variant="warning" className="button">Editar</Button>
+
+          <Button variant="warning" className="profile-settings-button">Editar</Button>
+          <Button variant="danger" className="profile-settings-button" onClick={handlerDeleteAccount}>Eliminar cuenta</Button>
+
+          {deleteAccount && (
+            
+            <Modal show={handlerDeleteAccount} onHide={handlerDeleteAccount}>
+              <Modal.Header closeButton>
+                <Modal.Title>Eliminar cuenta</Modal.Title>
+              </Modal.Header>
+
+              <Modal.Body>Estas seguro que quieres eliminar tu cuenta? Esta acción es permanente!</Modal.Body>
+
+              <Modal.Footer>
+                <Button variant="secondary" onClick={handlerDeleteAccount}>Cancelar</Button>
+                <DeleteAccount userId={userId} userRole={userRole}/>
+              </Modal.Footer>
+            </Modal>
+          )}
         </form>
       </div>
     </div>

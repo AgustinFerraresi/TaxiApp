@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 const LogOut = () => {
     const navigate = useNavigate();
+
     const handlerLogOut = () => {
         localStorage.clear("token");
         navigate("/");
