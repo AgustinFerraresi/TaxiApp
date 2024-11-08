@@ -2,9 +2,11 @@ import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import "../registerAdmin/RegisterAdmin.css"
+import "../register/Register";
 import Navbar from '../navbar/Navbar';
-//import "../register/Register"
+import useTranslation from '../custom/useTranslation/UseTranslation';
+import "../registerAdmin/RegisterAdmin.css"
+
 
 function RegisterAdmin() {
 
@@ -14,7 +16,8 @@ function RegisterAdmin() {
   const [dni, setDni] = useState("");
   const [userType, setUserType] = useState("Passenger");
   const navigate = useNavigate();
-  
+  const translate = useTranslation();
+
   const [errors, setErrors] = useState({
     name: false,
     email: false,
@@ -58,10 +61,6 @@ function RegisterAdmin() {
     setErrors({ ...errors, dni: false });
   };
 
-
-  const clickLinkHandler = () => {
-    navigate("/");
-  };
 
   const handlerCreateUser = async (event) => {
     event.preventDefault();
@@ -149,18 +148,19 @@ function RegisterAdmin() {
   };
 
   return (
-    <div id='register-admin-form-container'>
-      <header><Navbar /></header>
-
-      <Form id='register-admin-form'>
+    <div className='contenedor-principal'>
+      <header className='header-nav'>
+        <Navbar/>
+      </header>
+      <Form id='register-form'>
         <div className='register-header-form'>
-          <img src="./src/assets/logo.png" id='register-form-img' alt="logo" onClick={clickLinkHandler}></img>
-          <h4>Crear cuenta</h4>
+          <h4>{translate("create_account")}</h4>
+
         </div>
 
         <div className='register-general-info'>
           <div>
-            <label htmlFor="name">Nombre</label><br />
+            <label htmlFor="name">{translate("name")}</label><br />
             <input
               type="text"
               name="name"
@@ -169,14 +169,14 @@ function RegisterAdmin() {
               value={name}
               ref={nameRef}
               onChange={nameHandler}
-              placeholder='Ingrese su nombre' />
+              placeholder={translate("name")} />
           </div>
           {errors.name && (
-            <p className="text-danger mt-2">Ingrese un nombre válido.</p>
+            <p className="text-danger mt-2">{translate("name")}</p>
           )}
 
           <div>
-            <label htmlFor="email">Email</label><br />
+            <label htmlFor="email">{translate("email")}</label><br />
             <input
               type="email"
               name="email"
@@ -185,14 +185,14 @@ function RegisterAdmin() {
               value={email}
               ref={emailRef}
               onChange={emailHandler}
-              placeholder='Ingrese su email' />
+              placeholder={translate("email")} />
           </div>
           {errors.email && (
-            <p className="text-danger mt-2">Ingrese un Email válido.</p>
+            <p className="text-danger mt-2">{translate("enter_email")}</p>
           )}
 
           <div>
-            <label htmlFor="password">Contraseña</label><br />
+            <label htmlFor="password">{translate("password")}</label><br />
             <input
               type="password"
               name="password"
@@ -201,14 +201,14 @@ function RegisterAdmin() {
               value={password}
               ref={passwordRef}
               onChange={passwordHandler}
-              placeholder='Ingrese su contraseña' />
+              placeholder={translate("password")}/>
           </div>
           {errors.password && (
-            <p className="text-danger mt-2">Ingrese una contraseña válida.</p>
+            <p className="text-danger mt-2">{translate("enter_password")}</p>
           )}
 
           <div>
-            <label htmlFor="dni">DNI</label><br />
+            <label htmlFor="dni">{translate("dni")}</label><br />
             <input
               type="number"
               name="dni"
@@ -217,23 +217,144 @@ function RegisterAdmin() {
               value={dni}
               ref={dniRef}
               onChange={dniHandler}
-              placeholder='Ingrese su DNI' />
+              placeholder={translate("dni")}/>
           </div>
           {errors.dni && (
-            <p className="text-danger mt-2">Ingrese un dni válido.</p>
+            <p className="text-danger mt-2">{translate("enter_dni")}</p>
           )}
 
-          <div class='register-admin-select-container'>
-            <select id="type-user-select" onChange={handlerTypeUserSelect}>
-              <option value="Passenger">Pasajero</option>
-              <option value="Driver">Conductor</option>
-              <option value="SuperAdmin">SuperAdmin</option>
-            </select>
+          <div id='register-radio-container'>
+            <Form.Group className="mb-3" controlId="formBasicCheckbox" id='register-radio-container'>
+              <Form.Check
+                type="radio"
+                name='userType'
+                value="passenger"
+                className='register-userType'
+                label={translate( "passenger")}
+                onChange={taxiDriverHandler}
+                defaultChecked
+              />
 
+              <Form.Check
+                type="radio"
+                name='userType'
+                value="taxiDriver"
+                className='register-userType'
+                id='taxi'
+                label={translate("taxi_driver")}
+                onChange={taxiDriverHandler}
+              />
+
+              <Form.Check
+                type="radio"
+                name='userType'
+                value="admin"
+                className='userType'
+                id='admini'
+                label={translate("manager")}
+              />
+            </Form.Group>
           </div>
         </div>
 
-        <Button variant="warning" type="submit" className='register-form-button' onClick={handlerCreateUser}>Crear cuenta</Button>
+        {
+          taxiDriver === true &&
+          <div className='register-vehicle-info'>
+            <div>
+              <label htmlFor="car">{translate("vehicle_brand")}</label><br />
+              <input
+                type="text"
+                name="car"
+                className={`register-input ${errors.vehicleBrand && "border-danger border-danger:focus"}`}
+                value={vehicleBrand}
+                ref={vehicleBrandRef}
+                onChange={vehicleBrandHandler}
+                placeholder={translate("vehicle_brand")}
+                required />
+            </div>
+            {errors.vehicleBrand && (
+              <p className="text-danger mt-2">{translate("vehicle_brand")}</p>
+            )}
+
+            <div>
+              <label htmlFor="car">{translate("vehicle patent")}</label><br />
+              <input
+                type="text"
+                name="car"
+                className={`register-input ${errors.vehiclePlate && "border-danger border-danger:focus"}`}
+                value={vehiclePlate}
+                ref={vehiclePlateRef}
+                onChange={vehiclePlateHandler}
+                placeholder={translate("vehicle patent")} required />
+            </div>
+            {errors.vehiclePlate && (
+              <p className="text-danger mt-2">{translate("vehicle patent")}</p>
+            )}
+
+            <div>
+              <label htmlFor="car">{translate("taxi_patent")}</label><br />
+              <input
+                type="number"
+                name="car"
+                className={`register-input ${errors.taxiPlate && "border-danger border-danger:focus"}`}
+                value={taxiPlate}
+                ref={taxiPlateRef}
+                onChange={taxiPlateHandler}
+                placeholder={translate("taxi_patent")}
+                required />
+            </div>
+            {errors.taxiPlate && (
+              <p className="text-danger mt-2">{translate("taxi_patent")}</p>
+            )}
+
+            <div>
+              <label htmlFor="car">{translate("vehicle_model")}</label><br />
+              <input
+                type="text"
+                name="car"
+                className={`register-input ${errors.vehicleModel && "border-danger border-danger:focus"}`}
+                value={vehicleModel}
+                ref={vehicleModelRef}
+                onChange={vehicleModelHandler}
+                placeholder={translate("vehicle_model")}
+                required />
+            </div>
+            {errors.vehicleModel && (
+              <p className="text-danger mt-2">{translate("vehicle_model")}</p>
+            )}
+
+            <div>
+              <label htmlFor="car">{translate("vehicle_year")}</label><br />
+              <input
+                type="number"
+                name="car"
+                min={1900}
+                max={currentYear}
+                className={`register-input ${errors.vehicleYear && "border-danger border-danger:focus"}`}
+                value={vehicleYear}
+                ref={vehicleYearRef}
+                onChange={vehicleYearHandler} placeholder={translate("vehicle_year")} required />
+            </div>
+            {errors.vehicleYear && (
+              <p className="text-danger mt-2">{translate("vehicle_year")}</p>
+            )}
+          </div>
+        }
+        
+        <Button variant="warning" type="submit" className='register-form-button' onClick={handlerCreateUser}>{translate( "create_account")}</Button>
+
+//          <div class='register-admin-select-container'>
+  //          <select id="type-user-select" onChange={handlerTypeUserSelect}>
+    //          <option value="Passenger">Pasajero</option>
+  //            <option value="Driver">Conductor</option>
+   //           <option value="SuperAdmin">SuperAdmin</option>
+  //          </select>
+
+ //         </div>
+  //      </div>
+
+   //     <Button variant="warning" type="submit" className='register-form-button' onClick={handlerCreateUser}>Crear cuenta</Button>
+
       </Form>
     </div>
   );

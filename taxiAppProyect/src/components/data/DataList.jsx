@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import DataItem from "./DataItem";
 import Navbar from "../navbar/Navbar"
 import "./DataList.css";
+import useTranslation from "../custom/useTranslation/UseTranslation";
 
 
 const DataList = () => {
@@ -70,26 +71,27 @@ const DataList = () => {
   };
 
   const navigate = useNavigate()
+  const translate = useTranslation();
   const HandleAddUser = () => {
     navigate("/registerAdmin")
   }
 
   return (
+
     <div id="data-list-main-container">
       <Navbar></Navbar>
       <div className="users-list-data-list">
         <h2>Usuarios</h2>
-        <button className="add-button" onClick={HandleAddUser}>Agregar Usuario</button>
+        <button className="add-button" onClick={HandleAddUser}>{translate("add User")}</button>
 
         <div id="data-list-table-container">
         <table id="data-list-table">
           <thead>
             <tr>
               <th>ID</th>
-              <th>Nombre</th>
-              <th>Email</th>
-              <th></th> 
-              {/* falta agregar un espacio para el rol del usuario */}
+              <th>{translate("name")}</th>
+              <th>{translate("email")}</th>
+              <th>{translate("action")}</th>
             </tr>
           </thead>
 
@@ -105,6 +107,7 @@ const DataList = () => {
         </table>
         </div>
       </div>
+    </div>
     </div>
   );
 };

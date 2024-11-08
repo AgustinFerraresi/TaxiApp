@@ -1,8 +1,10 @@
 import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import useTranslation from "../custom/useTranslation/UseTranslation";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import "./Register.css";
+import Navbar from '../navbar/Navbar';
 
 
 const Register = () => {
@@ -14,6 +16,7 @@ const Register = () => {
   const [taxiDriver, setTaxiDriver] = useState(false);
   
   const navigate = useNavigate();
+  const translate = useTranslation();
 
   const [errors, setErrors] = useState({
     name: false,
@@ -54,12 +57,6 @@ const Register = () => {
   const dniHandler = (event) => {
     setDni(event.target.value);
     setErrors({ ...errors, dni: false });
-  };
-
-
-
-  const clickLinkHandler = () => {
-    navigate("/");
   };
 
   const createAccount = async (event) => {
@@ -140,16 +137,18 @@ const Register = () => {
   };
 
   return (
-    <div id='register-form-container'>
+      <div className='contenedor-principal'>
+        <header className="header-nav ">
+          <Navbar/>
+        </header>
       <Form id='register-form'>
         <div className='register-header-form'>
-          <img src="./src/assets/logoTaxiApp.png" id='register-form-img' alt="logo" onClick={clickLinkHandler}></img>
-          <h4>Crear cuenta</h4>
+          <h4>{translate("create_account")}</h4>
         </div>
 
         <div className='register-general-info'>
           <div>
-            <label htmlFor="name">Nombre</label><br />
+            <label htmlFor="name">{translate("name")}</label><br />
             <input
               type="text"
               name="name"
@@ -158,14 +157,14 @@ const Register = () => {
               value={name}
               ref={nameRef}
               onChange={nameHandler}
-              placeholder='Ingrese su nombre' />
+              placeholder={translate("name")} />
           </div>
           {errors.name && (
-            <p className="text-danger mt-2">Ingrese un nombre válido.</p>
+            <p className="text-danger mt-2">{translate("enter_name")}</p>
           )}
 
           <div>
-            <label htmlFor="email">Email</label><br />
+            <label htmlFor="email">{translate("email")}</label><br />
             <input
               type="email"
               name="email"
@@ -174,14 +173,14 @@ const Register = () => {
               value={email}
               ref={emailRef}
               onChange={emailHandler}
-              placeholder='Ingrese su email' />
+              placeholder={translate("email")}/>
           </div>
           {errors.email && (
-            <p className="text-danger mt-2">Ingrese un Email válido.</p>
+            <p className="text-danger mt-2">{translate("enter_email")}</p>
           )}
 
           <div>
-            <label htmlFor="password">Contraseña</label><br />
+            <label htmlFor="password">{translate("password")}</label><br />
             <input
               type="password"
               name="password"
@@ -190,14 +189,14 @@ const Register = () => {
               value={password}
               ref={passwordRef}
               onChange={passwordHandler}
-              placeholder='Ingrese su contraseña' />
+              placeholder={translate("password")}/>
           </div>
           {errors.password && (
-            <p className="text-danger mt-2">Ingrese una contraseña válida.</p>
+            <p className="text-danger mt-2">{translate("enter_password")}</p>
           )}
 
           <div>
-            <label htmlFor="dni">DNI</label><br />
+            <label htmlFor="dni">{translate("dni")}</label><br />
             <input
               type="number"
               name="dni"
@@ -206,10 +205,10 @@ const Register = () => {
               value={dni}
               ref={dniRef}
               onChange={dniHandler}
-              placeholder='Ingrese su DNI' />
+              placeholder={translate("dni")} />
           </div>
           {errors.dni && (
-            <p className="text-danger mt-2">Ingrese un dni válido.</p>
+            <p className="text-danger mt-2">{translate( "enter_dni")}</p>
           )}
 
           <div id='register-radio-container'>
@@ -219,7 +218,7 @@ const Register = () => {
                 name='userType'
                 value="passenger"
                 className='register-userType'
-                label="Soy pasajero"
+                label={translate("passenger")}
                 onChange={taxiDriverHandler}
                 defaultChecked
               />
@@ -230,7 +229,7 @@ const Register = () => {
                 value="taxiDriver"
                 className='register-userType'
                 id='taxi'
-                label="Soy taxista"
+                label={translate("taxi_driver")}
                 onChange={taxiDriverHandler}
               />
             </Form.Group>
@@ -238,7 +237,7 @@ const Register = () => {
         </div>
 
   
-        <Button variant="warning" type="submit" className='register-form-button' onClick={createAccount}>Crear cuenta</Button>
+        <Button variant="warning" type="submit" className='register-form-button' onClick={createAccount}>{translate("create_account")}</Button>
       </Form>
     </div>
   );
