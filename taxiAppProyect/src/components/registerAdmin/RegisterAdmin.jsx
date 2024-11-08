@@ -343,17 +343,17 @@ function RegisterAdmin() {
         
         <Button variant="warning" type="submit" className='register-form-button' onClick={handlerCreateUser}>{translate( "create_account")}</Button>
 
-//          <div class='register-admin-select-container'>
-  //          <select id="type-user-select" onChange={handlerTypeUserSelect}>
-    //          <option value="Passenger">Pasajero</option>
-  //            <option value="Driver">Conductor</option>
-   //           <option value="SuperAdmin">SuperAdmin</option>
-  //          </select>
+          {/* <div class='register-admin-select-container'>
+            <select id="type-user-select" onChange={handlerTypeUserSelect}>
+              <option value="Passenger">Pasajero</option>
+              <option value="Driver">Conductor</option>
+              <option value="SuperAdmin">SuperAdmin</option>
+            </select>
 
- //         </div>
-  //      </div>
+          </div>
+        </div>
 
-   //     <Button variant="warning" type="submit" className='register-form-button' onClick={handlerCreateUser}>Crear cuenta</Button>
+        <Button variant="warning" type="submit" className='register-form-button' onClick={handlerCreateUser}>Crear cuenta</Button> */}
 
       </Form>
     </div>

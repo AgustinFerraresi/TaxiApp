@@ -77,11 +77,12 @@ const DataList = () => {
   }
 
   return (
-
+  <div className="contenedor-principal">
+    <header className="header-nav"><Navbar/></header>
     <div id="data-list-main-container">
-      <Navbar></Navbar>
+      
       <div className="users-list-data-list">
-        <h2>Usuarios</h2>
+        <h2>{translate("Users")}</h2>
         <button className="add-button" onClick={HandleAddUser}>{translate("add User")}</button>
 
         <div id="data-list-table-container">

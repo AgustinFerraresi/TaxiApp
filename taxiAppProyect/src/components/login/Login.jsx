@@ -1,6 +1,5 @@
 import { useContext, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-// import { jwtDecode } from "jwt-decode";
 import { AuthContext } from "../../service/authContext/AuthContext";
 import Form from 'react-bootstrap/Form';
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -16,6 +15,7 @@ const Login = () => {
   const [taxiDriver, setTaxiDriver] = useState(false);
 
   const translate = useTranslation();
+  const navigate = useNavigate();
 
   const [errors, setErrors] = useState({
     email: false,

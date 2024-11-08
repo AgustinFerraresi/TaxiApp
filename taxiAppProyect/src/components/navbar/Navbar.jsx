@@ -25,12 +25,6 @@ const Navbar = ({ children }) => {
     
     <div className="register-admin-main-container">
       <div className="navbar-container">
-        <img
-          src="/logo.png"
-          alt="logo"
-          className="imagen_logo"
-          onClick={clickLinkHandler}
-        />
         <h2
           className="text-warning"
           style={{ textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)" }}
