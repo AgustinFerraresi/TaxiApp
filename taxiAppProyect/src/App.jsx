@@ -46,7 +46,7 @@ function App() {
     },
     {
       path: "/ProfileSettings",
-      element: <ProfileSettings user={driver} />, //se pisa el css
+      element: <ProfileSettings user={passanger} />, //se pisa el css
     },
     {
       path: "/OrderTaxi",
