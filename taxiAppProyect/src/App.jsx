@@ -15,6 +15,7 @@ import DataList from "./components/data/DataList";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
+import { AuthContextProvider } from "./service/authContext/AuthContext";
 
 // import Protected from "./components/protected/Protected";
 
@@ -126,8 +127,10 @@ function App() {
   return (
     
     <ThemeContextProvider>
-      <TranslationContextProvider> 
-        <RouterProvider router={router} />
+      <TranslationContextProvider>
+        <AuthContextProvider>
+          <RouterProvider router={router} />  
+        </AuthContextProvider> 
       </TranslationContextProvider>
     </ThemeContextProvider>
     

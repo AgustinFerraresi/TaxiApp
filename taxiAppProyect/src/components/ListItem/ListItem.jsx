@@ -10,8 +10,8 @@ const ListItem = ({ list }) => {
                 <h6>Hasta</h6>
                 <h6></h6>
             </li>
-            {list.map(trip => (
-                <li>
+            {list.map((trip, index) => (
+                <li key={index}>
                     <span>{trip.passanger}</span>
                     <span>{trip.pickup}</span>
                     <span>{trip.destination} </span>
