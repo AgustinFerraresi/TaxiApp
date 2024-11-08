@@ -66,11 +66,17 @@ const Login = () => {
       const rol = localStorage.getItem("Role")
       console.log(`Este es otra vez el rol ${rol}`);
 
-      if (rol == "taxiDriver" || rol == "SuperAdmin") {
+      if (rol == "Driver") {
         navigate("/DriverScreen")
       }
-      if (rol == "Passenger" ) {
+      else if (rol == "Passenger" ) {
         navigate("/OrderTaxi")
+      }
+      else if (rol == "SuperAdmin") {
+        navigate("/ListUsers")
+      }
+      else{
+        alert("Credenciales incorrectas");
       }
       //taxiDriver ? navigate("/DriverScreen") : navigate("/OrderTaxi");
     } 
