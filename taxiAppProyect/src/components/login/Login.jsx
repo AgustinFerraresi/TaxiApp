@@ -64,7 +64,6 @@ const Login = () => {
       const data = await response.text();
       handleLogin(email, data)
       const rol = localStorage.getItem("Role")
-      console.log(`Este es otra vez el rol ${rol}`);
 
       if (rol == "Driver") {
         navigate("/DriverScreen")

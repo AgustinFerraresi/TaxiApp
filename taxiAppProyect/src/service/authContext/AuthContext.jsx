@@ -19,7 +19,6 @@ export const AuthContextProvider = ({ children }) => {
         localStorage.setItem("rotaxi-token",data);
         localStorage.setItem("userId",tokenDecoded.sub);
         localStorage.setItem("Role",tokenDecoded.Role)
-        console.log(`Este rol es ${tokenDecoded.Role}`);
     };
 
     const handleLogout = () => {
