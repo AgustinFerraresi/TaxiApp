@@ -1,16 +1,22 @@
 import { Navigate } from "react-router-dom";
 import PropTypes from "prop-types";
 
-const Protected = ({ children, isSignedIn }) => {
-  if (!isSignedIn) {
+const Protected = ({ children, allowedRoles  }) => {
+
+  const user = localStorage.getItem("Role")
+  
+  if (!user) {
     return <Navigate to="/login" replace />;
+  }
+  if (allowedRoles && !allowedRoles.includes(user)) {
+    return <Navigate to="*" />;
   }
 
   return children;
 };
 
 Protected.propTypes = {
-  isSignedIn: PropTypes.bool,
-  children: PropTypes.Object,
+  allowedRoles: PropTypes.array,
+  children: PropTypes.node.isRequired,
 };
 export default Protected;

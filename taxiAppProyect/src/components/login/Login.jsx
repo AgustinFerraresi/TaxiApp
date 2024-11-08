@@ -1,6 +1,7 @@
-import { useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { jwtDecode } from "jwt-decode";
+// import { jwtDecode } from "jwt-decode";
+import { AuthContext } from "../../service/authContext/AuthContext";
 import Form from 'react-bootstrap/Form';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Login.css"
@@ -23,6 +24,7 @@ const Login = () => {
     password: false,
   });
 
+  const { handleLogin } = useContext(AuthContext);
   let userData = {}
 
   const handleSubmit = async (event) => {
@@ -60,11 +62,21 @@ const Login = () => {
       }
   
       const data = await response.text();
-      const tokenDecoded = jwtDecode(data);
-      localStorage.setItem("token",data);
-      localStorage.setItem("userId",tokenDecoded.sub);
-      localStorage.setItem("Role",tokenDecoded.Role)
-      
+      handleLogin(email, data)
+      const rol = localStorage.getItem("Role")
+
+      if (rol == "Driver") {
+        navigate("/DriverScreen")
+      }
+      else if (rol == "Passenger" ) {
+        navigate("/OrderTaxi")
+      }
+      else if (rol == "SuperAdmin") {
+        navigate("/ListUsers")
+      }
+      else{
+        alert("Credenciales incorrectas");
+      }
       //taxiDriver ? navigate("/DriverScreen") : navigate("/OrderTaxi");
     } 
     catch (error) {

@@ -14,7 +14,7 @@ const DataItem = ({ index, user, onEdit, onDelete }) => {
 
   return (
     <tr className="user-item">
-      <td>{index + 1}</td>
+      <td>{index}</td>
       <td>
         {isEditing ? (
           <input

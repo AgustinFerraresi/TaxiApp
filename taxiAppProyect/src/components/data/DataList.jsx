@@ -96,8 +96,7 @@ const DataList = () => {
           <tbody>
             {users.map((user, index) => (
               <DataItem
-                key={user.email}
-                index={index}
+                key={index}
                 user={user}
                 onEdit={handleEdit}
                 onDelete={handleDelete} />
