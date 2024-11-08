@@ -1,23 +1,34 @@
-import "./ProfileSettings.css";
-import { Button } from "react-bootstrap";
+import { Button, Modal } from "react-bootstrap";
+import { useState } from "react";
 import Navbar from "../navbar/Navbar";
 import useTranslation from "../custom/useTranslation/UseTranslation";
+import DeleteAccount from "../deleteAccount/DeleteAccount";
+import "./ProfileSettings.css";
 
+  
 const ProfileSettings = ({ user }) => {
+  const [deleteAccount, setDeleteAccount] = useState(false);
   const translate = useTranslation();
+  const handlerDeleteAccount = () => {
+    setDeleteAccount(prevValue => !prevValue);
+    console.log(userId)
+    console.log(userRole)
+  }
+
+  const userRole = localStorage.getItem("Role");
+  const userId = localStorage.getItem("userId");
+
+
+
   return (
     <div className="contenedor-principal">
-      <header className="header-nav">
-        <Navbar />
-      </header>
+      <header className="header-nav"><Navbar /></header>
+
       <div id="profile-settings-container">
         <form action="" className="profile-settings-form">
+
           <div id="img-container">
-            <img
-              src="./src/assets/fotoPerfilPrueba.png"
-              id="profile-settings-profile-picture"
-              alt="profile-picture"
-            />
+            <img src="./src/assets/fotoPerfilPrueba.png" id="profile-settings-profile-picture" alt="profile-picture" />
             <h3>{user.name}</h3>
             <h6>Rol: {user.userType}</h6>
           </div>
@@ -30,9 +41,13 @@ const ProfileSettings = ({ user }) => {
 
             <label htmlFor="" className="profile-settings-general-info">
               {translate("email")}:
+
               <input type="text" value={user.email} readOnly />
             </label>
+
+  
           </div>
+
           {user.vehicles && user.vehicles.length > 0 && (
             <div>
               <h4>{translate("vehicle_info")}</h4>
@@ -73,6 +88,7 @@ const ProfileSettings = ({ user }) => {
                       value={vehicle.vehiclePlate}
                       readOnly
                     />
+
                   </label>
                 </div>
               ))}
@@ -81,6 +97,25 @@ const ProfileSettings = ({ user }) => {
           <Button variant="warning" className="button">
             {translate("edit")}
           </Button>
+
+
+          <Button variant="danger" className="profile-settings-button" onClick={handlerDeleteAccount}>Eliminar cuenta</Button>
+
+          {deleteAccount && (
+            
+            <Modal show={handlerDeleteAccount} onHide={handlerDeleteAccount}>
+              <Modal.Header closeButton>
+                <Modal.Title>Eliminar cuenta</Modal.Title>
+              </Modal.Header>
+
+              <Modal.Body>Estas seguro que quieres eliminar tu cuenta? Esta acción es permanente!</Modal.Body>
+
+              <Modal.Footer>
+                <Button variant="secondary" onClick={handlerDeleteAccount}>Cancelar</Button>
+                <DeleteAccount userId={userId} userRole={userRole}/>
+              </Modal.Footer>
+            </Modal>
+          )}
         </form>
       </div>
     </div>

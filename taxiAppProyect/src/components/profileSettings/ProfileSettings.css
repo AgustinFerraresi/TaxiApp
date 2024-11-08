@@ -82,3 +82,14 @@
 
     margin: 10px;
 }
+
+.profile-settings-button{
+    margin-top: 10px;
+    width: 50%;
+    text-align: center;
+}
+
+#delete-account-warning{
+    z-index: 100;
+    
+}

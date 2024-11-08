@@ -22,7 +22,8 @@ const Navbar = ({ children }) => {
     navigate("/");
   };
   return (
-    <div className="contendor-principal">
+    
+    <div className="register-admin-main-container">
       <div className="navbar-container">
         <img
           src="/logo.png"
@@ -36,8 +37,10 @@ const Navbar = ({ children }) => {
         >
           RoTaxi
         </h2>
+
       </div>
-      <div className="Contenedor-iconos">
+
+      <div className="register-admin-items-container">
         <button
           className="theme-toggle"
           onClick={() =>
@@ -65,13 +68,16 @@ const Navbar = ({ children }) => {
           >
             <option value="es">{translate("spanish_lang")}</option>
             <option value="en">{translate("english_lang")}</option>
+
           </select>
+
         </div>
         <div className="cerrar-sesion">
           <LogOut />
         </div>
       </div>
       {children}
+      
     </div>
   );
 };

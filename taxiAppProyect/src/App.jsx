@@ -1,6 +1,9 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-
+import { ThemeContextProvider } from "./service/themecontext/ThemeContext";
+import { TranslationContextProvider } from "./service/traslationContext/TranslationContext";
 import { driver, passanger } from "./components/data/Data";
+import { AuthContextProvider } from "./service/authContext/AuthContext";
+
 import OrderTaxi from './components/orderTaxi/OrderTaxi'
 import RegisterAdmin from "./components/registerAdmin/RegisterAdmin";
 import Register from "./components/register/Register";
@@ -9,120 +12,90 @@ import PageNotFound from "./components/PageNotFound/PageNotFound";
 import DriverScreen from "./components/driverScreen/DriverScreen";
 import DashBoard from "./components/dashBoard/DashBoard";
 import ProfileSettings from "./components/profileSettings/ProfileSettings";
-import { ThemeContextProvider } from "./service/themecontext/ThemeContext";
-import { TranslationContextProvider } from "./service/traslationContext/TranslationContext";
+import DataList from "./components/data/DataList";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-import DataList from "./components/data/DataList";
-// import Protected from "./components/protected/Protected";
+
+import Protected from "./components/protected/Protected";
 
 function App() {
   const router = createBrowserRouter([
+
+      // PATH PROTEGIDO
+
+    //RUTAS PUBLICAS
     {
       path: "/",
-      element: <DashBoard />,
+      element: <DashBoard/>
     },
     {
       path: "/login",
-      element: <Login />,
+      element: <Login />, 
     },
     {
       path: "/register",
       element: <Register />,
     },
     {
+      path: "*",
+      element: <PageNotFound/>,
+    },
+
+    //RUTAS PROTEGIDAS
+    {
       path: "/registerAdmin",
-      element: <RegisterAdmin />,
+      element: 
+      <Protected allowedRoles = {["SuperAdmin"]}>
+        <RegisterAdmin />
+      </Protected>,
     },
     {
       path: "/ListUsers",
-      element: <DataList />,
+      element: 
+      <Protected allowedRoles = {["SuperAdmin"]}>
+        <DataList />
+      </Protected>,
     },
     {
       path: "/DriverScreen",
-      element: <DriverScreen />,
+      element:  
+      <Protected allowedRoles = {["Driver"]}>
+        <DriverScreen />
+      </Protected> 
+      //problemas con css
     },
     {
       path: "/DriverScreen/ProfileSettings",
-      element: <ProfileSettings user={driver} />, //se pisa el css
+      element: 
+      <Protected allowedRoles = {["Driver"]}>
+        <ProfileSettings />
+      </Protected>  //se pisa el css
+    },
+    {
+      path: "/ProfileSettings",
+      element: 
+      <Protected allowedRoles = {["Passenger"]}>
+        <ProfileSettings />
+      </Protected> //se pisa el css
     },
     {
       path: "/OrderTaxi",
-      element: <OrderTaxi />,
-    },
-    {
-      path: "/RegisterAdmin",
-      element: <RegisterAdmin />
-    },
-    {
-      path: "*",
-      element: <PageNotFound />,
-    },
-
-
-      // PATH PROTEGIDO
-
-
-    // {
-    //   path: "/",
-    //   element: <DashBoard/>
-    // },
-    // {
-    //   path: "/login",
-    //   element: <Login />, 
-    // },
-    // {
-    //   path: "/register",
-    //   element: <Register />,
-    // },
-    // {
-    //   path: "/registerAdmin",
-    //   element: 
-    //   <Protected>
-    //     <RegisterAdmin />
-    //   </Protected>,
-    // },
-    // {
-    //   path: "/ListUsers",
-    //   element: 
-    //   <Protected>
-    //     <DataList />
-    //   </Protected>,
-    // },
-    // {
-    //   path: "/DriverScreen",
-    //   element:  
-    //   <Protected>
-    //     <DriverScreen />
-    //   </Protected> 
-    //   //problemas con css
-    // },
-    // {
-    //   path: "/DriverScreen/ProfileSettings",
-    //   element: 
-    //   <Protected>
-    //     <ProfileSettings user={driver}/>
-    //   </Protected>  //se pisa el css
-    // },
-    // {
-    //   path: "/OrderTaxi",
-    //   element: 
-    //   <Protected>
-    //     <OrderTaxi/>
-    //   </Protected>
-    // },
-    // {
-    //   path: "*",
-    //   element: <PageNotFound/>,
-    // },
+      element: 
+      <Protected allowedRoles = {["SuperAdmin", "Passenger"]}>
+        <OrderTaxi/>
+      </Protected>
+    }
     
   ]);
 
   return (
     
     <ThemeContextProvider>
-      <TranslationContextProvider> 
-        <RouterProvider router={router} />
+      <TranslationContextProvider>
+        <AuthContextProvider>
+          <RouterProvider router={router} />  
+        </AuthContextProvider> 
       </TranslationContextProvider>
     </ThemeContextProvider>
     

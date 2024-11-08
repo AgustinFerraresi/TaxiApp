@@ -11,8 +11,8 @@ const ListItem = ({ list }) => {
                 <h6>{translate( "from")}</h6>
                 <h6>{translate("to")}</h6>
             </li>
-            {list.map(trip => (
-                <li>
+            {list.map((trip, index) => (
+                <li key={index}>
                     <span>{trip.passanger}</span>
                     <span>{trip.pickup}</span>
                     <span>{trip.destination} </span>

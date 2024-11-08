@@ -14,28 +14,22 @@ const DataItem = ({ index, user, onEdit, onDelete }) => {
   const translate = useTranslation();
   return (
     <tr className="user-item">
-      <td>{index + 1}</td>
+      <td>{index}</td>
       <td>
         {isEditing ? (
           <input
             type="text"
             value={editedName}
-            onChange={(e) => setEditedName(e.target.value)}
-          />
-        ) : (
-          user.name
-        )}
+            onChange={(e) => setEditedName(e.target.value)}/> ) : (user.name)}
       </td>
+
       <td>
         {isEditing ? (
           <input
             type="email"
             value={editedEmail}
             onChange={(e) => setEditedEmail(e.target.value)}
-          />
-        ) : (
-          user.email
-        )}
+          />) : (user.email)}
       </td>
       <td>
         {isEditing ? (
@@ -44,6 +38,7 @@ const DataItem = ({ index, user, onEdit, onDelete }) => {
           <button className="edit-button" onClick={() => setIsEditing(true)}>{translate("edit")}</button>
         )}
         <button className="delete-button" onClick={() => onDelete(user.email)}>{translate("delite")}</button>
+
       </td>
     </tr>
   );

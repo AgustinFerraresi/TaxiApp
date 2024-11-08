@@ -1,7 +1,8 @@
-import { useRef, useState } from "react";
-import { Link } from "react-router-dom";
-import { jwtDecode } from "jwt-decode";
-import Form from "react-bootstrap/Form";
+import { useContext, useRef, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+// import { jwtDecode } from "jwt-decode";
+import { AuthContext } from "../../service/authContext/AuthContext";
+import Form from 'react-bootstrap/Form';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Login.css";
 import Navbar from "../navbar/Navbar";
@@ -21,7 +22,9 @@ const Login = () => {
     password: false,
   });
 
-  let userData = {};
+
+  const { handleLogin } = useContext(AuthContext);
+  let userData = {}
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -60,11 +63,22 @@ const Login = () => {
       }
 
       const data = await response.text();
-      const tokenDecoded = jwtDecode(data);
-      localStorage.setItem("token", data);
-      localStorage.setItem("userId", tokenDecoded.sub);
-      localStorage.setItem("Role", tokenDecoded.Role);
 
+      handleLogin(email, data)
+      const rol = localStorage.getItem("Role")
+
+      if (rol == "Driver") {
+        navigate("/DriverScreen")
+      }
+      else if (rol == "Passenger" ) {
+        navigate("/OrderTaxi")
+      }
+      else if (rol == "SuperAdmin") {
+        navigate("/ListUsers")
+      }
+      else{
+        alert("Credenciales incorrectas");
+      }
       //taxiDriver ? navigate("/DriverScreen") : navigate("/OrderTaxi");
     } catch (error) {
       console.log(error);

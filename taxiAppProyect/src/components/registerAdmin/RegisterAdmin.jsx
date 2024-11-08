@@ -5,6 +5,7 @@ import Form from 'react-bootstrap/Form';
 import "../register/Register";
 import Navbar from '../navbar/Navbar';
 import useTranslation from '../custom/useTranslation/UseTranslation';
+import "../registerAdmin/RegisterAdmin.css"
 
 
 function RegisterAdmin() {
@@ -13,12 +14,7 @@ function RegisterAdmin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [dni, setDni] = useState("");
-  const [vehicleBrand, setVehicleBrand] = useState("");
-  const [vehiclePlate, setVehiclePlate] = useState("");
-  const [taxiPlate, setTaxiPlate] = useState("");
-  const [vehicleModel, setVehicleModel] = useState("");
-  const [vehicleYear, setVehicleYear] = useState("");
-  const [taxiDriver, setTaxiDriver] = useState(false);
+  const [userType, setUserType] = useState("Passenger");
   const navigate = useNavigate();
   const translate = useTranslation();
 
@@ -34,25 +30,16 @@ function RegisterAdmin() {
     vehicleYear: false,
   });
 
-  const currentYear = new Date().getFullYear();
+  
   const nameRef = useRef(null);
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
   const dniRef = useRef(null);
-  const vehicleBrandRef = useRef(null);
-  const vehiclePlateRef = useRef(null);
-  const taxiPlateRef = useRef(null);
-  const vehicleModelRef = useRef(null);
-  const vehicleYearRef = useRef(null);
 
+  const handlerTypeUserSelect = (event) => {
+    setUserType(event.target.value);
+  }
 
-  const taxiDriverHandler = (event) => {
-    if (event.target.value === "passenger") {
-      setTaxiDriver(false);
-    } else if (event.target.value === "taxiDriver") {
-      setTaxiDriver(true);
-    };
-  };
 
   const nameHandler = (event) => {
     setName(event.target.value);
@@ -74,88 +61,90 @@ function RegisterAdmin() {
     setErrors({ ...errors, dni: false });
   };
 
-  const vehicleBrandHandler = (event) => {
-    setVehicleBrand(event.target.value);
-    setErrors({ ...errors, vehicleBrand: false });
-  };
 
-  const vehiclePlateHandler = (event) => {
-    setVehiclePlate(event.target.value);
-    setErrors({ ...errors, vehiclePlate: false });
-  };
-
-  const taxiPlateHandler = (event) => {
-    setTaxiPlate(event.target.value);
-    setErrors({ ...errors, taxiPlate: false });
-  };
-
-  const vehicleModelHandler = (event) => {
-    setVehicleModel(event.target.value);
-    setErrors({ ...errors, vehicleModel: false });
-  };
-
-  const vehicleYearHandler = (event) => {
-    setVehicleYear(event.target.value);
-    setErrors({ ...errors, vehicleYear: false });
-  };
-
- 
-  const signInHandler = (event) => {
+  const handlerCreateUser = async (event) => {
     event.preventDefault();
     if (name.length === 0) {
       nameRef.current.focus();
       setErrors({ ...errors, name: true });
       return
-    };
+    }
 
     if (email.length === 0) {
       emailRef.current.focus();
       setErrors({ ...errors, email: true });
       return
-    };
+    }
 
     if (password.length === 0) {
       passwordRef.current.focus();
       setErrors({ ...errors, password: true });
       return
-    };
+    }
 
     if (dni.length === 0) {
       dniRef.current.focus();
       setErrors({ ...errors, dni: true });
       return
-    };
+    }
+    
+    let userToCreate;
 
-    if (vehicleBrand.length === 0 && taxiDriver) {
-      vehicleBrandRef.current.focus();
-      setErrors({ ...errors, vehicleBrand: true });
-      return
-    };
+    try {
+      userToCreate = {
+        name : name,
+        email : email,
+        password : password,
+        dni : dni,
+      }
 
-    if (vehiclePlate.length === 0 && taxiDriver) {
-      vehiclePlateRef.current.focus();
-      setErrors({ ...errors, vehiclePlate: true });
-      return
-    };
+      if (userType === "Passenger") {
+        const response = await fetch("https://localhost:7179/api/Passenger",{
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(userToCreate)
+        });
 
-    if (taxiPlate.length === 0 && taxiDriver) {
-      taxiPlateRef.current.focus();
-      setErrors({ ...errors, taxiPlate: true });
-      return
-    };
+        if (!response.ok){
+          console.log("error en la creacion del pasajero");
+          throw new Error('Error en la creacion del pasajero');
+        }
+      }
 
-    if (vehicleModel.length === 0 && taxiDriver) {
-      vehicleModelRef.current.focus();
-      setErrors({ ...errors, vehicleModel: true });
-      return
-    };
+      if (userType === "Driver") {
+        const response = await fetch("https://localhost:7179/api/Driver",{
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(userToCreate)
+        });
 
-    if (vehicleYear.length === 0 && taxiDriver) {
-      vehicleYearRef.current.focus();
-      setErrors({ ...errors, vehicleYear: true });
-      return
-    };
-    console.log("formulario enviado  correctamente");
+        if (!response.ok) {
+          console.log("error en la creacion del driver");
+          throw new Error('Error en la creacion del driver');
+        }
+      }
+
+      if (userType === "SuperAdmin") {
+        const response = await fetch("https://localhost:7179/api/SuperAdmin/CreateSuperAdmin",{
+          method: "POST",
+          headers:{
+            accept: "application/json",
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${localStorage.getItem("token")}`
+          },
+            body: JSON.stringify(userToCreate)
+        });
+
+        if (!response.ok) {
+          console.log(response)
+          console.log("error en la creacion del admin");
+          throw new Error('Error en la creacion del admin');
+        }
+      }
+
+    } catch (error) {
+      console.log(error)
+    }
   };
 
   return (
@@ -166,6 +155,7 @@ function RegisterAdmin() {
       <Form id='register-form'>
         <div className='register-header-form'>
           <h4>{translate("create_account")}</h4>
+
         </div>
 
         <div className='register-general-info'>
@@ -175,7 +165,7 @@ function RegisterAdmin() {
               type="text"
               name="name"
               id="name"
-              className={`register-input ${errors.name && "border-danger border-danger:focus"}`}
+              className={`register-admin-input ${errors.name && "border-danger border-danger:focus"}`}
               value={name}
               ref={nameRef}
               onChange={nameHandler}
@@ -191,7 +181,7 @@ function RegisterAdmin() {
               type="email"
               name="email"
               id="email"
-              className={`register-input ${errors.email && "border-danger border-danger:focus"}`}
+              className={`register-admin-input ${errors.email && "border-danger border-danger:focus"}`}
               value={email}
               ref={emailRef}
               onChange={emailHandler}
@@ -207,7 +197,7 @@ function RegisterAdmin() {
               type="password"
               name="password"
               id="password"
-              className={`register-input ${errors.password && "border-danger border-danger:focus"}`}
+              className={`register-admin-input ${errors.password && "border-danger border-danger:focus"}`}
               value={password}
               ref={passwordRef}
               onChange={passwordHandler}
@@ -223,7 +213,7 @@ function RegisterAdmin() {
               type="number"
               name="dni"
               id="dni"
-              className={`register-input ${errors.dni && "border-danger border-danger:focus"}`}
+              className={`register-admin-input ${errors.dni && "border-danger border-danger:focus"}`}
               value={dni}
               ref={dniRef}
               onChange={dniHandler}
@@ -351,7 +341,20 @@ function RegisterAdmin() {
           </div>
         }
         
-        <Button variant="warning" type="submit" className='register-form-button' onClick={signInHandler}>{translate( "create_account")}</Button>
+        <Button variant="warning" type="submit" className='register-form-button' onClick={handlerCreateUser}>{translate( "create_account")}</Button>
+
+//          <div class='register-admin-select-container'>
+  //          <select id="type-user-select" onChange={handlerTypeUserSelect}>
+    //          <option value="Passenger">Pasajero</option>
+  //            <option value="Driver">Conductor</option>
+   //           <option value="SuperAdmin">SuperAdmin</option>
+  //          </select>
+
+ //         </div>
+  //      </div>
+
+   //     <Button variant="warning" type="submit" className='register-form-button' onClick={handlerCreateUser}>Crear cuenta</Button>
+
       </Form>
     </div>
   );
