@@ -1,19 +1,16 @@
 import Button from "react-bootstrap/Button";
-import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../../service/authContext/AuthContext";
+
 import useTranslation from "../custom/useTranslation/UseTranslation";
 
 const LogOut = () => {
 
-  const navigate = useNavigate();
   const translate = useTranslation();
-  const handlerLogOut = () => {
-    localStorage.clear("token");
-    navigate("/");
-  };
-
+  const { handleLogout } = useContext(AuthContext);
 
   return (
-    <Button variant="danger" onClick={handlerLogOut}>
+    <Button variant="danger" onClick={handleLogout}>
       {translate("logout")}
     </Button>
   );
