@@ -4,7 +4,7 @@
     --brown-color: rgba(59, 50, 38, 0.85);
 }
 
-.contenedor-principal {
+.profile-settings-main-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -13,14 +13,11 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    background-image: url("../../assets/fondo-dia.webp");
-
-    height: 110vh;
+    background-image: url("../../assets/fondo-dia.webp");    
 }
 
-[theme="dark"] .contenedor-principal {
+[theme="dark"] .profile-settings-main-container {
     background-image: url("../../assets/rosario.jpg");
-
 }
 
 #profile-settings-container {
@@ -28,11 +25,26 @@
     height: 100vh;
     justify-content: center;
     align-items: center;
+    
+}
 
+#profile-settings-generic-user-data-container{
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    
+    margin: 0px;
+    width: 100%;
 }
 
 #profile-settings-generic-user-data-container label {
     text-align: center;
+    width: 100%;
+}
+
+#profile-settings-generic-user-data-container input {
+    height: 30px;
+    width: 100%;
 }
 
 .profile-settings-form {
@@ -41,7 +53,9 @@
     padding: 20px;
     background-color: rgba(227, 227, 227, 0.8);
     color: #333;
-
+    min-width: 31vw;
+    border-radius: 5px;
+    
 }
 
 [theme="dark"] .profile-settings-form {
@@ -79,17 +93,27 @@
 }
 
 .profile-settings-container-driver-container {
-
     margin: 10px;
 }
 
 .profile-settings-button{
     margin-top: 10px;
-    width: 50%;
+    width: 40%;
+    max-height: 100px;
     text-align: center;
+    margin: 0px 5px;
+}
+
+.profile-settings-buttons-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #delete-account-warning{
     z-index: 100;
-    
+}
+
+#profile-settings-img-container{
+    text-align: center;
 }

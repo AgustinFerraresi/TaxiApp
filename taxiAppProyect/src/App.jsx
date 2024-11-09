@@ -13,6 +13,8 @@ import DriverScreen from "./components/driverScreen/DriverScreen";
 import DashBoard from "./components/dashBoard/DashBoard";
 import ProfileSettings from "./components/profileSettings/ProfileSettings";
 import DataList from "./components/data/DataList";
+import Rides from "./components/rides/Rides";
+
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
@@ -37,12 +39,16 @@ function App() {
       path: "/register",
       element: <Register />,
     },
-    {
-      path: "*",
-      element: <PageNotFound/>,
-    },
+    
 
     //RUTAS PROTEGIDAS
+    {
+      path: "/Rides",
+      element: 
+      <Protected allowedRoles = {["SuperAdmin", "Passenger"]}>
+        <Rides />
+      </Protected>,
+    },
     {
       path: "/registerAdmin",
       element: 
@@ -75,7 +81,7 @@ function App() {
     {
       path: "/ProfileSettings",
       element: 
-      <Protected allowedRoles = {["Passenger"]}>
+      <Protected allowedRoles = {["Passenger", "Driver", "SuperAdmin"]}>
         <ProfileSettings />
       </Protected> //se pisa el css
     },
@@ -85,7 +91,11 @@ function App() {
       <Protected allowedRoles = {["SuperAdmin", "Passenger"]}>
         <OrderTaxi/>
       </Protected>
-    }
+    },
+    {
+      path: "*",
+      element: <PageNotFound/>,
+    },
     
   ]);
 

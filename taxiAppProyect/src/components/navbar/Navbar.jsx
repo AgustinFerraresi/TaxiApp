@@ -70,7 +70,7 @@ const Navbar = ({ children }) => {
 
         </div>
         <div className="cerrar-sesion">
-          { isLogging && <LogOut />}
+          { isLogging!=null && <LogOut />}
         </div>
       </div>
       {children}
