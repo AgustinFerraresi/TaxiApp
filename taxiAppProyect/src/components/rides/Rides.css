@@ -1,0 +1,19 @@
+.rides-main-container{
+    display: grid;
+    height: 100vh;
+    justify-items: center;
+    align-items: start;
+}
+
+.passenger-rides-table{
+    min-width: 1000px;
+
+    border-radius: 5px;
+}
+
+.rides-table-container{
+    
+    
+    overflow-y: auto;
+    max-height: 500px;
+}

@@ -54,9 +54,10 @@ const DeleteAccount = ({userId, userRole}) =>{
           localStorage.clear("token");
           navigate("/");
         }
-    
+        
+
         if (userRole === "SuperAdmin") {
-          const response = await fetch(`https://localhost:7179/SuperAdmin/DeleteSuperAdmin}`,
+          const response = await fetch(`https://localhost:7179/api/SuperAdmin/DeleteSuperAdmin`,
           {
             method: "DELETE",
             headers: { 
@@ -87,10 +88,4 @@ const DeleteAccount = ({userId, userRole}) =>{
 
     return(<><Button variant="danger" onClick={handlerPermanentAccountDelete}>Eliminar cuenta</Button></>)
 }
-
-
-
-
-
-
 export default DeleteAccount;
