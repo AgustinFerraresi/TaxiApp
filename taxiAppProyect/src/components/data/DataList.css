@@ -1,14 +1,25 @@
-
 * {
+  margin: 0;
+  padding: 0;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
-#data-list-main-container{
+#data-list-main-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   height: 100vh;
+  background-image: url("../../assets/fondo-dia.webp");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
+
+[theme="dark"] #data-list-main-container {
+  background-image: url("./src/assets/rosario.jpg");
+
+}
+
 
 .users-list-data-list {
   margin-top: 50px;
@@ -17,6 +28,14 @@
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(250, 217, 1, 0.1);
   width: 50%;
+}
+
+[theme="dark"] .users-list-data-list {
+  background-color: rgba(51, 51, 51, 0.817);
+}
+
+[theme="dark"] .users-list-data-list h2 {
+  color: #ffd700;
 }
 
 .users-list-data-list h2 {
@@ -28,8 +47,8 @@
   display: block;
   margin: 0 auto 20px auto;
   padding: 10px 20px;
-  background-color: #28a745;
-  color: white;
+  background-color: #ffd700;
+  color: #333;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -37,7 +56,18 @@
 }
 
 .add-button:hover {
-  background-color: #218838;
+  background-color: #e0fb81;
+}
+
+thead {
+  background-color: #ffd700;
+  color: #333;
+}
+
+[theme="dark"] thead {
+  background-color: rgba(51, 51, 51, 0.817);
+  color: #ffd700;
+
 }
 
 .add-user-form {
@@ -68,20 +98,35 @@
   background-color: #0056b3;
 }
 
-#data-list-table-container{
-  max-height: 400px;
-  overflow-y: scroll;
+#data-list-table-container {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+[theme="dark"] #data-list-table-container {
+  color: #ffd700;
+
 }
 
 #data-list-table {
   width: 100%;
   border-collapse: collapse;
 }
- 
-#data-list-table th,td {
+
+#data-list-table th,
+td {
   padding: 12px;
   text-align: left;
-  border-bottom: 1px solid #dee2e6;
+
+}
+
+.user-item {
+  border-bottom: 1px solid #333;
+}
+
+[theme="dark"] .user-item {
+  border-bottom: 1px solid #ffd700;
+
 }
 
 /* Botones de acción */
@@ -96,26 +141,10 @@
   font-size: 14px;
 }
 
-.edit-button {
-  background-color: #007bff;
-}
-
-.edit-button:hover {
-  background-color: #0056b3;
-}
-
 .delete-button {
   background-color: #dc3545;
 }
 
 .delete-button:hover {
   background-color: #c82333;
-}
-
-.save-button {
-  background-color: #28a745;
-}
-
-.save-button:hover {
-  background-color: #218838;
 }

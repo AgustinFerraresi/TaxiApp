@@ -1,5 +1,4 @@
 import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
 import "./Navbar.css";
 import { ThemeContext } from "../../service/themecontext/ThemeContext";
 import { FaSun } from "react-icons/fa";
@@ -13,16 +12,13 @@ const Navbar = ({ children }) => {
   const { language, changeLanguageHandler } = useContext(TranslationContext); // Usa TranslationContext aquí
 
   const translate = useTranslation();
-  const navigate = useNavigate();
+
   const handleLanguageChange = (event) => {
     const selectedLanguage = event.target.value;
     changeLanguageHandler(selectedLanguage); // Cambia el idioma usando el contexto
   };
-  const clickLinkHandler = () => {
-    navigate("/");
-  };
+
   return (
-    
     <div className="register-admin-main-container">
       <div className="navbar-container">
         <h2
@@ -31,7 +27,6 @@ const Navbar = ({ children }) => {
         >
           RoTaxi
         </h2>
-
       </div>
 
       <div className="register-admin-items-container">
@@ -62,16 +57,13 @@ const Navbar = ({ children }) => {
           >
             <option value="es">{translate("spanish_lang")}</option>
             <option value="en">{translate("english_lang")}</option>
-
           </select>
-
         </div>
         <div className="cerrar-sesion">
           <LogOut />
         </div>
       </div>
       {children}
-      
     </div>
   );
 };

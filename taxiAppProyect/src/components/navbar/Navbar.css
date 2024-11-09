@@ -6,7 +6,7 @@
     padding: 30px;
     color: #333;
     align-self: flex-start;
-    max-height: 100px;
+
 }
 
 .navbar-container {
@@ -26,7 +26,7 @@
     gap: 20px;
 }
 
-[theme="dark"] .contendor-principal {
+[theme="dark"] .register-admin-main-container {
     background-color: #333;
 }
 
