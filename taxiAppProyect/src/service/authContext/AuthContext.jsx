@@ -24,12 +24,17 @@ export const AuthContextProvider = ({ children }) => {
     const handleLogout = () => {
         setUser(initialState);
         localStorage.removeItem("rotaxi-token");
+        localStorage.removeItem("userId");
+        localStorage.removeItem("Role")
+        window.location.reload();
     };
+
+    const isLogging = localStorage.getItem("rotaxi-token")
 
     //hay que poder este handle en el botton de cerrar sesion
     // capaz ponerlo en el navbar
 
-    return <AuthContext.Provider value={{ user, handleLogin, handleLogout }}>
+    return <AuthContext.Provider value={{ user, isLogging, handleLogin, handleLogout }}>
         {children}
     </AuthContext.Provider>;
 }
