@@ -4,12 +4,15 @@ import { ThemeContext } from "../../service/themecontext/ThemeContext";
 import { FaSun } from "react-icons/fa";
 import { MdNightlight } from "react-icons/md";
 import { TranslationContext } from "../../service/traslationContext/TranslationContext";
+import { AuthContext } from "../../service/authContext/AuthContext";
+
 import useTranslation from "../custom/useTranslation/UseTranslation";
 import LogOut from "../logOut/LogOut";
 
 const Navbar = ({ children }) => {
   const { theme, handleToggleTheme } = useContext(ThemeContext);
   const { language, changeLanguageHandler } = useContext(TranslationContext); // Usa TranslationContext aquí
+  const { isLogging } = useContext(AuthContext);
 
   const translate = useTranslation();
 
@@ -60,7 +63,7 @@ const Navbar = ({ children }) => {
           </select>
         </div>
         <div className="cerrar-sesion">
-          <LogOut />
+          { isLogging!=null && <LogOut />}
         </div>
       </div>
       {children}

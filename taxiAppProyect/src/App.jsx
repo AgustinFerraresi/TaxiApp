@@ -13,6 +13,7 @@ import DriverScreen from "./components/driverScreen/DriverScreen";
 import DashBoard from "./components/dashBoard/DashBoard";
 import ProfileSettings from "./components/profileSettings/ProfileSettings";
 import DataList from "./components/data/DataList";
+import Rides from "./components/rides/Rides";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
@@ -42,6 +43,14 @@ function App() {
     },
 
     //RUTAS PROTEGIDAS
+    {
+      path: "/registerAdmin",
+      element: (
+        <Protected allowedRoles={["SuperAdmin"]}>
+          <RegisterAdmin />
+        </Protected>
+      ),
+    },
     {
       path: "/registerAdmin",
       element: (

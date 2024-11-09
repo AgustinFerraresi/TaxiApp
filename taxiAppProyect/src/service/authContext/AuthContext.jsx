@@ -16,20 +16,25 @@ export const AuthContextProvider = ({ children }) => {
             data
         });
         const tokenDecoded = jwtDecode(data);
-        localStorage.setItem("rotaxi-token",data);
+        localStorage.setItem("token",data);
         localStorage.setItem("userId",tokenDecoded.sub);
         localStorage.setItem("Role",tokenDecoded.Role)
     };
 
     const handleLogout = () => {
         setUser(initialState);
-        localStorage.removeItem("rotaxi-token");
+        localStorage.removeItem("token");
+        localStorage.removeItem("userId");
+        localStorage.removeItem("Role");
+        window.location.reload();
     };
+
+    const isLogging = localStorage.getItem("token")
 
     //hay que poder este handle en el botton de cerrar sesion
     // capaz ponerlo en el navbar
 
-    return <AuthContext.Provider value={{ user, handleLogin, handleLogout }}>
+    return <AuthContext.Provider value={{ user, isLogging, handleLogin, handleLogout }}>
         {children}
     </AuthContext.Provider>;
 }
