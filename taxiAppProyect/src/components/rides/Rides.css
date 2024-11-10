@@ -1,19 +1,76 @@
-.rides-main-container{
+.rides-main-container {
     display: grid;
     height: 100vh;
     justify-items: center;
     align-items: start;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-image: url("../../assets/fondo-dia.webp");
 }
 
-.passenger-rides-table{
+[theme="dark"] .rides-main-container {
+    background-image: url("./src/assets/rosario.jpg");
+}
+
+.passenger-rides-table {
     min-width: 1000px;
-
     border-radius: 5px;
+    background-color: transparent;
+    /* Fondo transparente para la tabla */
 }
 
-.rides-table-container{
-    
-    
-    overflow-y: auto;
-    max-height: 500px;
+.rides-table-container {
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.passenger-rides-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    font-family: 'Arial', sans-serif;
+}
+
+.passenger-rides-table th,
+.passenger-rides-table td {
+    padding: 12px 15px;
+    text-align: center;
+    color: #333;
+    background-color: rgba(242, 242, 241, 1);
+}
+
+.passenger-rides-table th {
+    font-weight: bold;
+}
+
+[theme="dark"] .passenger-rides-table th,
+.passenger-rides-table td {
+    background-color: rgba(51, 51, 51, 0.817);
+    color: #ffd700;
+}
+
+.passenger-rides-table td {
+    border: 1px solid #333;
+
+}
+
+
+
+.passenger-rides-table td {
+    text-align: center;
+    color: #ffd700;
+}
+
+@media (max-width: 768px) {
+    .rides-table-container {
+        padding: 10px;
+    }
+
+    .passenger-rides-table th,
+    .passenger-rides-table td {
+        font-size: 14px;
+        padding: 10px;
+    }
 }
