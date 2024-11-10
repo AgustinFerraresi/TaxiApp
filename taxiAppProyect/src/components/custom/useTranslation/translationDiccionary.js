@@ -62,14 +62,20 @@ export const dictionaryTranslations = {
     { key: "action", value: "Acción" },
     { key: "payment_Method", value: "Método de pago" },
     { key: "delete", value: "Eliminar" },
+    { key: "delete_account", value: "Eliminar cuenta" },
+    { key: "cancel", value: "Cancelar" },
     { key: "effective", value: "Efectivo" },
     { key: "digital_Payment", value: "Pago digital" },
+    { key: "success", value: "Proceso exitoso" },
+    { key: "are_you_sure", value: "Estas seguro que quieres eliminar tu cuenta? Esta acción es permanente!" },
+
   ],
   en: [
     { key: "digital_Payment", value: "Digital Payment" },
     { key: "effective", value: "Effective" },
     { key: "payment_Method", value: "Payment Method" },
     { key: "delete", value: "Delete" },
+    { key: "delete_account", value: "Delete account" },
     { key: "action", value: "Action" },
     { key: "save", value: "Save" },
     { key: "manager", value: "Manager" },
@@ -77,6 +83,7 @@ export const dictionaryTranslations = {
     { key: "user", value: "Users" },
     { key: "add User", value: "Add User" },
     { key: "accept", value: "Accept" },
+    { key: "cancel", value: "Cancel" },
     { key: "login", value: "Login" },
     { key: "spanish_lang", value: "Spanish" },
     { key: "english_lang", value: "English" },
@@ -129,5 +136,8 @@ export const dictionaryTranslations = {
     { key: "message", value: "Message" },
     { key: "message_placeholder", value: "Message (optional)" },
     { key: "request_taxi", value: "Request Taxi" },
+    { key: "success", value: "Successful process" },
+    { key: "are_you_sure", value: "Are you sure you want to delete your account? This action is permanent!" },
+
   ],
 };

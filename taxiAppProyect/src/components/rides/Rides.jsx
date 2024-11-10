@@ -3,13 +3,13 @@ import Table from 'react-bootstrap/Table';
 import Navbar from '../navbar/Navbar';
 import "../rides/Rides.css"
 
-function Rides({passengerId}) {
+function Rides() {
     const [rides,setRides] = useState([]);
-
+    const userId = localStorage.getItem("userId")
     useEffect( () => {
         const getRides = async () =>{
             try {
-                const response = await fetch(`https://localhost:7179/api/Ride/GetRidesByPassenger/11`,{ // el 11 del url hay que cambiarlo por id del user
+                const response = await fetch(`https://localhost:7179/api/Ride/GetRidesByPassenger/${userId}`,{
                     headers: { 
                         "Content-Type": "application/json", 
                         "Authorization": `Bearer ${localStorage.getItem("token")}`
