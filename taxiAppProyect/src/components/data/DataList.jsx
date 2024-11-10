@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import DataItem from "./DataItem";
-import Navbar from "../navbar/Navbar"
+import Navbar from "../navbar/Navbar";
 import "./DataList.css";
 import useTranslation from "../custom/useTranslation/UseTranslation";
-
 
 const DataList = () => {
   const [showAddForm, setShowAddForm] = useState(false);
@@ -70,45 +69,45 @@ const DataList = () => {
     }
   };
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const translate = useTranslation();
   const HandleAddUser = () => {
-    navigate("/registerAdmin")
-  }
+    navigate("/registerAdmin");
+  };
 
   return (
-  <div className="contenedor-principal">
-    <header className="header-nav"><Navbar/></header>
     <div id="data-list-main-container">
-      
+      <Navbar />
       <div className="users-list-data-list">
-        <h2>{translate("Users")}</h2>
-        <button className="add-button" onClick={HandleAddUser}>{translate("add User")}</button>
+        <h2>{translate("user")}</h2>
+        <button className="add-button" onClick={HandleAddUser}>
+          {translate("add User")}
+        </button>
 
         <div id="data-list-table-container">
-        <table id="data-list-table">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>{translate("name")}</th>
-              <th>{translate("email")}</th>
-              <th>{translate("action")}</th>
-            </tr>
-          </thead>
+          <table id="data-list-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>{translate("name")}</th>
+                <th>{translate("email")}</th>
+                <th>{translate("action")}</th>
+              </tr>
+            </thead>
 
-          <tbody>
-            {users.map((user, index) => (
-              <DataItem
-                key={index}
-                user={user}
-                onEdit={handleEdit}
-                onDelete={handleDelete} />
-            ))}
-          </tbody>
-        </table>
+            <tbody>
+              {users.map((user, index) => (
+                <DataItem
+                  key={index}
+                  user={user}
+                  onEdit={handleEdit}
+                  onDelete={handleDelete}
+                />
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
-    </div>
     </div>
   );
 };

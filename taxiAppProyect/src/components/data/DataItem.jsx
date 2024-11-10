@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import useTranslation from "../custom/useTranslation/UseTranslation";
 const DataItem = ({ index, user, onEdit, onDelete }) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -20,7 +20,11 @@ const DataItem = ({ index, user, onEdit, onDelete }) => {
           <input
             type="text"
             value={editedName}
-            onChange={(e) => setEditedName(e.target.value)}/> ) : (user.name)}
+            onChange={(e) => setEditedName(e.target.value)}
+          />
+        ) : (
+          user.name
+        )}
       </td>
 
       <td>
@@ -29,16 +33,24 @@ const DataItem = ({ index, user, onEdit, onDelete }) => {
             type="email"
             value={editedEmail}
             onChange={(e) => setEditedEmail(e.target.value)}
-          />) : (user.email)}
+          />
+        ) : (
+          user.email
+        )}
       </td>
       <td>
         {isEditing ? (
-          <button className="save-button" onClick={handleSave}>Guardar</button>
+          <button className="save-button" onClick={handleSave}>
+            {translate("save")}
+          </button>
         ) : (
-          <button className="edit-button" onClick={() => setIsEditing(true)}>{translate("edit")}</button>
+          <button className="edit-button" onClick={() => setIsEditing(true)}>
+            {translate("edit")}
+          </button>
         )}
-        <button className="delete-button" onClick={() => onDelete(user.email)}>{translate("delite")}</button>
-
+        <button className="delete-button" onClick={() => onDelete(user.email)}>
+          {translate("delete")}
+        </button>
       </td>
     </tr>
   );

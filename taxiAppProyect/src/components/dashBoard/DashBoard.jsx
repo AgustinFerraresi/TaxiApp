@@ -7,14 +7,14 @@ import "./DashBoard.css";
 const DashBoard = () => {
   const navigate = useNavigate();
   const translate = useTranslation();
-  
+
   const buttonHandler = () => {
     navigate("/login");
   };
 
   return (
     <div id="dashboard-container">
-      <header style={{ width: "100vw" }}>
+      <header style={{ width: "100vw", height: "100%  " }}>
         <Navbar />
       </header>
       <div className="dashboard-container-main">
