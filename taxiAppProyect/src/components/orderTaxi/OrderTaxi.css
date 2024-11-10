@@ -1,4 +1,4 @@
-.main-container {
+.main-container-order-taxi {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -10,6 +10,14 @@
   background-image: url("../../assets/fondo-dia.webp");
   color: #333;
   height: 110vh;
+}
+
+.header-nav-order-taxi {
+  width: 100%;
+  z-index: 1000;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
 }
 
 .orderTaxiContainer {
@@ -24,7 +32,7 @@
   font-weight: bold;
 }
 
-[theme="dark"] .contenedor-principal {
+[theme="dark"] .main-container-order-taxi {
   background-image: url("../../assets/rosario.jpg");
   color: #ffd700;
 }

@@ -2,22 +2,33 @@
     --main-color: rgba(24, 21, 16, 1);
     --orange-color: rgba(243, 149, 13, 1);
     --brown-color: rgba(59, 50, 38, 1);
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
 }
 
 #driver-screen-card-container h5 {
     text-transform: capitalize;
 }
 
-.driver-screen-main-container{
+.driver-screen-main-container {
     margin: 0px;
-    height: 100vh;
+    height: 100%;
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-image: url("../../assets/fondo-dia.webp");
+
+
+}
+
+[theme="dark"] .driver-screen-main-container {
+    background-image: url("./src/assets/rosario.jpg");
 }
 
 #driver-screen-card-container {
@@ -30,6 +41,16 @@
     margin-bottom: 50px;
     border-radius: 5px;
     margin: 20px;
+}
+
+.navbar-DriverScreen {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
 }
 
 [theme="dark"] #driver-screen-card-container {
@@ -100,7 +121,7 @@
     text-align: center;
     height: 1000px;
     border-radius: 50px;
-    
+
 }
 
 #profile-picture {
@@ -113,11 +134,11 @@
     flex-direction: column;
 }
 
-.driver-screen-list{
+.driver-screen-list {
     min-height: 500px;
     background-color: red;
 }
 
-#container-list-items{
+#container-list-items {
     min-height: 250px;
 }

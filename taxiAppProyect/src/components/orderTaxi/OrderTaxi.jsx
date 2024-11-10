@@ -124,8 +124,8 @@ const OrderTaxi = () => {
   };
 
   return (
-    <div className="main-container">
-      <header className="header-nav">
+    <div className="main-container-order-taxi">
+      <header className="header-nav-order-taxi">
         <Navbar />
       </header>
 
@@ -223,16 +223,16 @@ const OrderTaxi = () => {
             <option value="1">{translate("digital_Payment")}</option>
           </Form.Select>
 
-          <div className="text-center">
+          <div className="d-flex justify-content-center gap-2 mt-4">
             <Button
               onClick={handleSubmit}
               type="submit"
               variant="warning"
-              className="w-50 buttonOrderTaxi"
+              className="w-40 buttonOrderTaxi"
             >
               {translate("order_taxi")}
             </Button>
-            <Button onClick={x} variant="warning" className="w-50 ">
+            <Button onClick={x} variant="warning" className="w-40 ">
               {translate("show_states")}
             </Button>
           </div>
