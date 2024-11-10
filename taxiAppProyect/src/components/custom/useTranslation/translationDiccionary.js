@@ -37,6 +37,7 @@ export const dictionaryTranslations = {
     { key: "vehicle_model", value: "Modelo del vehículo" },
     { key: "vehicle_year", value: "Año del vehículo" },
     { key: "register", value: "Registrarse" },
+    { key: "registerAdmin", value: "Registrar una cuenta" },
     { key: "registration_success", value: "Registro exitoso" },
     { key: "error_occurred", value: "Ocurrió un error" },
     { key: "edit_profile", value: "Editar perfil" },
@@ -66,7 +67,13 @@ export const dictionaryTranslations = {
     { key: "cancel", value: "Cancelar" },
     { key: "effective", value: "Efectivo" },
     { key: "digital_Payment", value: "Pago digital" },
+    { key: "config", value: "Configuración" },
     { key: "success", value: "Proceso exitoso" },
+
+    { key: "list-rides", value: "Lista de viajes" },
+    { key: "history-rides", value: "Historial de viajes" },
+    { key: "order-taxi", value: "Llamar un taxi" },
+    { key: "are_you_sure", value: "Estas seguro que quieres eliminar tu cuenta? Esta acción es permanente!" },
     { key: "show_states", value: "Mostar estados" },
     {
       key: "are_you_sure",
@@ -126,6 +133,7 @@ export const dictionaryTranslations = {
     { key: "vehicle_model", value: "Vehicle model" },
     { key: "vehicle_year", value: "Vehicle year" },
     { key: "register", value: "Register" },
+    { key: "registerAdmin", value: "register an account" },
     { key: "registration_success", value: "Registration successful" },
     { key: "error_occurred", value: "An error occurred" },
     { key: "edit_profile", value: "Edit profile" },
@@ -146,10 +154,16 @@ export const dictionaryTranslations = {
     { key: "message_placeholder", value: "Message (optional)" },
     { key: "request_taxi", value: "Request Taxi" },
     { key: "success", value: "Successful process" },
+    { key: "order-taxi", value: "Order a taxi" },
+    { key: "list-rides", value: "Travel list" },
+    { key: "config", value: "Settings" },
+    { key: "are_you_sure", value: "Are you sure you want to delete your account? This action is permanent!" },
+    { key: "history-rides", value: "Travels history" },
     {
       key: "are_you_sure",
       value:
         "Are you sure you want to delete your account? This action is permanent!",
     },
+
   ],
 };

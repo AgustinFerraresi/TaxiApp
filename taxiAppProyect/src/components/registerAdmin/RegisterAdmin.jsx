@@ -246,7 +246,8 @@ function RegisterAdmin() {
             <p className="text-danger mt-2">{translate("enter_dni")}</p>
           )}
 
-          <div className="register-admin-select-container">
+  
+          <div className='register-admin-select-container'>
             <select id="type-user-select" onChange={handlerTypeUserSelect}>
               <option value="Passenger">{translate("passenger")}</option>
               <option value="Driver">{translate("driver")}</option>
