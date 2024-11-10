@@ -43,14 +43,7 @@ function App() {
     },
 
     //RUTAS PROTEGIDAS
-    {
-      path: "/registerAdmin",
-      element: (
-        <Protected allowedRoles={["SuperAdmin"]}>
-          <RegisterAdmin />
-        </Protected>
-      ),
-    },
+
     {
       path: "/registerAdmin",
       element: (
@@ -70,24 +63,17 @@ function App() {
     {
       path: "/DriverScreen",
       element: (
-        <Protected allowedRoles={["Driver"]}>
+        <Protected allowedRoles={["SuperAdmin", "Driver"]}>
           <DriverScreen />
         </Protected>
       ),
       //problemas con css
     },
-    {
-      path: "/DriverScreen/ProfileSettings",
-      element: (
-        <Protected allowedRoles={["Driver"]}>
-          <ProfileSettings />
-        </Protected>
-      ), //se pisa el css
-    },
+    
     {
       path: "/ProfileSettings",
       element: (
-        <Protected allowedRoles={["Passenger"]}>
+        <Protected allowedRoles={["Passenger", "Driver", "SuperAdmin"]}>
           <ProfileSettings />
         </Protected>
       ), //se pisa el css
@@ -100,6 +86,14 @@ function App() {
         </Protected>
       ),
     },
+    {
+      path: "/rides",
+      element: (
+        <Protected allowedRoles={["SuperAdmin", "Passenger"]}>
+          <Rides />
+        </Protected>
+      ),
+    }
   ]);
 
   return (

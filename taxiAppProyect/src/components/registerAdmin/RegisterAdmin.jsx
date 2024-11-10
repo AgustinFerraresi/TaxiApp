@@ -222,8 +222,8 @@ function RegisterAdmin() {
           {errors.dni && (
             <p className="text-danger mt-2">Ingrese un dni válido.</p>
           )}
-
-          <div class='register-admin-select-container'>
+  
+          <div className='register-admin-select-container'>
             <select id="type-user-select" onChange={handlerTypeUserSelect}>
               <option value="Passenger">Pasajero</option>
               <option value="Driver">Conductor</option>

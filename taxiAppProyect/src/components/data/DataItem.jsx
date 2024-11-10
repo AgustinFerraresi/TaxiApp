@@ -39,15 +39,6 @@ const DataItem = ({ index, user, onEdit, onDelete }) => {
         )}
       </td>
       <td>
-        {isEditing ? (
-          <button className="save-button" onClick={handleSave}>
-            {translate("save")}
-          </button>
-        ) : (
-          <button className="edit-button" onClick={() => setIsEditing(true)}>
-            {translate("edit")}
-          </button>
-        )}
         <button className="delete-button" onClick={() => onDelete(user.email)}>
           {translate("delete")}
         </button>

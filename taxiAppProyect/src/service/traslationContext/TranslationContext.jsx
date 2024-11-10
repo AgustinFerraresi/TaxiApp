@@ -6,7 +6,6 @@ const tValue = localStorage.getItem("translation");
 
 export const TranslationContextProvider = ({ children }) => {
   const [language, setLanguage] = useState(tValue ?? "es");
-  console.log("este es el valor del estado language",language);
 
   const changeLanguageHandler = (newLang) => {
     console.log(`Changing language to: ${newLang}`);
