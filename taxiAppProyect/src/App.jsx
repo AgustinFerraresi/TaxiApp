@@ -32,6 +32,9 @@ function App() {
     {
       path: "/login",
       element: <Login />,
+    },    {
+      path: "/rides",
+      element: <Rides />,
     },
     {
       path: "/register",

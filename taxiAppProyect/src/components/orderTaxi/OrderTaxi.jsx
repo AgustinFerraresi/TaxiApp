@@ -70,7 +70,7 @@ const OrderTaxi = () => {
   };
 
   const handleSubmit = async (event) => {
-    //event.preventDefault();
+    event.preventDefault();
 
     if (destinationRef.current.value.length === 0) {
       destinationRef.current.focus();
@@ -131,7 +131,7 @@ const OrderTaxi = () => {
       <header className="header-nav"><Navbar /></header>
 
 
-    <Row>
+    <Row className="order-taxi-completed-card">
       <Col xs={6}>
         <Toast onClose={() => setShow(false)} show={show} delay={3000} autohide>
           <Toast.Header>
@@ -140,10 +140,9 @@ const OrderTaxi = () => {
               className="rounded me-2"
               alt=""
             />
-            <strong className="me-auto">Bootstrap</strong>
-            <small>11 mins ago</small>
+            <strong className="me-auto">Taxi en camino!</strong>
           </Toast.Header>
-          <Toast.Body>Woohoo, you're reading this text in a Toast!</Toast.Body>
+          <Toast.Body>El viaje a sido creado</Toast.Body>
         </Toast>
       </Col>
     </Row>
@@ -208,8 +207,7 @@ const OrderTaxi = () => {
         </Form.Select>
 
           <div className="text-center">
-            <Button onClick={handleSubmit}type="submit"variant="warning"className="w-50 buttonOrderTaxi">Pedir Taxi</Button>
-            <Button onClick={x} variant="warning"className="w-50 ">mostar estados</Button>
+            <Button onClick={handleSubmit}type="submit"variant="warning"className="w-50 buttonOrderTaxi mt-2">Pedir Taxi</Button>
           </div>
           
         </Form>
