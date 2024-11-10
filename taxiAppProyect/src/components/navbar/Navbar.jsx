@@ -20,14 +20,13 @@ const Navbar = ({ children }) => {
   const role = localStorage.getItem("Role")
   const [rolePassengerRight, setRolePassengerRight] = useState(true)
   const [roleDriverRight, setRoleDriverRight] = useState(true)
-  const [selectRoute, setSelectRoute] = useState()
-  const handleNavigate = (event) => {
-    const route = event.target.value;
-    setSelectRoute(route)
-    navigate(route)
-  }
+  const [selectRoute, setSelectRoute] = useState("")
+
   const handleSelect = (event) => {
-    navigate(event.target.value)
+    const route = event.target.value;
+    setSelectRoute(route);
+
+    navigate(route);
   }
 
 
@@ -60,17 +59,20 @@ const Navbar = ({ children }) => {
         >
           RoTaxi
         </h2>
-        <select name="burger-menu" className="btn btn-light" value={selectRoute} onChange={handleSelect}>
-          {isLogging != null && <option className="btn btn-light" onClick={handleNavigate} value={"/ProfileSettings"}>{translate("config")}</option>}
+        
+        {isLogging != null && <select name="burger-menu" className="btn btn-light" value={selectRoute} onChange={handleSelect}>
+            <option className="btn btn-secondary">Menú</option>
+            <option className="btn btn-light" value={"/ProfileSettings"}>{translate("config")}</option>
 
-          {(rolePassengerRight || role === "SuperAdmin") && isLogging != null && <option className="btn btn-light" onClick={handleNavigate} value={"/OrderTaxi"}>{translate("order-taxi")}</option>}
-          {(rolePassengerRight || role === "SuperAdmin") && isLogging != null && <option className="btn btn-light" onClick={handleNavigate} value={"/rides"}>{translate("history-rides")}</option>}
+            {(rolePassengerRight || role === "SuperAdmin") && isLogging != null && <option className="btn btn-light" value={"/OrderTaxi"}>{translate("order-taxi")}</option>}
+            {(rolePassengerRight || role === "SuperAdmin") && isLogging != null && <option className="btn btn-light" value={"/rides"}>{translate("history-rides")}</option>}
 
-          {(roleDriverRight || role === "SuperAdmin") && isLogging != null && <option className="btn btn-light" onClick={handleNavigate} value={"/DriverScreen"}>{translate("list-rides")}</option>}
+            {(roleDriverRight || role === "SuperAdmin") && isLogging != null && <option className="btn btn-light" value={"/DriverScreen"}>{translate("list-rides")}</option>}
 
-          {role === "SuperAdmin" && isLogging != null && <option className="btn btn-light" onClick={handleNavigate} value={"/registerAdmin"}>{translate("registerAdmin")}</option>}
-          {role === "SuperAdmin" && isLogging != null && <option className="btn btn-light" onClick={handleNavigate} value={"/ListUsers"}>{translate("user")}</option>}
-        </select>
+            {role === "SuperAdmin" && isLogging != null && <option className="btn btn-light" value={"/registerAdmin"}>{translate("registerAdmin")}</option>}
+            {role === "SuperAdmin" && isLogging != null && <option className="btn btn-light" value={"/ListUsers"}>{translate("user")}</option>}
+        </select>}
+
 
 
       </div>
