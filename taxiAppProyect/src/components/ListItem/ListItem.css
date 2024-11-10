@@ -6,7 +6,7 @@
 
 li {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     margin: 15px;
     list-style: none;
     border: 1px solid #333;

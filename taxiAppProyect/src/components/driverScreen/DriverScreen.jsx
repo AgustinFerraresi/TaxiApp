@@ -1,10 +1,12 @@
 import { availableTrips } from "../data/Data";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ListItem from "../ListItem/ListItem";
 import Button from "react-bootstrap/Button";
 import "./DriverScreen.css";
 import Navbar from "../navbar/Navbar";
 import useTranslation from "../custom/useTranslation/UseTranslation";
+import { jwtDecode } from "jwt-decode";
+
 
 const DriverScreen = () => {
   const [service, setService] = useState("start_service");
@@ -18,41 +20,60 @@ const DriverScreen = () => {
   };
 
   const buttonVariant = service === "start_service" ? "success" : "danger";
+  const token = localStorage.getItem("token");
+  
+  const tokenDecoded = jwtDecode(token);
+  const userName = tokenDecoded.Name
+
+  
+  const userRole = localStorage.getItem("userRole");
+  const userId = localStorage.getItem("userId");
+  const [rides,setRides] = useState([]);
+
+  useEffect (() => {
+    const getAllRides = async () => {
+      try {
+        const response = await fetch(`https://localhost:7179/api/Ride/GetAll`,{
+          headers: { 
+            "Content-Type": "application/json", 
+            'Authorization': `Bearer ${token}`
+          },
+        })
+
+        if (!response.ok) {
+          console.log("error en getAll rides");
+          alert("Error al cargar los viajes");
+          throw new Error("Error al buscar al user");
+        }
+        const data = await response.json();
+        setRides(data);        
+
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
+    getAllRides();
+  },[])
+
+
+
+
 
   return (
-    <div className="contenedor-principal">
-      <header className="header-nav">
-        <Navbar />
-      </header>
+    <div className="driver-screen-main-container">
+      <Navbar />
+
       <div id="driver-screen-card-container">
-        <div className="driver-container">
-          <div className="buttons">
-            <Button
-              className="driver-screen-buttons text-black"
-              variant="warning"
-            >
-              {translate("edit_profile")}
-            </Button>
-          </div>
-          <div className="contenedor-imagen">
-            <h2>{translate("driver_name")}</h2>
-          </div>
+        <div id="driver-screen-header-section">
+          <h2>{userName}</h2>
         </div>
 
-        <div id="driver-screen-button-container">
-          <Button
-            className="driver-screen-buttons"
-            onClick={handlerService}
-            variant={buttonVariant}
-          >
-            {translate(service)}
-          </Button>
-        </div>
-
-        <div className="driver-screen-container">
+        <div className="driver-screen-table-container">
           <h5>{translate("available_trips")}</h5>
-          <ListItem list={availableTrips} />
+          <ListItem className="driver-screen-list" list={rides} userId={userId} />
         </div>
+
       </div>
     </div>
   );
