@@ -1,6 +1,7 @@
 import { Button, Modal } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import useTranslation from "../custom/useTranslation/UseTranslation";
 import Navbar from "../navbar/Navbar";
 import "./ProfileSettings.css";
 
@@ -10,12 +11,27 @@ const ProfileSettings = () => {
   const [enableEdit, setEnableEdit] = useState(false);  
   const [name, setName] = useState("");
   const navigate = useNavigate();
+  const translate = useTranslation();
+  const userRole = localStorage.getItem("Role");
+  const userId = localStorage.getItem("userId");
   const [user,setUser] = useState({    
     name : "",
     email : "",
     dni : ""
   });
-
+  // const [role, setRole] = useState(userRole)
+  // const transla = localStorage.getItem("translate")
+  // console.log("abajo esta el rol de role")
+  // console.log(role)
+  // if (role === "Passenger" && transla === "es" ) {
+  //   setRole("Pasajero")
+  // }
+  // else if (role === "Driver" && transla === "es" ) {
+  //   setRole("Chofer")
+  // }
+  // else if (role === "SuperAdmin" && transla === "es" ) {
+  //   setRole("Administrador")
+  // }
   const handleUserName = (event) =>{
     setUser({...user,name : event.target.value});
   }
@@ -59,11 +75,10 @@ const ProfileSettings = () => {
         )
   
         if (!response.ok) {
-          alert("Error al actualizar la cuenta");
-          console.log("error al actualizar ");
+          alert("Error");
           throw new Error('Error al actualizar');
         }
-        alert("Actualizacion exitosa!");
+        alert(translate("success"));
         handleEditAccount();
   
       } catch (error) {
@@ -126,8 +141,7 @@ const ProfileSettings = () => {
 
 
 
-  const userRole = localStorage.getItem("Role");
-  const userId = localStorage.getItem("userId");
+
 
   const handlerPermanentAccountDelete = async () => {
     console.log("Eliminando cuenta para:", userId, userRole); // Agregar log para verificar
@@ -253,12 +267,12 @@ const ProfileSettings = () => {
 
           <div id="profile-settings-img-container">
             <h3>{name}</h3>
-            <h6>Rol: {userRole}</h6> 
+            <h6>Rol: {userRole}</h6>
             {/* El rol se tiene que traducir dependiendo del idioma  */}
           </div>
 
           <div id="profile-settings-generic-user-data-container">
-            <label htmlFor="" className="general-info">Nombre:</label>
+            <label htmlFor="" className="general-info">{translate("name")}:</label>
             <input type="text"  disabled={!enableEdit} value={user.name} onChange={handleUserName} />
 
             <label htmlFor="" className="profile-settings-general-info"  >Email:</label>
@@ -272,15 +286,15 @@ const ProfileSettings = () => {
 
           {!deleteAccount && !enableEdit  &&
           <div className="profile-settings-buttons-container">
-            <Button variant="warning" className="profile-settings-button" onClick={handleEditAccount}>Editar</Button>
-            <Button variant="danger" className="profile-settings-button" onClick={handlerDeleteAccount}>Eliminar cuenta</Button>
+            <Button variant="warning" className="profile-settings-button" onClick={handleEditAccount}>{translate("edit")}</Button>
+            <Button variant="danger" className="profile-settings-button" onClick={handlerDeleteAccount}>{translate("delete_account")}</Button>
           </div>}
 
 
           {enableEdit && 
           <div className="profile-settings-buttons-container">
-            <Button className="profile-settings-button" onClick={handleSendEdit}> Aceptar </Button>
-            <Button className="profile-settings-button" variant="secondary" onClick={handleEditAccount}> Cancelar </Button>
+            <Button className="profile-settings-button" onClick={handleSendEdit}> {translate("accept")} </Button>
+            <Button className="profile-settings-button" variant="secondary" onClick={handleEditAccount}> {translate("cancel")} </Button>
           </div> 
           }
 
@@ -289,14 +303,14 @@ const ProfileSettings = () => {
             
             <Modal show={handlerDeleteAccount} onHide={handlerDeleteAccount}>
               <Modal.Header closeButton>
-                <Modal.Title>Eliminar cuenta</Modal.Title>
+                <Modal.Title>{translate("delete_account")}</Modal.Title>
               </Modal.Header>
 
-              <Modal.Body>Estas seguro que quieres eliminar tu cuenta? Esta acciÃ³n es permanente!</Modal.Body>
+              <Modal.Body>{translate("are_you_sure")}</Modal.Body>
 
               <Modal.Footer>
-                <Button variant="secondary" onClick={handlerDeleteAccount}>Cancelar</Button>
-                <Button variant="danger" onClick={handlerPermanentAccountDelete}>Eliminar</Button>
+                <Button variant="secondary" onClick={handlerDeleteAccount}>{translate("cancel")} </Button>
+                <Button variant="danger" onClick={handlerPermanentAccountDelete}>{translate("delete")} </Button>
               </Modal.Footer>
             </Modal>
           )}
