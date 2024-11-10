@@ -2,7 +2,6 @@ import { useState, useRef } from "react";
 import { Form, Button } from "react-bootstrap";
 import Navbar from "../navbar/Navbar";
 import "./OrderTaxi.css";
-import LogOut from "../logOut/LogOut";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Toast from "react-bootstrap/Toast";
@@ -33,11 +32,6 @@ const OrderTaxi = () => {
     message: messaje,
   });
 
-  const x = () => {
-    console.log("location es:", location);
-    console.log(rideToCreate.location);
-  };
-
   const handleLocation = (e) => {
     setLocation(e.target.value);
     setRideToCreate({ ...rideToCreate, location: e.target.value });
@@ -46,7 +40,6 @@ const OrderTaxi = () => {
       ...prevErrors,
       location: e.target.value.length === 0,
     }));
-    //console.log(location)
   };
 
   const handleDestination = (e) => {
@@ -67,11 +60,10 @@ const OrderTaxi = () => {
   const handlePaymentMethod = (event) => {
     setPaymentMethod(event.target.value);
     setRideToCreate({ ...rideToCreate, paymentMethod: e.target.value });
-    console.log(paymentMethod);
   };
 
   const handleSubmit = async (event) => {
-    //event.preventDefault();
+    event.preventDefault();
 
     if (destinationRef.current.value.length === 0) {
       destinationRef.current.focus();
@@ -102,6 +94,7 @@ const OrderTaxi = () => {
         paymentMethod: 0,
         message: messaje,
       });
+
       const response = await fetch(`https://localhost:7179/api/Ride`, {
         method: "POST",
         headers: {
@@ -116,7 +109,6 @@ const OrderTaxi = () => {
         throw new Error("Error en la creacion del viaje");
       }
 
-      //console.log(rideToCreate)
       setShow(true);
     } catch (error) {
       console.log(error);
@@ -125,53 +117,41 @@ const OrderTaxi = () => {
 
   return (
     <div className="main-container">
-      <header className="header-nav">
-        <Navbar />
-      </header>
+      <header className="header-nav"><Navbar /></header>
 
-      <Row>
-        <Col xs={6}>
-          <Toast
-            onClose={() => setShow(false)}
-            show={show}
-            delay={3000}
-            autohide
-          >
-            <Toast.Header>
-              <img
-                src="holder.js/20x20?text=%20"
-                className="rounded me-2"
-                alt=""
-              />
-              <strong className="me-auto">Bootstrap</strong>
-              <small>11 mins ago</small>
-            </Toast.Header>
-            <Toast.Body>
-              Woohoo, you're reading this text in a Toast!
-            </Toast.Body>
-          </Toast>
-        </Col>
-      </Row>
+
+      <Row className="order-taxi-completed-card">
+      <Col xs={6}>
+        <Toast onClose={() => setShow(false)} show={show} delay={3000} autohide>
+
+          <Toast.Header>
+            <img src="holder.js/20x20?text=%20" className="rounded me-2" alt=""/>
+            <strong className="me-auto">Taxi en camino!</strong>
+          </Toast.Header>
+
+          <Toast.Body>El viaje a sido creado</Toast.Body>
+        </Toast>
+      </Col>
+    </Row>
 
       <div className="container mt-4 col-md-4 shadow bordered-div orderTaxiContainer">
         <h1 className="text-center ">{translate("order_taxi")}</h1>
 
         <Form>
           <Form.Group className="mb-4" controlId="formDestination">
-            <Form.Label className="fw-bold ">
-              {translate("enter_destination")}
-            </Form.Label>
+            <Form.Label className="fw-bold ">{translate("enter_destination")}</Form.Label>
+
             <Form.Control
               type="text"
-              placeholder="Destino"
-              className={`p-3 rounded ${
-                errors.destination && "border border-danger"
-              }`}
+              placeholder="Destino"              
               value={destination}
               required
               onChange={handleDestination}
               ref={destinationRef}
-            />
+              className={`p-3 rounded ${
+                errors.destination && "border border-danger"
+              }`}/>
+
             {errors.destination && (
               <p className="text-danger">
                 {translate("incomplete_destination")}
@@ -180,20 +160,19 @@ const OrderTaxi = () => {
           </Form.Group>
 
           <Form.Group className="mb-4" controlId="formLocation">
-            <Form.Label className="fw-bold">
-              {translate("enter_location")}
-            </Form.Label>
+            <Form.Label className="fw-bold">{translate("enter_location")}</Form.Label>
+
             <Form.Control
               type="text"
               placeholder="Ubicación"
-              className={`p-3 rounded ${
-                errors.location && "border border-danger"
-              }`}
               value={location}
               onChange={handleLocation}
               required
               ref={locationRef}
-            />
+              className={`p-3 rounded ${
+                errors.location && "border border-danger"
+              }`}/>
+
             {errors.location && (
               <p className="text-danger">{translate("incomplete_location")}</p>
             )}
@@ -201,6 +180,7 @@ const OrderTaxi = () => {
 
           <Form.Group className="mb-4" controlId="formMessage">
             <Form.Label className="fw-bold ">{translate("message")}</Form.Label>
+
             <Form.Control
               type="text"
               placeholder={translate("message_placeholder")}
@@ -210,31 +190,14 @@ const OrderTaxi = () => {
             />
           </Form.Group>
 
-          <Form.Label className="fw-bold">
-            {translate("payment_Method")}
-          </Form.Label>
-          <Form.Select
-            aria-label="Default select example"
-            className="payment-method-order-taxi"
-            defaultValue={0}
-            onChange={handlePaymentMethod}
-          >
+          <Form.Label className="fw-bold">{translate("payment_Method")}</Form.Label>
+          <Form.Select aria-label="Default select example"className="payment-method-order-taxi"defaultValue={0}onChange={handlePaymentMethod}>
             <option value="0">{translate("effective")}</option>
             <option value="1">{translate("digital_Payment")}</option>
           </Form.Select>
 
           <div className="text-center">
-            <Button
-              onClick={handleSubmit}
-              type="submit"
-              variant="warning"
-              className="w-50 buttonOrderTaxi"
-            >
-              {translate("order_taxi")}
-            </Button>
-            <Button onClick={x} variant="warning" className="w-50 ">
-              {translate("show_states")}
-            </Button>
+            <Button onClick={handleSubmit} type="submit" variant="warning" className="w-50 buttonOrderTaxi mt-2">{translate("order_taxi")}</Button>
           </div>
         </Form>
       </div>

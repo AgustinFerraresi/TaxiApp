@@ -137,7 +137,7 @@ const Register = () => {
   };
 
   return (
-      <div className='contenedor-principal'>
+      <div className='register-main-container'>
         <header className="header-nav ">
           <Navbar/>
         </header>
