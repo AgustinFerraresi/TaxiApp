@@ -32,6 +32,7 @@ const DataItemDriver = ({ index,user }) => {
     <tr className="user-item">
       
       <td>{user.id}</td>
+      <td>{translate("taxi_driver")}</td>
       <td>{user.name}</td>
       <td>{user.email}</td>
       <td><button className="delete-button" onClick={handleDelete}>{translate("delete")}</button></td>

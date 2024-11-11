@@ -72,7 +72,7 @@ export const dictionaryTranslations = {
     { key: "success", value: "Proceso exitoso" },
     { key: "no-trips", value: "No hay viajes" },
     { key: "list-rides", value: "Lista de viajes" },
-    { key: "history-rides", value: "Historial de viajes" },
+    { key: "history-rides", value: "Viajes activos" },
     { key: "order-taxi", value: "Llamar un taxi" },
     {
       key: "are_you_sure",
@@ -169,7 +169,7 @@ export const dictionaryTranslations = {
       value:
         "Are you sure you want to delete your account? This action is permanent!",
     },
-    { key: "history-rides", value: "Travels history" },
+    { key: "history-rides", value: "Active trips" },
     {
       key: "are_you_sure",
       value:

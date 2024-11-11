@@ -76,6 +76,7 @@ return (
           <thead>
             <tr>
               <th>ID</th>
+              <th>{translate("Rol")}</th>
               <th>{translate("name")}</th>
               <th>{translate("email")}</th>
               <th>{translate("action")}</th>

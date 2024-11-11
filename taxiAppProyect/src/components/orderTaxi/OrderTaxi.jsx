@@ -33,10 +33,7 @@ const OrderTaxi = () => {
     message: messaje,
   });
 
-  const x = () => {
-    console.log("location es:", location);
-    console.log(rideToCreate.location);
-  };
+
 
   const handleLocation = (e) => {
     setLocation(e.target.value);
@@ -46,7 +43,6 @@ const OrderTaxi = () => {
       ...prevErrors,
       location: e.target.value.length === 0,
     }));
-    //console.log(location)
   };
 
   const handleDestination = (e) => {
@@ -71,7 +67,7 @@ const OrderTaxi = () => {
   };
 
   const handleSubmit = async (event) => {
-    //event.preventDefault();
+    event.preventDefault();
 
     if (destinationRef.current.value.length === 0) {
       destinationRef.current.focus();
@@ -115,8 +111,10 @@ const OrderTaxi = () => {
         console.log("error en la creacion del viaje");
         throw new Error("Error en la creacion del viaje");
       }
+      setLocation("");
+      setDestination("");
+      setMessaje("");
 
-      //console.log(rideToCreate)
       setShow(true);
     } catch (error) {
       console.log(error);
@@ -129,29 +127,19 @@ const OrderTaxi = () => {
         <Navbar />
       </header>
 
-      <Row>
-        <Col xs={6}>
-          <Toast
-            onClose={() => setShow(false)}
-            show={show}
-            delay={3000}
-            autohide
-          >
-            <Toast.Header>
-              <img
-                src="holder.js/20x20?text=%20"
-                className="rounded me-2"
-                alt=""
-              />
-              <strong className="me-auto">Bootstrap</strong>
-              <small>11 mins ago</small>
-            </Toast.Header>
-            <Toast.Body>
-              Woohoo, you're reading this text in a Toast!
-            </Toast.Body>
-          </Toast>
-        </Col>
-      </Row>
+      <Row className="order-taxi-completed-card">
+      <Col xs={6}>
+        <Toast onClose={() => setShow(false)} show={show} delay={3000} autohide>
+
+          <Toast.Header>
+            <img src="holder.js/20x20?text=%20" className="rounded me-2" alt=""/>
+            <strong className="me-auto">Taxi en camino!</strong>
+          </Toast.Header>
+
+          <Toast.Body>El viaje a sido creado</Toast.Body>
+        </Toast>
+      </Col>
+    </Row>
 
       <div className="container mt-4 col-md-4 shadow bordered-div orderTaxiContainer">
         <h1 className="text-center ">{translate("order_taxi")}</h1>
@@ -210,18 +198,6 @@ const OrderTaxi = () => {
             />
           </Form.Group>
 
-          <Form.Label className="fw-bold">
-            {translate("payment_Method")}
-          </Form.Label>
-          <Form.Select
-            aria-label="Default select example"
-            className="payment-method-order-taxi"
-            defaultValue={0}
-            onChange={handlePaymentMethod}
-          >
-            <option value="0">{translate("effective")}</option>
-            <option value="1">{translate("digital_Payment")}</option>
-          </Form.Select>
 
           <div className="d-flex justify-content-center gap-2 mt-4">
             <Button
@@ -231,9 +207,6 @@ const OrderTaxi = () => {
               className="w-40 buttonOrderTaxi"
             >
               {translate("order_taxi")}
-            </Button>
-            <Button onClick={x} variant="warning" className="w-40 ">
-              {translate("show_states")}
             </Button>
           </div>
         </Form>

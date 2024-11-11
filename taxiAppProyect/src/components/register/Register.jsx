@@ -102,6 +102,11 @@ const Register = () => {
           throw new Error("Error en la creacion del usuario");
         }
         console.log("formulario enviado  correctamente");
+        setDni("");
+        setEmail("");
+        setName("");
+        setPassword("");
+        navigate("/login");
       } else {
         userData = {
           name: name,
@@ -120,6 +125,11 @@ const Register = () => {
           console.log("error en la creacion del usuario");
           throw new Error("Error en la creacion del usuario");
         }
+        setDni("");
+        setEmail("");
+        setName("");
+        setPassword("");
+        navigate("/login");
         console.log("formulario enviado  correctamente");
       }
     } catch (error) {
