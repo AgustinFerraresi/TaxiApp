@@ -22,7 +22,6 @@ function Rides() {
         );
 
         if (!response.ok) {
-          console.log("error en traer los viajes del pasajero");
           throw new Error("Error en traer los viajes del pasajero");
         }
         const data = await response.json();
@@ -34,7 +33,6 @@ function Rides() {
     getRides();
   }, []);
 
-  console.log("rides:", rides);
   return (
     <div className="rides-main-container">
       <Navbar />

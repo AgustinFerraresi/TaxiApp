@@ -220,8 +220,6 @@ const ProfileSettings = () => {
   useEffect( () => {
     const fetchUserData = async () => {
       try {
-        console.log(userId);
-        console.log(userRole);
         let url = '';
 
         if (userRole === "SuperAdmin") {
@@ -257,7 +255,6 @@ const ProfileSettings = () => {
     };
   fetchUserData();
   },[])
-  console.log("este es el user",user);
   return (
     <div className="profile-settings-main-container">
       <header className="header-nav"><Navbar /></header>
