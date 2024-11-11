@@ -11,7 +11,11 @@
   color: #333;
   height: 110vh;
 }
-
+.order-taxi-completed-card{
+  align-items: center;
+  justify-content: center;
+  color: yellow;
+}    
 .header-nav-order-taxi {
   width: 100%;
   z-index: 1000;
