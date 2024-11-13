@@ -68,6 +68,8 @@ const Navbar = ({ children }) => {
             {(rolePassengerRight || role === "SuperAdmin") && isLogging != null && <option className="btn btn-light" value={"/rides"}>{translate("history-rides")}</option>}
 
             {(roleDriverRight || role === "SuperAdmin") && isLogging != null && <option className="btn btn-light" value={"/DriverScreen"}>{translate("list-rides")}</option>}
+            {(roleDriverRight || role === "SuperAdmin") && isLogging != null && <option className="btn btn-light" value={"/CreateVehicle"}>crear vehiculo</option>}
+
 
             {role === "SuperAdmin" && isLogging != null && <option className="btn btn-light" value={"/registerAdmin"}>{translate("registerAdmin")}</option>}
             {role === "SuperAdmin" && isLogging != null && <option className="btn btn-light" value={"/ListUsers"}>{translate("user")}</option>}
