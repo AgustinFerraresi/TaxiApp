@@ -19,6 +19,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
 import Protected from "./components/protected/Protected";
+import CreateVehicle from "./components/createVehicle/CreateVehicle";
 
 function App() {
   const router = createBrowserRouter([
@@ -67,7 +68,16 @@ function App() {
           <DriverScreen />
         </Protected>
       ),
+
       //problemas con css
+    },
+    {
+      path: "/CreateVehicle",
+      element: (
+        <Protected allowedRoles={["SuperAdmin", "Driver"]}>
+          <CreateVehicle />
+        </Protected>
+      ),
     },
     
     {
